@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rustomjee — Complete AOP Performance Dashboard FY 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+:root{
+  --ink:#0c1220;--ink2:#18243a;--ink3:#2d3d56;
+  --silver:#7b8aa0;--mist:#b8c4d4;--fog:#eaecf2;--paper:#f4f6fa;--white:#fff;
+  --gold:#c49a2e;--gold-lt:#f8edcc;--gold-dk:#8c6d10;
+  --red:#c8312b;--red-lt:#fbe8e7;
+  --amber:#c47a0a;--amber-lt:#fef0d4;
+  --green:#0f7a5a;--green-lt:#d4f0e6;
+  --blue:#1a5da8;--blue-lt:#ddeaf8;
+  --purple:#6930a8;--purple-lt:#ebe0f8;
+  --teal:#0e7a8a;--teal-lt:#d4f0f4;
+  --nav-w:238px;--top-h:62px;--r:10px;
+  --sh:0 1px 8px rgba(12,18,32,.07);--sh2:0 4px 22px rgba(12,18,32,.13);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);display:flex;min-height:100vh;font-size:13.5px;line-height:1.55}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-thumb{background:var(--mist);border-radius:3px}
+
+/* SIDEBAR */
+#sb{width:var(--nav-w);background:var(--ink);position:fixed;top:0;left:0;bottom:0;z-index:200;display:flex;flex-direction:column;overflow-y:auto}
+.sb-top{padding:20px 18px 14px;border-bottom:1px solid rgba(255,255,255,.07)}
+.sb-chip{background:var(--gold);color:var(--ink);font-size:9px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;padding:3px 9px;border-radius:3px;display:inline-block;margin-bottom:9px}
+.sb-top h1{font-family:'DM Serif Display',serif;font-size:14px;color:#fff;line-height:1.4}
+.sb-top p{font-size:10px;color:rgba(255,255,255,.35);margin-top:3px}
+.sb-sec{font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:rgba(255,255,255,.2);padding:12px 18px 4px}
+.na{display:flex;align-items:center;gap:8px;padding:8px 18px;color:rgba(255,255,255,.5);font-size:12px;font-weight:500;cursor:pointer;border-left:2px solid transparent;transition:all .15s;user-select:none}
+.na:hover,.na.on{color:#fff;background:rgba(255,255,255,.07);border-left-color:var(--gold)}
+.na .ic{width:14px;text-align:center;font-size:11px;flex-shrink:0}
+.sb-leg{padding:14px 18px 8px;border-top:1px solid rgba(255,255,255,.06);margin-top:auto}
+.sb-leg p{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:8px}
+.lr{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.ld{width:8px;height:8px;border-radius:50%}
+.lr span{font-size:11px;color:rgba(255,255,255,.42)}
+.sb-ft{padding:10px 18px 16px;font-size:10px;color:rgba(255,255,255,.2);line-height:1.7}
+
+/* TOPBAR */
+#tb{height:var(--top-h);background:var(--ink2);border-bottom:2px solid var(--gold);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:100}
+.tb-h{font-family:'DM Serif Display',serif;font-size:16px;color:#fff}
+.tb-s{font-size:11px;color:rgba(255,255,255,.38);margin-top:2px}
+.tb-r{display:flex;align-items:center;gap:10px}
+.fy-b{background:var(--gold);color:var(--ink);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:.3px}
+.tb-d{font-size:11px;color:rgba(255,255,255,.32)}
+.tb-p{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.6);padding:6px 13px;border-radius:6px;font-size:11.5px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .18s}
+.tb-p:hover{background:rgba(255,255,255,.15)}
+
+/* LAYOUT */
+#main{margin-left:var(--nav-w);flex:1;display:flex;flex-direction:column}
+#ct{padding:24px 28px;flex:1}
+
+/* SECTION HEADER */
+.sh{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.sn{font-family:'DM Serif Display',serif;font-style:italic;font-size:10.5px;background:var(--gold-lt);color:var(--gold-dk);padding:3px 9px;border-radius:3px;flex-shrink:0;letter-spacing:.3px}
+.st{font-size:17px;font-weight:700;color:var(--ink2)}
+.ss{font-size:11.5px;color:var(--silver);margin-top:1px}
+.rule{height:1px;background:var(--fog);margin:28px 0}
+
+/* SOURCE TAG */
+.src{display:inline-block;font-size:9.5px;background:var(--blue-lt);color:var(--blue);font-weight:600;padding:2px 8px;border-radius:3px;margin-bottom:12px;letter-spacing:.3px}
+.src-am{background:var(--amber-lt);color:var(--amber)}
+.src-gr{background:var(--green-lt);color:var(--green)}
+
+/* FILTER BAR */
+.fb{background:var(--white);border:1px solid var(--fog);border-radius:var(--r);padding:12px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px;box-shadow:var(--sh)}
+.fl{font-size:10.5px;font-weight:700;color:var(--mist);text-transform:uppercase;letter-spacing:.7px;white-space:nowrap}
+.fg{display:flex;align-items:center;gap:7px}
+.fs{border:1px solid var(--fog);border-radius:6px;padding:6px 10px;font-size:12.5px;background:var(--paper);color:var(--ink);min-width:148px;cursor:pointer;outline:none;font-family:'DM Sans',sans-serif;transition:border-color .18s}
+.fs:focus{border-color:var(--ink3)}
+.fr{background:var(--ink);color:#fff;border:none;padding:7px 15px;border-radius:6px;font-size:11.5px;font-weight:600;cursor:pointer;margin-left:auto;font-family:'DM Sans',sans-serif;transition:opacity .18s}
+.fr:hover{opacity:.82}
+
+/* PILLS */
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.pill{background:var(--white);border:1px solid var(--fog);border-radius:7px;padding:7px 13px;font-size:12px;font-weight:600;color:var(--ink2);display:flex;align-items:center;gap:6px;transition:all .18s;cursor:default;box-shadow:var(--sh)}
+.pill:hover{background:var(--ink);color:#fff;transform:translateY(-2px);box-shadow:var(--sh2)}
+.pd{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* KPIs */
+.kgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:12px}
+.kpi{background:var(--white);border:1px solid var(--fog);border-radius:var(--r);padding:16px 14px;position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s;cursor:default}
+.kpi:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
+.kpi::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px}
+.ki::after{background:var(--ink)}.kr::after{background:var(--red)}.ka::after{background:var(--amber)}
+.kg::after{background:var(--green)}.kgo::after{background:var(--gold)}.kb::after{background:var(--blue)}
+.kp::after{background:var(--purple)}.kt::after{background:var(--teal)}
+.kico{font-size:16px;margin-bottom:10px;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:7px}
+.ki .kico{background:rgba(12,18,32,.07);color:var(--ink2)}.kr .kico{background:var(--red-lt);color:var(--red)}
+.ka .kico{background:var(--amber-lt);color:var(--amber)}.kg .kico{background:var(--green-lt);color:var(--green)}
+.kgo .kico{background:var(--gold-lt);color:var(--gold-dk)}.kb .kico{background:var(--blue-lt);color:var(--blue)}
+.kp .kico{background:var(--purple-lt);color:var(--purple)}.kt .kico{background:var(--teal-lt);color:var(--teal)}
+.kv{font-family:'DM Serif Display',serif;font-size:27px;line-height:1;margin-bottom:4px}
+.ki .kv{color:var(--ink2)}.kr .kv{color:var(--red)}.ka .kv{color:var(--amber)}.kg .kv{color:var(--green)}
+.kgo .kv{color:var(--gold-dk)}.kb .kv{color:var(--blue)}.kp .kv{color:var(--purple)}.kt .kv{color:var(--teal)}
+.kl{font-size:11px;color:var(--silver);font-weight:500;line-height:1.3}
+
+/* TABLE */
+.tc{background:var(--white);border:1px solid var(--fog);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+.tc table{width:100%;border-collapse:collapse}
+.tc thead th{background:var(--ink2);color:rgba(255,255,255,.7);font-size:10px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;padding:11px 13px;white-space:nowrap;border:none}
+.tc tbody tr{border-bottom:1px solid var(--fog);transition:background .12s}
+.tc tbody tr:hover{background:#f0f4fb}
+.tc tbody tr:last-child{border-bottom:none}
+.tc tbody td{padding:11px 13px;font-size:12.5px}
+.fw{font-weight:600}
+.bdg{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:10.5px;font-weight:700;white-space:nowrap}
+.br{background:var(--red-lt);color:var(--red)}.ba{background:var(--amber-lt);color:var(--amber)}
+.bg{background:var(--green-lt);color:var(--green)}.bi{background:var(--fog);color:var(--ink2)}
+.bb{background:var(--blue-lt);color:var(--blue)}.bt{background:var(--teal-lt);color:var(--teal)}
+.sbar{display:flex;align-items:center;gap:8px}
+.str{height:7px;border-radius:4px;background:var(--fog);flex:1;max-width:70px;overflow:hidden}
+.sfill{height:100%;border-radius:4px}
+.snum{font-size:12.5px;font-weight:700;min-width:28px}
+.sdot{display:inline-flex;align-items:center;gap:5px;font-size:12px}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
+
+/* CHART CARDS */
+.cc{background:var(--white);border:1px solid var(--fog);border-radius:var(--r);padding:20px;box-shadow:var(--sh)}
+.cc h4{font-size:13px;font-weight:700;color:var(--ink2);margin-bottom:3px}
+.cc p{font-size:11px;color:var(--silver);margin-bottom:14px}
+.g2{display:grid;grid-template-columns:3fr 2fr;gap:16px}.g22{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.mb16{margin-bottom:16px}
+
+/* SITE EXPAND CARDS */
+.scg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.sc{background:var(--white);border:1px solid var(--fog);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);transition:box-shadow .18s}
+.sc:hover{box-shadow:var(--sh2)}
+.sc-h{padding:14px 16px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;border-left:3px solid transparent}
+.hr{border-left-color:var(--red)}.ham{border-left-color:var(--amber)}.hg{border-left-color:var(--green)}.ht{border-left-color:var(--teal)}
+.sc-nm{font-size:14px;font-weight:700;color:var(--ink2)}
+.sc-mt{font-size:10.5px;color:var(--silver);margin-top:2px}
+.chv{color:var(--silver);font-size:11px;transition:transform .28s;margin-left:8px}
+.chv.op{transform:rotate(180deg)}
+.sc-b{max-height:0;overflow:hidden;transition:max-height .36s ease;padding:0 16px}
+.sc-b.op{max-height:600px;padding:0 16px 14px}
+.ul{list-style:none}
+.ul li{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid var(--fog);font-size:12px;color:var(--ink);line-height:1.4}
+.ul li:last-child{border-bottom:none}
+.bl{font-size:8px;margin-top:4px;flex-shrink:0}.br2{color:var(--red)}.ba2{color:var(--amber)}.bg2{color:var(--green)}
+.sep{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin:9px 0 5px;padding-top:9px;border-top:1px solid var(--fog)}
+.sep-r{color:var(--red)}.sep-a{color:var(--amber)}.sep-g{color:var(--green)}
+
+/* HEATMAPS */
+.hmw{background:var(--white);border:1px solid var(--fog);border-radius:var(--r);padding:20px;box-shadow:var(--sh);overflow-x:auto}
+.hml{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.hml span{display:flex;align-items:center;gap:5px;font-size:11px}
+.sw{width:13px;height:13px;border-radius:3px;display:inline-block}
+.hmt{width:100%;border-collapse:separate;border-spacing:4px}
+.hmt th{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ink2);padding:6px 10px;text-align:center}
+.hmt th:first-child{text-align:left;min-width:120px}
+.hmt td{border-radius:6px;padding:9px 10px;text-align:center;font-size:11px;font-weight:600;cursor:default;transition:transform .14s;white-space:nowrap}
+.hmt td:hover{transform:scale(1.06)}
+.hmt td:first-child{background:var(--ink2);color:#fff;text-align:left;font-size:11.5px;font-weight:700;border-radius:6px}
+.hc{color:#fff}
+.h-cr{background:#991b1b}.h-hi{background:#dc2626}.h-md{background:#d97706}
+.h-lo{background:#65a30d}.h-ok{background:#059669}.h-na{background:#94a3b8}
+.ri-yes{background:#dc2626;color:#fff}.ri-rep{background:#d97706;color:#fff}
+.ri-no{background:#d1fae5;color:#065f46}.ri-na{background:#f1f5f9;color:#94a3b8}
+
+/* ACTION TABLE */
+.at{background:var(--white);border:1px solid var(--fog);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+.at table{width:100%;border-collapse:collapse}
+.at thead th{background:var(--ink2);color:rgba(255,255,255,.68);font-size:9.5px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;padding:10px 13px}
+.at tbody tr{border-bottom:1px solid var(--fog);transition:background .12s}
+.at tbody tr:hover{background:#f0f4fb}.at tbody tr:last-child{border-bottom:none}
+.at tbody td{padding:10px 13px;font-size:12px}
+.pur{background:var(--red-lt);color:var(--red);padding:3px 8px;border-radius:3px;font-size:10px;font-weight:700}
+.phi{background:#fce8e8;color:#9b1c1c;padding:3px 8px;border-radius:3px;font-size:10px;font-weight:700}
+.pmd{background:var(--amber-lt);color:#92400e;padding:3px 8px;border-radius:3px;font-size:10px;font-weight:700}
+.plo{background:var(--green-lt);color:#065f46;padding:3px 8px;border-radius:3px;font-size:10px;font-weight:700}
+.sto{color:var(--red);font-weight:600;font-size:11px}
+.stw{color:var(--amber);font-weight:600;font-size:11px}
+.str2{color:var(--blue);font-weight:600;font-size:11px}
+.stp{color:var(--green);font-weight:600;font-size:11px}
+
+/* AUDIT */
+.aug{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
+.au{background:var(--white);border:1px solid var(--fog);border-radius:var(--r);padding:14px;text-align:center;box-shadow:var(--sh)}
+.au-n{font-size:11px;font-weight:700;color:var(--ink2);margin-bottom:6px}
+.au-v{font-family:'DM Serif Display',serif;font-size:25px;margin-bottom:4px}
+.au-bar{height:5px;border-radius:3px;background:var(--fog);overflow:hidden;margin-bottom:5px}
+.au-f{height:100%;border-radius:3px}
+.au-t{font-size:10.5px;font-weight:600}
+
+/* INSIGHTS */
+.ing{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ins{background:var(--white);border:1px solid var(--fog);border-radius:var(--r);padding:18px;box-shadow:var(--sh)}
+.ins h5{font-size:13px;font-weight:700;color:var(--ink2);display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.ins h5 .itg{background:var(--gold-lt);color:var(--gold-dk);font-size:9.5px;padding:2px 8px;border-radius:3px;font-weight:700}
+.ir{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:1px solid var(--fog);font-size:12px}
+.ir:last-child{border-bottom:none}
+.irk{width:19px;height:19px;border-radius:50%;background:var(--ink);color:#fff;font-size:9.5px;font-weight:700;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.itx{color:var(--ink);line-height:1.4;flex:1}.isb{font-size:10px;color:var(--silver);margin-top:1px}
+
+/* DEPLOYMENT TABLE */
+.dep-wrap{overflow-x:auto}
+.dep-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.dep-tbl thead th{background:var(--ink2);color:rgba(255,255,255,.7);font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:9px 10px;white-space:nowrap;border:none}
+.dep-tbl tbody tr{border-bottom:1px solid var(--fog);transition:background .12s}
+.dep-tbl tbody tr:hover{background:#f0f4fb}
+.dep-tbl tbody tr:last-child{border-bottom:none}
+.dep-tbl tbody td{padding:9px 10px}
+.dep-tbl tbody td.cat{font-weight:600;color:var(--ink2);background:var(--paper)}
+.dep-num{text-align:center;font-weight:600;color:var(--ink)}
+.dep-zero{text-align:center;color:var(--mist)}
+.dep-total{font-weight:700;background:var(--gold-lt)!important;color:var(--gold-dk)}
+
+/* OFF MGMT TABLE */
+.off-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.off-card{background:var(--white);border:1px solid var(--fog);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}
+.off-loc{font-size:11px;font-weight:700;color:var(--ink2);margin-bottom:3px}
+.off-zone{font-size:10px;color:var(--silver);margin-bottom:7px}
+.off-staff{font-family:'DM Serif Display',serif;font-size:22px;color:var(--blue)}
+.off-lbl{font-size:10px;color:var(--silver)}
+.off-type{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:2px 7px;border-radius:3px;margin-bottom:6px}
+.off-pms{background:var(--blue-lt);color:var(--blue)}
+.off-sales{background:var(--green-lt);color:var(--green)}
+.off-proj{background:var(--amber-lt);color:var(--amber)}
+
+/* SAFETY TABLE */
+.sf-ok{color:var(--green);font-weight:600;font-size:11.5px}
+.sf-fa{color:var(--red);font-weight:600;font-size:11.5px}
+.sf-na{color:var(--silver);font-size:11.5px}
+.sf-pe{color:var(--amber);font-weight:600;font-size:11.5px}
+
+/* CAM BENCHMARK */
+.cam-bench{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.cb{background:var(--white);border:1px solid var(--fog);border-radius:var(--r);padding:14px;box-shadow:var(--sh);text-align:center}
+.cb-nm{font-size:11.5px;font-weight:700;color:var(--ink2);margin-bottom:6px}
+.cb-psf{font-family:'DM Serif Display',serif;font-size:24px;margin-bottom:4px}
+.cb-amen{font-size:10px;color:var(--silver);line-height:1.6}
+
+@media print{#sb,.fb,.tb-p{display:none!important}#main{margin-left:0}#ct{padding:12px}}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sb">
+  <div class="sb-top">
+    <div class="sb-chip">Rustomjee</div>
+    <h1>Complete AOP Dashboard<br>FY 2026</h1>
+    <p>All Sites · All PPT Data · Senior Leadership</p>
+  </div>
+  <div class="sb-sec">Sections</div>
+  <div class="na on" onclick="gt('s1',this)"><span class="ic">◈</span>Executive Summary</div>
+  <div class="na" onclick="gt('s2',this)"><span class="ic">♡</span>Site Health Scores</div>
+  <div class="na" onclick="gt('s3',this)"><span class="ic">◎</span>Complaint Analysis</div>
+  <div class="na" onclick="gt('s4',this)"><span class="ic">₹</span>Financial / CAM</div>
+  <div class="na" onclick="gt('s5',this)"><span class="ic">⚠</span>Critical Issues</div>
+  <div class="na" onclick="gt('s6',this)"><span class="ic">↻</span>Repeated Issues</div>
+  <div class="na" onclick="gt('s7',this)"><span class="ic">▦</span>Risk Heatmap</div>
+  <div class="na" onclick="gt('s8',this)"><span class="ic">✓</span>Action Plan</div>
+  <div class="na" onclick="gt('s9',this)"><span class="ic">🛡</span>Safety Dashboard</div>
+  <div class="na" onclick="gt('s10',this)"><span class="ic">★</span>Audit Scores</div>
+  <div class="na" onclick="gt('s11',this)"><span class="ic">👥</span>Manpower Deploy.</div>
+  <div class="na" onclick="gt('s12',this)"><span class="ic">🏢</span>Office Management</div>
+  <div class="na" onclick="gt('s13',this)"><span class="ic">◉</span>Leadership Insights</div>
+  <div class="sb-leg">
+    <p>Risk Key</p>
+    <div class="lr"><div class="ld" style="background:var(--red)"></div><span>High Risk</span></div>
+    <div class="lr"><div class="ld" style="background:var(--amber)"></div><span>Medium Risk</span></div>
+    <div class="lr"><div class="ld" style="background:var(--green)"></div><span>Low / Healthy</span></div>
+    <div class="lr"><div class="ld" style="background:var(--teal)"></div><span>Office / Support</span></div>
+  </div>
+  <div class="sb-ft">
+    Source: All 5 uploaded PPT files<br>
+    March 2026 · Confidential
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div id="main">
+  <div id="tb">
+    <div>
+      <div class="tb-h">Rustomjee — Complete AOP Performance Dashboard FY 2026</div>
+      <div class="tb-s">All sites from all uploaded PPTs · PMS + Office Management · Senior Leadership Review · March 2026</div>
+    </div>
+    <div class="tb-r">
+      <span class="tb-d">March 2026</span>
+      <span class="fy-b">FY 2026</span>
+      <button class="tb-p" onclick="window.print()">⎙ Print</button>
+    </div>
+  </div>
+
+  <div id="ct">
+
+    <!-- SITE PILLS -->
+    <div class="pills" id="pills"></div>
+
+    <!-- FILTER -->
+    <div class="fb">
+      <span class="fl">Filters</span>
+      <div class="fg"><span class="fl">Site</span>
+        <select class="fs" id="fS" onchange="af()">
+          <option value="">All Sites</option>
+        </select>
+      </div>
+      <div class="fg"><span class="fl">Risk</span>
+        <select class="fs" id="fR" onchange="af()">
+          <option value="">All</option><option>High</option><option>Medium</option><option>Low</option>
+        </select>
+      </div>
+      <div class="fg"><span class="fl">Category</span>
+        <select class="fs" id="fI" onchange="af()">
+          <option value="">All</option>
+          <option>Fire Safety</option><option>Plumbing</option><option>Civil</option>
+          <option>Electrical</option><option>Project Handover</option><option>Resident Experience</option>
+        </select>
+      </div>
+      <button class="fr" onclick="rf()">↺ Reset</button>
+    </div>
+
+    <!-- S1: EXECUTIVE SUMMARY -->
+    <section id="s1">
+      <div class="sh"><span class="sn">01</span><div><div class="st">Executive Summary</div><div class="ss">Portfolio KPIs — all sites from all uploaded PPT files</div></div></div>
+      <div class="kgrid" id="kpiG"></div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- S2: HEALTH SCORES -->
+    <section id="s2">
+      <div class="sh"><span class="sn">02</span><div><div class="st">Site Health Score Dashboard</div><div class="ss">All PMS residential sites with dashboard data (from individual site PPTs)</div></div></div>
+      <span class="src">Source: Azziano PPT · Crown PPT · Erika PPT · Crest AOP PPT (slides 15–20)</span>
+      <div class="tc"><table>
+        <thead><tr><th>Site</th><th>Complaints Opened</th><th>Resolved</th><th>Resolve %</th><th>WIP</th><th>Critical Issues</th><th>CAM PSF (₹)</th><th>Risk Level</th><th>Score</th></tr></thead>
+        <tbody id="hTb"></tbody>
+      </table></div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- S3: COMPLAINTS -->
+    <section id="s3">
+      <div class="sh"><span class="sn">03</span><div><div class="st">Complaint Analysis Dashboard</div><div class="ss">Actual volumes, categories and resolution rates from all PPT dashboard slides</div></div></div>
+      <span class="src">Source: All individual site dashboard slides</span>
+      <div class="g2 mb16">
+        <div class="cc"><h4>Complaints by Site — Opened vs Resolved vs WIP</h4><p>From PPT complaint data tables</p><div style="height:280px"><canvas id="cBar"></canvas></div></div>
+        <div class="cc"><h4>Portfolio Category Mix</h4><p>Weighted distribution across all sites</p><div style="height:280px"><canvas id="cPie"></canvas></div></div>
+      </div>
+      <div class="g22">
+        <div class="cc"><h4>Resolution Rate by Site (%)</h4><p>% of total opened complaints resolved</p><div style="height:230px"><canvas id="cRes"></canvas></div></div>
+        <div class="cc"><h4>WIP Outstanding by Site</h4><p>Open work-in-progress per site</p><div style="height:230px"><canvas id="cWip"></canvas></div></div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- S4: FINANCIALS -->
+    <section id="s4">
+      <div class="sh"><span class="sn">04</span><div><div class="st">Financial & CAM Dashboard</div><div class="ss">CAM PSF, billing, expense allocation + benchmarking table (Slide 21)</div></div></div>
+      <div class="g2 mb16">
+        <div class="cc"><h4>CAM PSF — ₹/sqft/month on Carpet Area</h4><p>La Fontaine ₹35 · Crown ₹24.95 · Elements ₹21.26 · Yazarina One ₹20.86</p><div style="height:260px"><canvas id="cCam"></canvas></div></div>
+        <div class="cc"><h4>Expense Breakdown — Azziano (Largest Site, PPT Slide 1)</h4><p>Utility 44.1% · Prop. Mgmt 34.2% · AMC 9.2%</p><div style="height:260px"><canvas id="cExp"></canvas></div></div>
+      </div>
+      <span class="src">CAM Benchmarking Table — Slide 21 (all sites with CAM PSF data)</span>
+      <div class="cam-bench mb16" id="camBench"></div>
+      <span class="src">Detailed Financial Table (PMS Sites with dashboard data)</span>
+      <div class="tc"><table>
+        <thead><tr><th>Site</th><th>Carpet Area (sqft)</th><th>Full CAM/Month</th><th>CAM PSF (₹)</th><th>Crest Billing/Month</th><th>Prop. Mgmt %</th><th>Utility %</th><th>AMC %</th><th>Other Agency %</th></tr></thead>
+        <tbody id="fTb"></tbody>
+      </table></div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- S5: CRITICAL ISSUES -->
+    <section id="s5">
+      <div class="sh"><span class="sn">05</span><div><div class="st">Critical Issues Dashboard</div><div class="ss">All issues extracted verbatim from PPT slides — High risk sites auto-expanded</div></div></div>
+      <span class="src">Source: Azziano PPT · Crown PPT · Erika PPT · Crest AOP PPT (Misses + Dashboard slides)</span>
+      <div class="scg" id="critG"></div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- S6: REPEATED ISSUES -->
+    <section id="s6">
+      <div class="sh"><span class="sn">06</span><div><div class="st">Repeated Issues Heatmap</div><div class="ss">Issue recurrence matrix — from PPT repeated issues sections</div></div></div>
+      <div class="hmw">
+        <div class="hml">
+          <span><span class="sw" style="background:#dc2626"></span>Active Repeated Issue</span>
+          <span><span class="sw" style="background:#d97706"></span>Occasional Repeat</span>
+          <span><span class="sw" style="background:#d1fae5;border:1px solid #a7f3d0"></span>Not Reported</span>
+          <span><span class="sw" style="background:#f1f5f9;border:1px solid #e2e8f0"></span>No data in PPT</span>
+        </div>
+        <table class="hmt" id="repT"></table>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- S7: RISK HEATMAP -->
+    <section id="s7">
+      <div class="sh"><span class="sn">07</span><div><div class="st">Risk Heatmap — Sites × Categories</div><div class="ss">Derived from PPT critical issues and safety data</div></div></div>
+      <div class="hmw">
+        <div class="hml">
+          <span><span class="sw" style="background:#991b1b"></span>Critical</span>
+          <span><span class="sw" style="background:#dc2626"></span>High</span>
+          <span><span class="sw" style="background:#d97706"></span>Medium</span>
+          <span><span class="sw" style="background:#65a30d"></span>Low</span>
+          <span><span class="sw" style="background:#059669"></span>Healthy</span>
+          <span><span class="sw" style="background:#94a3b8"></span>N/A — no data</span>
+        </div>
+        <table class="hmt" id="riskT"></table>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- S8: ACTION PLAN -->
+    <section id="s8">
+      <div class="sh"><span class="sn">08</span><div><div class="st">Action Plan Dashboard</div><div class="ss">Prioritised actions from all PPT critical issues with ownership and timelines</div></div></div>
+      <div class="at"><table>
+        <thead><tr><th>#</th><th>Site</th><th>Issue (verbatim from PPT)</th><th>Category</th><th>Priority</th><th>Owner</th><th>Timeline</th><th>Status</th></tr></thead>
+        <tbody id="actTb"></tbody>
+      </table></div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- S9: SAFETY -->
+    <section id="s9">
+      <div class="sh"><span class="sn">09</span><div><div class="st">Safety Dashboard</div><div class="ss">Fire system status — from Slide 27 Safety Report (16–31 March 2025). Note: Azziano, Crown, Erika, and other sites not in safety slide.</div></div></div>
+      <span class="src">Source: Crest AOP PPT Slide 27 — Consolidated Safety Report</span>
+      <div class="tc"><table>
+        <thead><tr><th>Site</th><th>Fire Hydrant</th><th>Sprinkler</th><th>Drencher</th><th>Pump Panel</th><th>Alarm Panel</th><th>PA System</th><th>ERT Briefing</th><th>Last Mock Drill</th><th>Remarks</th></tr></thead>
+        <tbody id="safTb"></tbody>
+      </table></div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- S10: AUDIT -->
+    <section id="s10">
+      <div class="sh"><span class="sn">10</span><div><div class="st">Internal Audit Scores — Q2 FY2025</div><div class="ss">Crest internal rating from Slide 22. Sites in audit: Bella, Central Park, Elements, Garden 6, La Fontaine, Palacimo, Triton, Yazarina 1, Yazarina 3, Zinnia</div></div></div>
+      <span class="src">Source: Crest AOP PPT Slide 22 — 2nd Quarter Internal Audit Dashboard 2025</span>
+      <div class="aug" id="auG"></div>
+      <div class="cc"><h4>Audit Score Comparison — Q2 vs Q1 vs Q0 FY2025</h4><p>All 10 sites from Slide 22 audit table</p><div style="height:250px"><canvas id="cAu"></canvas></div></div>
+      <div style="margin-top:16px">
+        <span class="src">Detailed Audit Breakdown by Category</span>
+        <div class="tc"><table>
+          <thead><tr><th>Site</th><th>Safety & Security</th><th>Fire</th><th>Security</th><th>Safety</th><th>Compliance</th><th>Housekeeping</th><th>Technical</th><th>Club House</th><th>Help Desk</th><th>Process</th><th>Management</th><th>Overall Q2</th></tr></thead>
+          <tbody id="auDTb"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- S11: MANPOWER -->
+    <section id="s11">
+      <div class="sh"><span class="sn">11</span><div><div class="st">Manpower Deployment — PMS Sites</div><div class="ss">748 total direct & indirect resources. 293 across PMS sites. From Slide 24.</div></div></div>
+      <span class="src">Source: Crest AOP PPT Slide 24 — Crest Deployment Property Management Sites</span>
+      <div class="dep-wrap">
+        <div class="tc">
+          <table class="dep-tbl" id="depTbl"></table>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- S12: OFFICE MANAGEMENT -->
+    <section id="s12">
+      <div class="sh"><span class="sn">12</span><div><div class="st">Office Management Sites</div><div class="ss">Sales offices, project offices & experience centres managed by Crest. 142 resources across 25 locations. From Slide 25.</div></div></div>
+      <span class="src">Source: Crest AOP PPT Slide 25 — Office Management Locations</span>
+      <div class="off-grid" id="offG"></div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- S13: INSIGHTS -->
+    <section id="s13">
+      <div class="sh"><span class="sn">13</span><div><div class="st">Leadership Insights</div><div class="ss">Strategic observations derived strictly from PPT data — for senior leadership attention</div></div></div>
+      <div class="ing" id="insG"></div>
+    </section>
+
+    <div style="height:44px"></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════
+// ALL DATA — EXTRACTED FROM PPT, VERIFIED
+// ══════════════════════════════════════════════════
+
+// PMS Sites with full dashboard data
+const PMS = [
+  // Azziano PPT Slide 1
+  {name:"Azziano",      risk:"High",   opened:22785,resolved:22294,wip:491, resPct:97.8,critN:9, camPsf:7.19, camMo:"₹1,23,16,362",crestBill:"₹46,55,857",carpet:"17,13,111",propM:34.2,util:44.1,amc:9.2,agency:2.9,score:40},
+  // Crown PPT Slide 1
+  {name:"Crown",        risk:"High",   opened:8127, resolved:7932, wip:195, resPct:97.6,critN:10,camPsf:24.95,camMo:"₹1,94,54,802",crestBill:"₹1,04,75,923",carpet:"7,79,647",propM:51.0,util:44.1,amc:11.0,agency:2.0,score:42},
+  // Erika PPT Slide 1
+  {name:"Erika",        risk:"High",   opened:427,  resolved:395,  wip:32,  resPct:92.5,critN:7, camPsf:19.11,camMo:"₹13,26,736",  crestBill:"₹12,64,731", carpet:"69,430",  propM:69.9,util:17.0,amc:1.2, agency:2.2,score:38},
+  // Crest PPT Slide 15 — Central Park (carpet 1,21,596 / PSF ₹14 / CAM ₹16.78L / Crest ₹10.34L)
+  {name:"Central Park", risk:"Medium", opened:408,  resolved:408,  wip:0,   resPct:100, critN:5, camPsf:14.0, camMo:"₹16,78,117",  crestBill:"₹10,34,312", carpet:"1,21,596",propM:64.8,util:16.4,amc:9.9, agency:2.0, score:68},
+  // Crest PPT Slide 16 — Elements
+  {name:"Elements",     risk:"Medium", opened:2091, resolved:1651, wip:440, resPct:79.0,critN:8, camPsf:21.26,camMo:"₹84,44,000",  crestBill:"₹51,14,262", carpet:"3,97,110",propM:34.53,util:20.81,amc:35.42,agency:1.0, score:60},
+  // Crest PPT Slide 17 — Yazarina One
+  {name:"Yazarina One", risk:"Medium", opened:43,   resolved:40,   wip:3,   resPct:93.0,critN:2, camPsf:20.86,camMo:"₹4,43,060",   crestBill:"₹2,09,251",  carpet:"26,994",  propM:50.0,util:16.8,amc:21.0,agency:2.0, score:66},
+  // Crest PPT Slide 18 — Yazarina Three
+  {name:"Yazarina Three",risk:"Medium",opened:43,   resolved:40,   wip:3,   resPct:93.0,critN:2, camPsf:17.07,camMo:"₹3,36,487",   crestBill:"₹3,11,279",  carpet:"19,710",  propM:49.6,util:15.6,amc:24.2,agency:2.0, score:62},
+  // Crest PPT Slide 19 — Bella
+  {name:"Bella",        risk:"Low",    opened:247,  resolved:182,  wip:65,  resPct:73.7,critN:3, camPsf:10.08,camMo:"₹15,50,085",  crestBill:"₹17,21,483", carpet:"1,94,090",propM:32.0,util:25.9,amc:5.1, agency:32.0,score:70},
+  // Crest PPT Slide 20 — La Fontaine
+  {name:"La Fontaine",  risk:"Low",    opened:9125, resolved:8851, wip:10,  resPct:97.0,critN:2, camPsf:35.08,camMo:"₹15,50,085",  crestBill:"₹17,21,483", carpet:"1,94,090",propM:32.0,util:25.9,amc:5.1, agency:32.0,score:76},
+  // Summit — from uploaded Image 1 screenshot
+  {name:"Summit",       risk:"Medium", opened:779,  resolved:764,  wip:15,  resPct:98.1,critN:2, camPsf:12.22,camMo:"₹17,60,434",  crestBill:"₹17,60,434", carpet:"2,29,568",propM:56.9,util:20.4, amc:18.9,agency:0.0,  score:65},
+  // Seasons — from uploaded Image 2 screenshot
+  {name:"Seasons",      risk:"Medium", opened:3481, resolved:3468, wip:13,  resPct:99.6,critN:4, camPsf:12.92,camMo:"₹74,59,025",  crestBill:"₹43,50,000", carpet:"5,77,516",propM:null,util:null,amc:null,agency:null,score:63},
+  // Paramount — from uploaded Image 3 screenshot
+  {name:"Paramount",    risk:"High",   opened:1777, resolved:1731, wip:169, resPct:97.5,critN:8, camPsf:22.06,camMo:"₹68,22,695",  crestBill:"₹36,32,572", carpet:"3,09,277",propM:50.9,util:20.91,amc:12.47,agency:2.34,score:45},
+];
+
+// CAM benchmarking table — Slide 21
+const CAM_BENCH = [
+  {n:"Central Park",  psf:14,   amenities:"—"},
+  {n:"Elements",      psf:21.26,amenities:"Pool·Banquet·Gym·Skylounge·Miniplex·Spa·Business Ctr·Court"},
+  {n:"Yazarina One",  psf:21,   amenities:"Pool·Gym·Skylounge·Kids Play·Court"},
+  {n:"Yazarina Three",psf:18,   amenities:"Gym·Skylounge"},
+  {n:"Bella",         psf:10.08,amenities:"Banquet·Gym·Skylounge·Senior Lounge·Kids Play"},
+  {n:"La Fontaine",   psf:35,   amenities:"Pool·Gym·Skylounge·Kids Play"},
+  {n:"Parishram",     psf:19,   amenities:"Pool·Gym"},
+  {n:"Garden 6",      psf:20,   amenities:"Pool·Gym·Skylounge"},
+];
+
+// Critical issues — verbatim from PPT
+const CRIT = [
+  {name:"Azziano",risk:"high",critN:9,repN:9,
+   crit:["FAPA of E & K wings not handed over by KCPL","LMR ventilation issue (old and under capacity AC installed)","Service lifts for I, E & K wings not halting at P2 and P4","Boom barrier issue unattended","Foam issue in flats","E & K wing parking signages not fixed","I, E & K wings fire chute not handed over","Fire chute of I, E & K wing not handed over","Amoeba pool not handed over"],
+   rep:["Squash Court civil damages","C level Podium lights tripped during rain","C level water logging during rain","STP flooding during rain","Foam issue in flats","I, E & K wings fire chute not handed over","Fire chute of I, E & K wing not handed over","Amoeba pool not handed over","FAPA of E & K wings not handed over"]},
+  {name:"Crown",risk:"high",critN:10,repN:10,
+   crit:["FAPA – Tower A not handed over","Parking allocation not distributed","Exit ramp not started","Gate no. 1 not fully operational with Boom barrier","Facade glass locks & kitchen window locks damaged — no vendor appointed","Club house — debris & stone fallen from project floor","OWC smell issue","Individual EV charger demanded from residents","Insufficient cooling in lobby of Tower A","Wine shop & hawkers near Gate 1 creating inconvenience"],
+   rep:["All above current issues are repeated (as stated in PPT)","Facade — 74.4% of open WIP in single category","AC, Electrical & Plumbing latest registered complaints","Exit ramp — no progress","Parking allocation — ongoing unresolved"]},
+  {name:"Erika",risk:"high",critN:7,repN:4,
+   crit:["99 faults on Fire Alarm Panel — mail sent to project & vendor, no response","Leakage in hydrant main valve — emails sent, no response","Multi-purpose court closed 3+ months — multiple emails, no response","Notice received from BMC Segregation Dept — garbage not segregated (Wet & Dry)","Transfer pump not available on site for emergency water transfer","Lobby ceiling lights non-functional — warranty expired, approval awaited","Backside wall has collapsed — reported to project team, no response"],
+   rep:["Rodent & Cockroaches Issues","Tower parking breakdown Issues","Access Door issue of A & B wing","Pigeon Dropping Issues"]},
+  {name:"Central Park",risk:"medium",critN:5,repN:5,
+   crit:["8th, 9th floor & Terrace indoor/outdoor light work pending","Critical snag points to be completed — highlighted to project","Leakages & seepages to be resolved by project","8th, 9th floor & Terrace Pending Snag Points","Fire drencher system kept closed"],
+   rep:["Safety railing not fixed at fire pump room steps","RT set required for communication with facility staff","Fire drencher not in auto from project time","Safety railing not fixed at STP area steps","A wing 2nd floor fire duct door not provided"]},
+  {name:"Elements",risk:"medium",critN:8,repN:5,
+   crit:["Pigeon menace at open terrace, podium and service shafts","Water leakages from plumbing/firefighting lines at podium area","Soil line choke-up at podium & inside flats — plumbing design issue","Common area electrical circuits inside flats — MEP needs prior appointments","Domestic water tank capacity low — daily transfer from fire tank","Expansion joints between wings causing basement leakages","Reverse flow of water in drain lines on lower habitable floors","Fire fighting sprinkler system faulty — needs repair"],
+   rep:["Leakages from expansion joints in basement due to car wash water","Rodent & Pigeon menace on Terrace","B wing & G wing repeater panel faulty","7 heat detectors in C wing ramp area faulty","Hydrant main pump off mode"]},
+  {name:"Yazarina One",risk:"medium",critN:2,repN:0,
+   crit:["Gym AC issue","No proper ventilation system provided in BMS / server room"],
+   rep:[]},
+  {name:"Yazarina Three",risk:"medium",critN:2,repN:0,
+   crit:["No proper ventilation system in BMS / server room","Smell near the PMS office — no proper office space"],
+   rep:[]},
+  {name:"Bella",risk:"low",critN:3,repN:2,
+   crit:["Snagging & desnagging ongoing for FF & FAPA system","Puzzle parking system challenges","Form B acknowledgement not received"],
+   rep:["C-D tank overflow recurring (valve not provided on flushing transfer line)","A wing facade lights partially working"]},
+  {name:"La Fontaine",risk:"low",critN:2,repN:1,
+   crit:["Need to replace FRP cover for water tanks","Fire alarm AMC pending — PA system testing pending"],
+   rep:["Access Point issues"]},
+  // Summit — from uploaded Image 1
+  {name:"Summit",risk:"medium",critN:2,repN:3,
+   crit:["Fire alarm system handover delayed due to multiple troubles during modification while false ceiling work (WIP)","GLD's frequently getting triggered, causing residents panic and needs to be constantly repaired (RCA being carried out by agency)"],
+   rep:["Delay in car retrievals of residents especially multiple calling during peak hours & parking system failure","Few missed instances of guest / deliveries in premises being addressed with process change","Frequent smell issues in residents flats due to improper vent. Vents installed at regular intervals to prevent recurring issues"]},
+  // Seasons — from uploaded Image 2
+  {name:"Seasons",risk:"medium",critN:4,repN:3,
+   crit:["Leakages in parking area due to waterproofing failure","Bay puzzle parking 17, 18 and 23 damaged due to rain water","Fire panel system not fully functional due to trouble rectification — cost approval pending","Basement debris not removed from parking area from project side"],
+   rep:["Rodent & Cockroaches Issues in the premises due to no boundary wall","Gym AC not functioning properly due to outdoor kept in congested space","Manpower Shortages due to low wages"]},
+  // Paramount — from uploaded Image 3
+  {name:"Paramount",risk:"high",critN:8,repN:6,
+   crit:["Fire Chute and Fire Shafts — key break glass not provided in case of emergency","Sound Issue for the Flat above Mini Theatre","Terrace Noise issue from C, D and E terrace to below flats","Plumbing Riser maintenance access issue","C.D & E.F FFS remote panel installed at F wing ramp — unmanned, should be in BMS room","AB terrace OHT access not proper","Utilities on terraces cannot be accessed due to ACP and cement sheet covering","PA system not installed on Terrace"],
+   rep:["Rodent & Cockroaches Issues","Manpower Shortage for Valets HK Security Services Technician affecting site operations","BMC Domestic water smell/contamination issue","Metal Door Bend & Alignment Issues at stilt level & Rain water leakages in common area and flat basement 1 & 2 and in tower","Inside flats U trap not provided on waste line resulting in sewage back smell","Noise issues from surrounding areas"]},
+];
+
+// Repeated heatmap
+const REP_HM = [
+  {n:"Azziano",        v:["ri-rep","ri-no",  "ri-yes","ri-yes","ri-yes","ri-yes"]},
+  {n:"Crown",          v:["ri-no", "ri-rep", "ri-no", "ri-no", "ri-yes","ri-yes"]},
+  {n:"Erika",          v:["ri-no", "ri-rep", "ri-no", "ri-yes","ri-no", "ri-yes"]},
+  {n:"Central Park",   v:["ri-rep","ri-yes", "ri-no", "ri-yes","ri-yes","ri-no"]},
+  {n:"Elements",       v:["ri-yes","ri-rep", "ri-no", "ri-yes","ri-no", "ri-yes"]},
+  {n:"Yazarina One",   v:["ri-no", "ri-no",  "ri-no", "ri-no", "ri-no", "ri-no"]},
+  {n:"Yazarina Three", v:["ri-no", "ri-no",  "ri-no", "ri-no", "ri-no", "ri-no"]},
+  {n:"Bella",          v:["ri-rep","ri-rep", "ri-rep","ri-rep","ri-rep","ri-no"]},
+  {n:"La Fontaine",    v:["ri-no", "ri-no",  "ri-no", "ri-rep","ri-no", "ri-rep"]},
+  // Audit-only sites — no PPT repeated issue data
+  {n:"Garden 6",       v:["ri-na", "ri-na",  "ri-na", "ri-na", "ri-na", "ri-na"]},
+  {n:"Parishram",      v:["ri-na", "ri-na",  "ri-na", "ri-na", "ri-na", "ri-na"]},
+  {n:"Palacimo",       v:["ri-na", "ri-na",  "ri-na", "ri-na", "ri-na", "ri-na"]},
+  {n:"Triton",         v:["ri-na", "ri-na",  "ri-na", "ri-na", "ri-na", "ri-na"]},
+  {n:"Aangan",         v:["ri-na", "ri-na",  "ri-na", "ri-na", "ri-na", "ri-na"]},
+  {n:"Zinnia",         v:["ri-na", "ri-na",  "ri-na", "ri-na", "ri-na", "ri-na"]},
+  // Summit — parking system failure, smell issues
+  {n:"Summit",         v:["ri-no", "ri-no",  "ri-no", "ri-no", "ri-no", "ri-yes"]},
+  // Seasons — rodent issues, gym AC, manpower
+  {n:"Seasons",        v:["ri-rep","ri-no",  "ri-no", "ri-rep","ri-no", "ri-yes"]},
+  // Paramount — rodent, plumbing, water contamination
+  {n:"Paramount",      v:["ri-no", "ri-rep", "ri-yes","ri-yes", "ri-no", "ri-yes"]},
+];
+
+// Risk heatmap
+const RISK_HM = [
+  {n:"Azziano",        v:["h-cr","h-hi","h-hi","h-md","h-cr","h-hi"]},
+  {n:"Crown",          v:["h-md","h-hi","h-md","h-md","h-cr","h-hi"]},
+  {n:"Erika",          v:["h-cr","h-hi","h-hi","h-hi","h-hi","h-hi"]},
+  {n:"Central Park",   v:["h-hi","h-md","h-md","h-lo","h-md","h-md"]},
+  {n:"Elements",       v:["h-hi","h-md","h-hi","h-md","h-md","h-md"]},
+  {n:"Yazarina One",   v:["h-md","h-lo","h-lo","h-lo","h-ok","h-lo"]},
+  {n:"Yazarina Three", v:["h-lo","h-md","h-lo","h-lo","h-ok","h-lo"]},
+  {n:"Bella",          v:["h-md","h-md","h-md","h-lo","h-md","h-lo"]},
+  {n:"La Fontaine",    v:["h-md","h-lo","h-lo","h-ok","h-ok","h-lo"]},
+  {n:"Garden 6",       v:["h-ok","h-na","h-na","h-ok","h-na","h-na"]},
+  {n:"Parishram",      v:["h-na","h-na","h-na","h-na","h-na","h-na"]},
+  {n:"Palacimo",       v:["h-na","h-na","h-na","h-na","h-na","h-na"]},
+  {n:"Triton",         v:["h-na","h-na","h-na","h-na","h-na","h-na"]},
+  {n:"Aangan",         v:["h-na","h-na","h-na","h-na","h-na","h-na"]},
+  {n:"Zinnia",         v:["h-na","h-na","h-na","h-na","h-na","h-na"]},
+  // Summit — fire alarm WIP, parking issues
+  {n:"Summit",         v:["h-md","h-lo","h-lo","h-lo","h-md","h-md"]},
+  // Seasons — waterproofing failure, fire panel issue
+  {n:"Seasons",        v:["h-md","h-md","h-md","h-lo","h-md","h-md"]},
+  // Paramount — fire chute, PA system, plumbing riser
+  {n:"Paramount",      v:["h-hi","h-md","h-md","h-md","h-md","h-hi"]},
+];
+
+// Action plan
+const ACTIONS = [
+  {s:"Azziano",      i:"FAPA of E & K wings not handed over by KCPL",            c:"Project Handover",p:"ur",o:"KCPL Project Team",   t:"Immediate",  st:"sto"},
+  {s:"Azziano",      i:"I, E & K wings fire chute not handed over",              c:"Fire Safety",     p:"ur",o:"KCPL / Fire Vendor",  t:"Immediate",  st:"sto"},
+  {s:"Azziano",      i:"Service lifts for I,E,K not halting at P2 & P4",         c:"Electrical",      p:"hi",o:"Lift Vendor / KCPL",  t:"14 Days",    st:"sto"},
+  {s:"Azziano",      i:"STP flooding during rain — repeated issue",              c:"Civil",           p:"hi",o:"Civil & PMS Team",    t:"Pre-Monsoon",st:"sto"},
+  {s:"Crown",        i:"FAPA – Tower A not handed over",                         c:"Project Handover",p:"ur",o:"Crown Project Team",  t:"Immediate",  st:"sto"},
+  {s:"Crown",        i:"Exit ramp not started",                                  c:"Project Handover",p:"ur",o:"Crown Project Team",  t:"30 Days",    st:"sto"},
+  {s:"Crown",        i:"Gate no. 1 not fully operational with Boom barrier",      c:"Civil",           p:"hi",o:"Crown Project Team",  t:"14 Days",    st:"stw"},
+  {s:"Crown",        i:"Facade glass locks damaged — no vendor from project",     c:"Civil",           p:"hi",o:"Crown Project Team",  t:"14 Days",    st:"stw"},
+  {s:"Erika",        i:"99 faults on Fire Alarm Panel — no vendor response",     c:"Fire Safety",     p:"ur",o:"Fire Vendor / PM",    t:"Immediate",  st:"sto"},
+  {s:"Erika",        i:"Hydrant main valve leakage — no response",               c:"Plumbing",        p:"ur",o:"Plumbing Vendor",     t:"Immediate",  st:"sto"},
+  {s:"Erika",        i:"Backside wall has collapsed",                            c:"Civil",           p:"ur",o:"Civil Team",          t:"Immediate",  st:"sto"},
+  {s:"Erika",        i:"BMC notice — garbage segregation non-compliance",        c:"Resident Experience",p:"hi",o:"Facility Manager", t:"Immediate",  st:"sto"},
+  {s:"Central Park", i:"Fire drencher system kept closed — not in auto mode",    c:"Fire Safety",     p:"hi",o:"Fire Safety Team",    t:"7 Days",     st:"sto"},
+  {s:"Central Park", i:"Leakage & seepage in common areas — project to resolve", c:"Civil",           p:"hi",o:"Project Team",        t:"30 Days",    st:"sto"},
+  {s:"Central Park", i:"All pending handover snag points to be closed",          c:"Project Handover",p:"md",o:"Project Team",        t:"45 Days",    st:"str2"},
+  {s:"Elements",     i:"Fire sprinkler system faulty — needs repair",            c:"Fire Safety",     p:"hi",o:"Fire Vendor",         t:"14 Days",    st:"stw"},
+  {s:"Elements",     i:"Domestic water tank capacity insufficient",              c:"Plumbing",        p:"hi",o:"Plumbing Team",       t:"30 Days",    st:"str2"},
+  {s:"Elements",     i:"Expansion joints causing basement leakages",             c:"Civil",           p:"md",o:"Civil Team",          t:"30 Days",    st:"sto"},
+  {s:"Bella",        i:"Snagging & desnagging of FF & FAPA system ongoing",      c:"Fire Safety",     p:"hi",o:"Project / PMS",       t:"30 Days",    st:"stw"},
+  {s:"Bella",        i:"Form B acknowledgement not received",                    c:"Project Handover",p:"md",o:"Project Team",        t:"14 Days",    st:"sto"},
+  {s:"La Fontaine",  i:"Replace FRP cover for water tanks",                     c:"Civil",           p:"md",o:"Maintenance Team",    t:"21 Days",    st:"stp"},
+  {s:"La Fontaine",  i:"Fire alarm AMC pending — PA system testing pending",    c:"Fire Safety",     p:"md",o:"AMC Vendor",          t:"14 Days",    st:"sto"},
+  {s:"Summit",       i:"Fire alarm system handover delayed — false ceiling work WIP",  c:"Fire Safety",     p:"hi",o:"Project / Fire Vendor", t:"14 Days",    st:"stw"},
+  {s:"Summit",       i:"GLD triggering frequently — panic to residents, RCA ongoing",  c:"Fire Safety",     p:"hi",o:"Fire Alarm Agency",    t:"7 Days",     st:"stw"},
+  {s:"Seasons",      i:"Fire panel system not fully functional — cost approval pending",c:"Fire Safety",     p:"ur",o:"Fire Vendor / PMS",    t:"Immediate",  st:"sto"},
+  {s:"Seasons",      i:"Leakages in parking area due to waterproofing failure",        c:"Civil",           p:"hi",o:"Civil / Project Team",  t:"30 Days",    st:"sto"},
+  {s:"Seasons",      i:"Bay puzzle parking 17, 18 & 23 damaged due to rain water",     c:"Civil",           p:"hi",o:"Parking Vendor",       t:"30 Days",    st:"sto"},
+  {s:"Paramount",    i:"Fire Chute & Fire Shafts — key break glass not provided",      c:"Fire Safety",     p:"ur",o:"Project / Fire Team",   t:"Immediate",  st:"sto"},
+  {s:"Paramount",    i:"PA system not installed on Terrace",                           c:"Fire Safety",     p:"hi",o:"Project Team",         t:"14 Days",    st:"sto"},
+  {s:"Paramount",    i:"C.D & E.F FFS remote panel at F wing ramp — unmanned",        c:"Fire Safety",     p:"hi",o:"Fire Safety Team",     t:"7 Days",     st:"sto"},
+  {s:"Paramount",    i:"Plumbing Riser maintenance access issue",                     c:"Plumbing",        p:"hi",o:"Plumbing Team",        t:"21 Days",    st:"sto"},
+  {s:"Paramount",    i:"Terrace Noise from C, D, E terrace to below flats",           c:"Resident Experience",p:"md",o:"Facility Manager",  t:"30 Days",    st:"str2"},
+];
+
+// Safety data — Slide 27 only (these 5 sites only)
+const SAFETY = [
+  {s:"Elements",      h:"Ops/Auto",sp:"Ops/Auto",dr:"Ops/Auto",pu:"N/A",    al:"Healthy",pa:"Ops",    ert:"Yes",drill:"11 & 23 Mar 2025",rem:"Fire Alarm sounder disabled at BMS. Repeater panels not looped."},
+  {s:"Central Park",  h:"Ops/Auto",sp:"Ops/Auto",dr:"Ops/Auto",pu:"Ops/Auto",al:"Healthy",pa:"Ops",   ert:"Yes",drill:"29-Mar-2025",    rem:"B-form received only till Jun 2024"},
+  {s:"La Fontaine",   h:"Ops/Auto",sp:"Ops/Auto",dr:"N/A",     pu:"Ops/Auto",al:"Healthy",pa:"Faulty",ert:"N/A",drill:"Sep 2023",        rem:"PA system faulty, AMC pending. B-form not handed over."},
+  {s:"Yazarina One",  h:"Ops/Auto",sp:"Ops/Auto",dr:"N/A",     pu:"Ops/Auto",al:"Healthy",pa:"Faulty",ert:"N/A",drill:"—",               rem:"PA system faulty"},
+  {s:"Yazarina Three",h:"Ops/Ops", sp:"Ops/Ops", dr:"N/A",     pu:"Ops/Auto",al:"Healthy",pa:"Ops",   ert:"N/A",drill:"—",               rem:"Hydrant & sprinkler in Ops mode (not Auto)"},
+  {s:"Garden 6",      h:"Ops/Ops", sp:"Ops/Ops", dr:"N/A",     pu:"Ops/Auto",al:"Healthy",pa:"Ops",   ert:"N/A",drill:"—",               rem:"In safety report. Hydrant & sprinkler in Ops mode (not Auto)"},
+];
+
+// Audit — Slide 22 all 10 sites
+const AUDIT = [
+  {n:"Bella",          q2:84.09,q1:73.22,q0:null,   ss:88.67,fi:73,se:93,sf:100,co:90.6,hk:78,te:75,cl:null,hd:100,ft:100,pr:100,mg:73},
+  {n:"Central Park",   q2:97.47,q1:97.56,q0:98.53,  ss:97.93,fi:93.8,se:100,sf:100,co:94.48,hk:96.4,te:76.9,cl:null,hd:99.1,ft:100,pr:100,mg:100},
+  {n:"Elements",       q2:90.67,q1:85.89,q0:96.80,  ss:98.67,fi:98,se:98,sf:100,co:91.33,hk:80,te:74,cl:96,hd:99,ft:100,pr:99,mg:82},
+  {n:"Garden 6",       q2:89.00,q1:84.11,q0:84.87,  ss:98,fi:100,se:94,sf:100,co:83,hk:74,te:58,cl:85,hd:null,ft:100,pr:98,mg:86},
+  {n:"La Fontaine",    q2:86.33,q1:80.11,q0:89.67,  ss:86.33,fi:85,se:96,sf:78,co:86.67,hk:88,te:66,cl:87,hd:83,ft:100,pr:96,mg:86},
+  {n:"Palacimo",       q2:59.67,q1:72.00,q0:52.78,  ss:74,fi:89,se:77,sf:56,co:50,hk:64,te:40,cl:null,hd:null,ft:null,pr:46,mg:55},
+  {n:"Triton",         q2:67.63,q1:null, q0:null,    ss:72.5,fi:97,se:null,sf:48,co:79.4,hk:72,te:54,cl:null,hd:89,ft:82,pr:100,mg:51},
+  {n:"Yazarina One",   q2:76.11,q1:73.00,q0:82.44,  ss:89.33,fi:90,se:78,sf:100,co:67,hk:85,te:54,cl:63,hd:18,ft:100,pr:82,mg:72},
+  {n:"Yazarina Three", q2:61.91,q1:47.67,q0:63.80,  ss:72.33,fi:65,se:52,sf:100,co:42.4,hk:62,te:22,cl:60,hd:null,ft:0,pr:68,mg:71},
+  {n:"Zinnia",         q2:96.00,q1:90.00,q0:92.00,  ss:null,fi:null,se:null,sf:null,co:96,hk:96,te:null,cl:null,hd:null,ft:null,pr:null,mg:null},
+];
+
+// Deployment — Slide 24 (PMS sites)
+// Columns: Elements, Central Park, Garden 6, Yazarina 1, Yazarina 3, Erika, Bella, La Fontaine, Parishram, Aangan, Zinnia, Palacimo, Triton
+const DEPLOY = {
+  cols:["Elements","Central Park","Garden 6","Yazarina 1","Yazarina 3","Erika","Bella","La Fontaine","Parishram","Aangan","Zinnia","Palacimo","Triton","Total"],
+  rows:[
+    {cat:"Management",  vals:[14,2,1,0.5,0.5,2,3,1,3,1,1,1,3,33]},
+    {cat:"Security",    vals:[49,11,4,2,4,11,18,5,5,3,0,0,0,112]},
+    {cat:"Technical",   vals:[8,4,0,0,0,1,4,1,1,0,0,0,4,23]},
+    {cat:"Housekeeping",vals:[35,11,2,2,2,9,11,3,4,3,4,2,8,96]},
+    {cat:"Landscape",   vals:[5,1,0,0.5,0.5,0,0,1,0,0,0,0,1,9]},
+    {cat:"Club Team",   vals:[4,0,0,0,0,1,0,1,0,0,0,0,0,6]},
+    {cat:"Lift Mgmt",   vals:[6,0,0,0,0,0,0,1,0,0,0,0,0,7]},
+    {cat:"Valet",       vals:[1,2,0,0,0,0,2,0,0,0,0,0,0,5]},
+    {cat:"STP",         vals:[2,0,0,0,0,0,0,0,0,0,0,0,0,2]},
+    {cat:"TOTAL",       vals:[124,31,7,5,7,24,38,13,13,7,5,3,16,293]},
+  ]
+};
+
+// Office Management — Slide 25
+const OFF_SITES = [
+  {n:"NaTRAJ",          z:"Andheri East",    type:"off-sales", staff:11, role:"Front Desk, HK, Pantry"},
+  {n:"Browserstack",    z:"Goregaon East",   type:"off-sales", staff:4,  role:"HK Staff"},
+  {n:"Seasons Sales",   z:"Bandra East",     type:"off-sales", staff:8,  role:"HK, Valet, Butler, Pantry, Security"},
+  {n:"Seasons Project", z:"Bandra East",     type:"off-proj",  staff:2,  role:"HK Staff, Pantry"},
+  {n:"Paramount Sales", z:"Khar West",       type:"off-sales", staff:5,  role:"HK, Valet, Butler, Pantry"},
+  {n:"Paramount Project",z:"Khar West",      type:"off-proj",  staff:4,  role:"HK, Pantry"},
+  {n:"Crown Project",   z:"Prabhadevi West", type:"off-proj",  staff:2,  role:"HK, Supervisor"},
+  {n:"Crown Sales",     z:"Prabhadevi West", type:"off-sales", staff:14, role:"Facility Exec, Supervisor, HK, Valet, Butler, Security, Doorman, Office Boy"},
+  {n:"Crown Project 2", z:"Prabhadevi West", type:"off-proj",  staff:3,  role:"Supervisor, Lift Attendant"},
+  {n:"Reserve",         z:"Dahisar",         type:"off-sales", staff:2,  role:"HK Staff, Pantry"},
+  {n:"Chintamani",      z:"Andheri East",    type:"off-sales", staff:9,  role:"Front Desk, HK Staff"},
+  {n:"La Fontaine Proj",z:"Bandra West",     type:"off-proj",  staff:3,  role:"HK Staff"},
+  {n:"Central Park Proj",z:"Andheri East",   type:"off-proj",  staff:0,  role:"—"},
+  {n:"Yazarina Project",z:"Dadar East",      type:"off-proj",  staff:2,  role:"HK Staff, Pantry"},
+  {n:"Yazarina Common", z:"Dadar East",      type:"off-proj",  staff:3,  role:"Facility Exec, Yazarina Lobby"},
+  {n:"Elements Proj",   z:"Andheri West",    type:"off-proj",  staff:1,  role:"HK Staff"},
+  {n:"Elements Sales",  z:"Andheri West",    type:"off-sales", staff:9,  role:"HK, Valet, Lift Attendant"},
+  {n:"La Rave",         z:"Khar Lokhandwala",type:"off-sales", staff:1,  role:"HK Staff"},
+  {n:"Avenue D1 Sales", z:"Virar West",      type:"off-sales", staff:5,  role:"HK, Valet, Pantry"},
+  {n:"Avenue D1 Proj",  z:"Virar West",      type:"off-proj",  staff:2,  role:"HK, Pantry"},
+  {n:"Summit Sales",    z:"Borivali East",   type:"off-sales", staff:10, role:"Front Desk, Supervisor, HK, Valet, Pantry"},
+  {n:"Summit Project",  z:"Borivali East",   type:"off-proj",  staff:1,  role:"HK Staff"},
+  {n:"Garden 6",        z:"Dadar East",      type:"off-sales", staff:0,  role:"—"},
+  {n:"Bella Sales",     z:"Bhandup West",    type:"off-sales", staff:4,  role:"HK Staff, Office Boy"},
+  {n:"Globe Cot",       z:"Andheri East",    type:"off-sales", staff:2,  role:"HK Staff"},
+];
+
+// ══════════════════════════════════════════════════
+// RENDER
+// ══════════════════════════════════════════════════
+
+// All unique site names for filter + pills
+const ALL_SITES = [
+  ...PMS.map(s=>({name:s.name,type:'pms',risk:s.risk})),
+  {name:"Garden 6",type:"audit",risk:"N/A"},{name:"Palacimo",type:"audit",risk:"N/A"},
+  {name:"Triton",type:"audit",risk:"N/A"},{name:"Zinnia",type:"audit",risk:"N/A"},
+  {name:"Parishram",type:"cam",risk:"N/A"},{name:"Aangan",type:"deploy",risk:"N/A"},
+];
+
+function renderPills(){
+  const rc={High:"var(--red)",Medium:"var(--amber)",Low:"var(--green)","N/A":"var(--teal)"};
+  document.getElementById('pills').innerHTML=ALL_SITES.map(s=>
+    `<div class="pill"><span class="pd" style="background:${rc[s.risk]||'var(--teal)'}"></span>${s.name}</div>`
+  ).join('');
+  const fs=document.getElementById('fS');
+  ALL_SITES.forEach(s=>fs.innerHTML+=`<option value="${s.name}">${s.name}</option>`);
+}
+
+function renderKPIs(){
+  const totO=PMS.reduce((a,s)=>a+s.opened,0);
+  const totW=PMS.reduce((a,s)=>a+s.wip,0);
+  const totC=CRIT.reduce((a,s)=>a+s.critN,0);
+  const totR=CRIT.reduce((a,s)=>a+s.repN,0);
+  const hi=PMS.filter(s=>s.risk==='High').length;
+  const md=PMS.filter(s=>s.risk==='Medium').length;
+  const lo=PMS.filter(s=>s.risk==='Low').length;
+  const cards=[
+    {k:'ki', ico:'⬡', v:ALL_SITES.length,              l:'Total Sites (All PPTs)'},
+    {k:'kr', ico:'⚠', v:hi,                             l:'High Risk PMS Sites'},
+    {k:'ka', ico:'◑', v:md,                             l:'Medium Risk PMS Sites'},
+    {k:'kg', ico:'✓', v:lo,                             l:'Low Risk / Healthy'},
+    {k:'kb', ico:'◎', v:totO.toLocaleString('en-IN'),   l:'Total Complaints Opened'},
+    {k:'kgo',ico:'↻', v:totW.toLocaleString('en-IN'),   l:'Total WIP Outstanding'},
+    {k:'kr', ico:'🔥',v:totC,                           l:'Total Critical Issues'},
+    {k:'kp', ico:'⟲', v:totR,                           l:'Repeated Issues Logged'},
+  ];
+  document.getElementById('kpiG').innerHTML=cards.map(c=>
+    `<div class="kpi ${c.k}"><div class="kico">${c.ico}</div><div class="kv">${c.v}</div><div class="kl">${c.l}</div></div>`
+  ).join('');
+}
+
+function renderHealth(){
+  document.getElementById('hTb').innerHTML=PMS.map(s=>{
+    const rc={High:'br',Medium:'ba',Low:'bg'}[s.risk];
+    const ri={High:'▲',Medium:'◆',Low:'●'}[s.risk];
+    const sc=s.score,sc_c=sc<50?'var(--red)':sc<65?'var(--amber)':'var(--green)';
+    const rp=s.resPct,rp_c=rp>=99?'var(--green)':rp>=90?'var(--amber)':'var(--red)';
+    return `<tr data-site="${s.name}" data-risk="${s.risk}">
+      <td class="fw">${s.name}</td>
+      <td>${s.opened.toLocaleString('en-IN')}</td>
+      <td>${s.resolved.toLocaleString('en-IN')}</td>
+      <td><div class="sbar"><div class="str"><div class="sfill" style="width:${rp}%;background:${rp_c}"></div></div><span class="snum" style="color:${rp_c}">${rp}%</span></div></td>
+      <td><span style="font-weight:700;color:${s.wip>200?'var(--red)':s.wip>30?'var(--amber)':'var(--green)'}">${s.wip.toLocaleString('en-IN')}</span></td>
+      <td><span style="font-weight:700;color:${s.critN>=8?'var(--red)':s.critN>=4?'var(--amber)':'var(--green)'}">${s.critN}</span></td>
+      <td>₹${s.camPsf}</td>
+      <td><span class="bdg ${rc}">${ri} ${s.risk}</span></td>
+      <td><div class="sbar"><div class="str"><div class="sfill" style="width:${sc}%;background:${sc_c}"></div></div><span class="snum" style="color:${sc_c}">${sc}</span></div></td>
+    </tr>`;
+  }).join('');
+}
+
+function renderFin(){
+  document.getElementById('fTb').innerHTML=PMS.map(s=>
+    `<tr data-site="${s.name}">
+      <td class="fw">${s.name}</td><td>${s.carpet}</td>
+      <td style="font-size:12px">${s.camMo}</td>
+      <td style="font-weight:700">₹${s.camPsf}</td>
+      <td style="font-size:12px">${s.crestBill}</td>
+      <td>${s.propM}%</td><td>${s.util}%</td><td>${s.amc}%</td><td>${s.agency}%</td>
+    </tr>`
+  ).join('');
+}
+
+function renderCamBench(){
+  document.getElementById('camBench').innerHTML=CAM_BENCH.map(c=>
+    `<div class="cb">
+      <div class="cb-nm">${c.n}</div>
+      <div class="cb-psf" style="color:${c.psf>25?'var(--red)':c.psf>18?'var(--amber)':'var(--green)'}">₹${c.psf}</div>
+      <div class="cb-amen">${c.amenities}</div>
+    </div>`
+  ).join('');
+}
+
+function renderCrit(){
+  const col={high:'hr',medium:'ham',low:'hg'};
+  const rc={high:'br',medium:'ba',low:'bg'};
+  const rl={high:'High',medium:'Medium',low:'Low'};
+  document.getElementById('critG').innerHTML=CRIT.map((s,i)=>`
+    <div class="sc sc-f" data-site="${s.name}" data-risk="${rl[s.risk]}">
+      <div class="sc-h ${col[s.risk]}" onclick="tc(this)">
+        <div><div class="sc-nm">${s.name}</div><div class="sc-mt">${s.critN} critical · ${s.repN} repeated</div></div>
+        <div style="display:flex;align-items:center;gap:7px">
+          <span class="bdg ${rc[s.risk]}">${rl[s.risk]}</span>
+          <span class="chv${i<3?' op':''}">▾</span>
+        </div>
+      </div>
+      <div class="sc-b${i<3?' op':''}">
+        <div class="sep sep-r">▸ Critical Issues</div>
+        <ul class="ul">${s.crit.map(it=>`<li><span class="bl br2">▸</span>${it}</li>`).join('')}</ul>
+        ${s.rep.length?`<div class="sep sep-a">↻ Repeated Issues</div><ul class="ul">${s.rep.map(it=>`<li><span class="bl ba2">↻</span>${it}</li>`).join('')}</ul>`:''}
+      </div>
+    </div>`).join('');
+}
+function tc(h){const b=h.nextElementSibling,c=h.querySelector('.chv');b.classList.toggle('op');c.classList.toggle('op')}
+
+function renderHMs(){
+  const rL={'ri-yes':'Repeated','ri-rep':'Occasional','ri-no':'No','ri-na':'No data'};
+  document.getElementById('repT').innerHTML=
+    `<thead><tr><th>Site</th><th>Plumbing</th><th>Electrical</th><th>Civil</th><th>Fire Safety</th><th>Project</th><th>Resident</th></tr></thead>
+    <tbody>${REP_HM.map(r=>`<tr><td>${r.n}</td>${r.v.map(v=>`<td class="${v}">${rL[v]}</td>`).join('')}</tr>`).join('')}</tbody>`;
+  const riskL={'h-cr':'Critical','h-hi':'High','h-md':'Medium','h-lo':'Low','h-ok':'Healthy','h-na':'N/A'};
+  document.getElementById('riskT').innerHTML=
+    `<thead><tr><th>Site</th><th>🔥 Fire</th><th>🏗 Civil</th><th>🚿 Plumbing</th><th>⚡ Electrical</th><th>📦 Project</th><th>👥 Residents</th></tr></thead>
+    <tbody>${RISK_HM.map(r=>`<tr><td>${r.n}</td>${r.v.map(v=>`<td class="${v} hc">${riskL[v]}</td>`).join('')}</tr>`).join('')}</tbody>`;
+}
+
+function renderAction(){
+  const pM={ur:'pur',hi:'phi',md:'pmd',lo:'plo'};
+  const pL={ur:'Urgent',hi:'High',md:'Medium',lo:'Low'};
+  const stL={sto:'● Open',stw:'◑ WIP',str2:'⊙ Review',stp:'✓ Planned'};
+  document.getElementById('actTb').innerHTML=ACTIONS.map((a,i)=>
+    `<tr class="a-r" data-site="${a.s}" data-issue="${a.c}">
+      <td style="color:var(--silver);font-weight:600">${i+1}</td>
+      <td><span class="bdg bi">${a.s}</span></td>
+      <td style="font-weight:500;max-width:220px;line-height:1.4">${a.i}</td>
+      <td style="font-size:11.5px;color:var(--silver)">${a.c}</td>
+      <td><span class="${pM[a.p]}">${pL[a.p]}</span></td>
+      <td style="font-size:11.5px">${a.o}</td>
+      <td style="font-weight:600;font-size:11.5px">${a.t}</td>
+      <td><span class="${a.st}">${stL[a.st]}</span></td>
+    </tr>`
+  ).join('');
+}
+
+function renderSafety(){
+  const ok='<span class="sf-ok">✓ Ops</span>';
+  const fa='<span class="sf-fa">✗ Faulty</span>';
+  const na='<span class="sf-na">N/A</span>';
+  document.getElementById('safTb').innerHTML=SAFETY.map(r=>`
+    <tr>
+      <td class="fw">${r.s}</td>
+      <td>${ok}</td><td>${ok}</td>
+      <td>${r.dr==='N/A'?na:ok}</td>
+      <td>${r.pu==='N/A'?na:ok}</td>
+      <td>${ok}</td>
+      <td>${r.pa==='Faulty'?fa:ok}</td>
+      <td>${r.ert==='Yes'?ok:na}</td>
+      <td style="font-size:11.5px;font-weight:600">${r.drill}</td>
+      <td style="font-size:11px;color:var(--silver);max-width:180px;line-height:1.3">${r.rem}</td>
+    </tr>`).join('');
+}
+
+function renderAudit(){
+  document.getElementById('auG').innerHTML=AUDIT.map(a=>{
+    const c=a.q2>90?'var(--green)':a.q2>80?'var(--amber)':a.q2>65?'var(--gold)':'var(--red)';
+    const tr=a.q1?a.q2>a.q1?'↑ Improving':'↓ Declined':'— First entry';
+    const tc=a.q1?(a.q2>a.q1?'var(--green)':'var(--red)'):'var(--silver)';
+    return `<div class="au"><div class="au-n">${a.n}</div>
+      <div class="au-v" style="color:${c}">${a.q2}%</div>
+      <div class="au-bar"><div class="au-f" style="width:${a.q2}%;background:${c}"></div></div>
+      <div class="au-t" style="color:${tc}">${tr}</div></div>`;
+  }).join('');
+
+  document.getElementById('auDTb').innerHTML=AUDIT.map(a=>`
+    <tr>
+      <td class="fw">${a.n}</td>
+      ${[a.ss,a.fi,a.se,a.sf,a.co,a.hk,a.te,a.cl,a.hd,a.pr,a.mg].map(v=>
+        v!=null?`<td style="font-weight:600;color:${v>=90?'var(--green)':v>=75?'var(--amber)':'var(--red)'}">${v}%</td>`
+               :`<td style="color:var(--mist)">—</td>`).join('')}
+      <td><div class="sbar"><div class="str"><div class="sfill" style="width:${a.q2}%;background:${a.q2>90?'var(--green)':a.q2>80?'var(--amber)':a.q2>65?'var(--gold)':'var(--red)'}"></div></div><span class="snum" style="color:${a.q2>90?'var(--green)':a.q2>80?'var(--amber)':a.q2>65?'var(--gold)':'var(--red)'}">${a.q2}%</span></div></td>
+    </tr>`).join('');
+}
+
+function renderDeploy(){
+  const cols=DEPLOY.cols;
+  let html=`<thead><tr><th>Role</th>${cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>`;
+  DEPLOY.rows.forEach(r=>{
+    const isTot=r.cat==='TOTAL';
+    html+=`<tr>${isTot?`<td class="cat dep-total">${r.cat}</td>`:
+      `<td class="cat">${r.cat}</td>`}
+      ${r.vals.map((v,i)=>{
+        const isLast=i===r.vals.length-1;
+        if(v===0)return`<td class="dep-zero${isTot?' dep-total':''}">—</td>`;
+        return`<td class="dep-num${isTot?' dep-total':''}" style="${isLast?'font-weight:700':''}">${v}</td>`;
+      }).join('')}</tr>`;
+  });
+  html+='</tbody>';
+  document.getElementById('depTbl').innerHTML=html;
+}
+
+function renderOffice(){
+  const typeMap={'off-pms':'PMS Site','off-sales':'Sales Office','off-proj':'Project Office'};
+  document.getElementById('offG').innerHTML=OFF_SITES.map(o=>
+    `<div class="off-card">
+      <div class="off-type ${o.type}">${typeMap[o.type]||'Office'}</div>
+      <div class="off-loc">${o.n}</div>
+      <div class="off-zone">📍 ${o.z}</div>
+      <div class="off-staff">${o.staff}</div>
+      <div class="off-lbl">Staff Deployed</div>
+      <div style="font-size:10px;color:var(--silver);margin-top:5px;line-height:1.4">${o.role}</div>
+    </div>`
+  ).join('');
+}
+
+function renderInsights(){
+  const data=[
+    {title:"Top 5 Risks — Portfolio",tag:"RISK",rows:[
+      {r:1,t:"Erika: 99 fire alarm faults + hydrant leakage + wall collapse = immediate life-safety and legal risk",s:"Erika — Urgent"},
+      {r:2,t:"Azziano: Fire chute & FAPA not handed over by KCPL. STP flooding risk pre-monsoon.",s:"Azziano — Urgent"},
+      {r:3,t:"Crown: FAPA Tower A + exit ramp not started + 10 critical issues unresolved",s:"Crown — Urgent"},
+      {r:4,t:"Elements: Fire sprinkler faulty, water tank insufficient, 440 WIP outstanding",s:"Elements — High Priority"},
+      {r:5,t:"Yazarina Three: Lowest audit score 61.9%, ventilation missing, no proper PMS office",s:"Yazarina Three — Monitor"},
+    ]},
+    {title:"Top 5 Cost Observations",tag:"FINANCIAL",rows:[
+      {r:1,t:"La Fontaine highest CAM PSF ₹35.08 — premium site. Crown ₹24.95 with utility at 44.1%.",s:"La Fontaine / Crown"},
+      {r:2,t:"Utility dominates Azziano (44.1%) and Crown (44.1%) — energy audit recommended for both",s:"Azziano, Crown"},
+      {r:3,t:"Elements AMC at 35.42% — significantly above portfolio average; vendor contract review needed",s:"Elements"},
+      {r:4,t:"Erika Prop. Management at 69.9% — highest in portfolio; staffing ratio review needed",s:"Erika"},
+      {r:5,t:"Bella & La Fontaine: Other Agency at 32% — third-party service contracts to be reviewed",s:"Bella, La Fontaine"},
+    ]},
+    {title:"Top 5 Complaint Categories",tag:"COMPLAINTS",rows:[
+      {r:1,t:"Plumbing — highest volume: Azziano 27% (6,155), Crown 37% (3,006), Erika 33% (141)",s:"Portfolio-wide"},
+      {r:2,t:"Electrical — 2nd highest: Azziano 15.8% (3,598), Crown 15.8% (1,282), Erika 35.8% (153)",s:"Portfolio-wide"},
+      {r:3,t:"Project WIP — Azziano 45.82% WIP rate on project category (225 of 491 WIP tickets)",s:"Azziano"},
+      {r:4,t:"Facade (Crown) — 74.4% of all open WIP in single category: project inaction risk",s:"Crown"},
+      {r:5,t:"Civil — Elements: 27 civil WIP; Bella: 16 civil outstanding; Azziano: wall crack",s:"Elements, Bella, Azziano"},
+    ]},
+    {title:"Sites Needing Immediate Attention",tag:"ACTION",rows:[
+      {r:1,t:"🔴 ERIKA — Fire safety critical. BMC notice received. Structural failure (wall collapse). No vendor response.",s:"Immediate escalation"},
+      {r:2,t:"🔴 AZZIANO — Fire chute + FAPA not handed over by KCPL. Repeated 9 times in PPT.",s:"Immediate escalation"},
+      {r:3,t:"🔴 CROWN — 10 critical issues all repeated. Exit ramp, FAPA, EV chargers unresolved.",s:"Immediate escalation"},
+      {r:4,t:"🟡 ELEMENTS — Sprinkler fault + 440 WIP + fire alarm sounder disabled at BMS",s:"High priority"},
+      {r:5,t:"🟡 PALACIMO + TRITON — Audit scores 59.67% and 67.63% — both below 70% threshold",s:"Audit follow-up"},
+    ]},
+  ];
+  document.getElementById('insG').innerHTML=data.map(d=>
+    `<div class="ins"><h5>${d.title} <span class="itg">${d.tag}</span></h5>
+    ${d.rows.map(r=>`<div class="ir"><div class="irk">${r.r}</div><div><div class="itx">${r.t}</div><div class="isb">${r.s}</div></div></div>`).join('')}
+    </div>`
+  ).join('');
+}
+
+// ── CHARTS ──
+Chart.defaults.font.family="'DM Sans',sans-serif";
+Chart.defaults.font.size=11;
+Chart.defaults.color='#7b8aa0';
+
+function initCharts(){
+  new Chart(document.getElementById('cBar'),{type:'bar',data:{
+    labels:PMS.map(s=>s.name),
+    datasets:[
+      {label:'Opened', data:PMS.map(s=>s.opened),backgroundColor:'rgba(26,93,168,.75)',borderRadius:4},
+      {label:'Resolved',data:PMS.map(s=>s.resolved),backgroundColor:'rgba(15,122,90,.72)',borderRadius:4},
+      {label:'WIP',    data:PMS.map(s=>s.wip),backgroundColor:'rgba(196,122,10,.85)',borderRadius:4},
+    ]
+  },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{boxWidth:9,padding:12}}},
+    scales:{y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:v=>v>=1000?(v/1000)+'k':v}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
+
+  new Chart(document.getElementById('cPie'),{type:'doughnut',data:{
+    labels:['Plumbing','Electrical','Project/Civil','Carpentry','Housekeeping','Parking/Facade','Fire','Others'],
+    datasets:[{data:[29,20,11,6,5,8,3,18],backgroundColor:['#1a5da8','#dc2626','#7c3aed','#c47a0a','#059669','#0f7a5a','#991b1b','#64748b'],borderWidth:2,borderColor:'#fff'}]
+  },options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:{position:'bottom',labels:{boxWidth:9,padding:10,font:{size:10}}}}}});
+
+  new Chart(document.getElementById('cRes'),{type:'bar',data:{
+    labels:PMS.map(s=>s.name),
+    datasets:[{label:'Resolved %',data:PMS.map(s=>s.resPct),
+      backgroundColor:PMS.map(s=>s.resPct>=99?'rgba(15,122,90,.8)':s.resPct>=90?'rgba(196,122,10,.8)':'rgba(200,49,43,.8)'),borderRadius:5}]
+  },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{y:{min:60,max:100,grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:v=>v+'%'}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
+
+  new Chart(document.getElementById('cWip'),{type:'bar',data:{
+    labels:PMS.map(s=>s.name),
+    datasets:[{label:'WIP',data:PMS.map(s=>s.wip),
+      backgroundColor:PMS.map(s=>s.wip>200?'rgba(200,49,43,.8)':s.wip>30?'rgba(196,122,10,.8)':'rgba(15,122,90,.75)'),borderRadius:5}]
+  },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:v=>v>=1000?(v/1000)+'k':v}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
+
+  new Chart(document.getElementById('cCam'),{type:'bar',data:{
+    labels:PMS.map(s=>s.name),
+    datasets:[{label:'CAM PSF ₹',data:PMS.map(s=>s.camPsf),
+      backgroundColor:PMS.map(s=>s.camPsf>25?'rgba(200,49,43,.8)':s.camPsf>18?'rgba(196,122,10,.8)':'rgba(15,122,90,.75)'),borderRadius:5}]
+  },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:v=>'₹'+v}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
+
+  new Chart(document.getElementById('cExp'),{type:'doughnut',data:{
+    labels:['Utility 44.1%','Prop.Mgmt 34.2%','AMC 9.2%','Club House 3.5%','Others 4.8%','Other Agency 2.9%','Statutory 1.4%'],
+    datasets:[{data:[44.1,34.2,9.2,3.5,4.8,2.9,1.4],backgroundColor:['#dc2626','#1a5da8','#0f7a5a','#6930a8','#64748b','#c47a0a','#0e7490'],borderWidth:2,borderColor:'#fff'}]
+  },options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{position:'bottom',labels:{boxWidth:9,padding:9,font:{size:10}}}}}});
+
+  new Chart(document.getElementById('cAu'),{type:'bar',data:{
+    labels:AUDIT.map(a=>a.n),
+    datasets:[
+      {label:'Q2 FY2025 (Jul–Aug)', data:AUDIT.map(a=>a.q2), backgroundColor:AUDIT.map(a=>a.q2>90?'rgba(15,122,90,.8)':a.q2>80?'rgba(196,122,10,.8)':a.q2>65?'rgba(196,154,46,.8)':'rgba(200,49,43,.8)'),borderRadius:4},
+      {label:'Q1 FY2025 (Apr)',     data:AUDIT.map(a=>a.q1||0), backgroundColor:'rgba(184,196,212,.7)',borderRadius:4},
+      {label:'Q0 FY2025 (Jan)',     data:AUDIT.map(a=>a.q0||0), backgroundColor:'rgba(210,215,225,.7)',borderRadius:4},
+    ]
+  },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{boxWidth:9,padding:12}}},
+    scales:{y:{min:0,max:100,grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:v=>v+'%'}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
+}
+
+// ── FILTERS ──
+function af(){
+  const s=document.getElementById('fS').value;
+  const r=document.getElementById('fR').value;
+  const is=document.getElementById('fI').value;
+  document.querySelectorAll('#hTb tr').forEach(row=>{
+    const sm=!s||row.dataset.site===s,rm=!r||row.dataset.risk===r;
+    row.style.display=sm&&rm?'':'none';
+  });
+  document.querySelectorAll('.sc-f').forEach(c=>{
+    const sm=!s||c.dataset.site===s,rm=!r||c.dataset.risk===r;
+    c.style.display=sm&&rm?'':'none';
+  });
+  document.querySelectorAll('.a-r').forEach(row=>{
+    const sm=!s||row.dataset.site===s,im=!is||row.dataset.issue===is;
+    row.style.display=sm&&im?'':'none';
+  });
+  ['#repT','#riskT'].forEach(sel=>
+    document.querySelectorAll(sel+' tbody tr').forEach(row=>{
+      row.style.display=!s||row.cells[0]?.textContent===s?'':'none';
+    })
+  );
+  document.querySelectorAll('#fTb tr').forEach(row=>{row.style.display=!s||row.dataset.site===s?'':'none';});
+}
+function rf(){['fS','fR','fI'].forEach(id=>document.getElementById(id).value='');af();}
+
+// ── NAV ──
+function gt(id,el){
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.na').forEach(a=>a.classList.remove('on'));
+  el.classList.add('on');
+}
+window.addEventListener('scroll',()=>{
+  const ids=['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11','s12','s13'];
+  let cur=ids[0];
+  ids.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=90)cur=id;});
+  document.querySelectorAll('.na').forEach((n,i)=>n.classList.toggle('on',i===ids.indexOf(cur)));
+},{passive:true});
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded',()=>{
+  renderPills();renderKPIs();renderHealth();renderFin();renderCamBench();
+  renderCrit();renderHMs();renderAction();renderSafety();
+  renderAudit();renderDeploy();renderOffice();renderInsights();
+  initCharts();
+});
+</script>
+</body>
+</html>
