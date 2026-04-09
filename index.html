@@ -266,7 +266,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);d
  <div class="na" onclick="gt('s13',this)"><span class="ic">◉</span>Leadership Insights</div>
  <div class="na" onclick="gt('s14',this)"><span class="ic">✦</span>Site Highlights</div>
  <div class="na" onclick="gt('s15',this)"><span class="ic">⚡</span>Site Challenges</div>
- <div class="na" onclick="gt('s16',this)"><span class="ic">☑</span>OC Readiness</div>
  <div class="na" onclick="gt('s17',this)"><span class="ic">👥</span>Operations</div>
  <div class="sb-leg">
   <p>Risk Key</p>
@@ -491,47 +490,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);d
 
   <div class="rule"></div>
 
-  <!-- S16: OC CHECKLIST -->
-  <section id="s16">
-   <div class="sh"><span class="sn">16</span><div><div class="st">Occupancy Certificate (OC) Readiness Checklist</div><div class="ss">Handover readiness criteria and compliance status — Central Park</div></div></div>
-   <div style="background:var(--amber-lt);border:1px solid #d97706;border-radius:8px;padding:13px 16px;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px">
-    <span style="color:var(--amber);font-size:15px;flex-shrink:0;margin-top:1px">⚠</span>
-    <div>
-     <div style="font-size:12.5px;font-weight:700;color:#92400e;margin-bottom:4px">Site: Central Park only</div>
-     <div style="font-size:12px;color:#92400e;line-height:1.5">This OC Readiness Checklist applies to <strong>Central Park</strong>. The submitted AOP does not include a separate OC checklist for Azziano, Crown, Erika, Summit, Seasons, Paramount or any other site. Their handover status is tracked under Section 05 — Critical Issues.</div>
-    </div>
-   </div>
-   <div class="tc"><table>
-    <thead><tr><th>#</th><th>OC Requirement</th><th>Status</th></tr></thead>
-    <tbody id="ocTbody"></tbody>
-   </table></div>
-  </section>
-
-  <div class="rule"></div>
-
   <!-- S17: OPERATIONS SUMMARY -->
   <section id="s17">
    <div class="sh"><span class="sn">17</span><div><div class="st">Operations Summary</div><div class="ss">748 total resources across Property Management, Office Management and Support functions</div></div></div>
    <div class="kgrid mb16" id="opsKpiGrid"></div>
-   <div style="background:var(--white);border:1px solid var(--fog);border-radius:var(--r);padding:20px;box-shadow:var(--sh)">
-    <table style="width:100%;border-collapse:collapse">
-     <thead><tr>
-      <th style="background:var(--ink2);color:rgba(255,255,255,.7);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;padding:10px 14px;text-align:left">Team / Function</th>
-      <th style="background:var(--ink2);color:rgba(255,255,255,.7);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;padding:10px 14px;text-align:center">Headcount</th>
-     </tr></thead>
-     <tbody>
-      <tr style="border-bottom:1px solid var(--fog)"><td style="padding:10px 14px;font-weight:600">Central Core Team</td><td style="padding:10px 14px;text-align:center;font-weight:700">13</td></tr>
-      <tr style="border-bottom:1px solid var(--fog)"><td style="padding:10px 14px;font-weight:600">Property Management Sites</td><td style="padding:10px 14px;text-align:center;font-weight:700">574</td></tr>
-      <tr style="border-bottom:1px solid var(--fog)"><td style="padding:10px 14px;font-weight:600">Office Management</td><td style="padding:10px 14px;text-align:center;font-weight:700">142</td></tr>
-      <tr style="border-bottom:1px solid var(--fog)"><td style="padding:10px 14px;font-weight:600">Handyman Services</td><td style="padding:10px 14px;text-align:center;font-weight:700">2</td></tr>
-      <tr style="border-bottom:1px solid var(--fog)"><td style="padding:10px 14px;font-weight:600">Staffing</td><td style="padding:10px 14px;text-align:center;font-weight:700">3</td></tr>
-      <tr style="border-bottom:1px solid var(--fog)"><td style="padding:10px 14px;font-weight:600">Reliever Staff</td><td style="padding:10px 14px;text-align:center;font-weight:700">8</td></tr>
-      <tr style="border-bottom:1px solid var(--fog)"><td style="padding:10px 14px;font-weight:600">Leasing (Thane + Western Zone)</td><td style="padding:10px 14px;text-align:center;font-weight:700">6</td></tr>
-      <tr style="background:var(--gold-lt)"><td style="padding:10px 14px;font-weight:800;color:var(--gold-dk)">TOTAL</td><td style="padding:10px 14px;text-align:center;font-weight:800;font-size:16px;color:var(--gold-dk)">748</td></tr>
-     </tbody>
-    </table>
-    <p style="font-size:11px;color:var(--silver);margin-top:12px">Direct to Total Strength Ratio: <strong style="color:var(--ink2)">31%</strong>&nbsp;&nbsp;|&nbsp;&nbsp;231 Direct &nbsp;|&nbsp; 517 Indirect&nbsp;&nbsp;|&nbsp;&nbsp;Leasing: Team of 2 between Thane and Western Zone</p>
-   </div>
   </section>
 
   <!-- S13: INSIGHTS -->
@@ -557,36 +519,66 @@ const PMS = [
  {name:"Crown",    risk:"High",  opened:8127, resolved:7932, wip:195, resPct:97.6,critN:10,camPsf:24.95,camMo:"₹1,94,54,802",crestBill:"₹1,04,75,923",carpet:"7,79,647",propM:51.0,util:44.1,amc:11.0,agency:2.0,score:42},
  // Erika PPT Slide 1
  {name:"Erika",    risk:"High",  opened:427, resolved:395, wip:32, resPct:92.5,critN:7, camPsf:19.11,camMo:"₹13,26,736", crestBill:"₹12,64,731", carpet:"69,430", propM:69.9,util:17.0,amc:1.2, agency:2.2,score:38},
- // Crest PPT Slide 15 — Central Park (carpet 1,21,596 / PSF ₹14 / CAM ₹16.78L / Crest ₹10.34L)
+ // Central Park
  {name:"Central Park", risk:"Medium", opened:408, resolved:408, wip:0,  resPct:100, critN:5, camPsf:14.0, camMo:"₹16,78,117", crestBill:"₹10,34,312", carpet:"1,21,596",propM:64.8,util:16.4,amc:9.9, agency:2.0, score:68},
- // Crest PPT Slide 16 — Elements
+ // Elements
  {name:"Elements",   risk:"Medium", opened:2091, resolved:1651, wip:440, resPct:79.0,critN:8, camPsf:21.26,camMo:"₹84,44,000", crestBill:"₹51,14,262", carpet:"3,97,110",propM:34.53,util:20.81,amc:35.42,agency:1.0, score:60},
- // Crest PPT Slide 17 — Yazarina One
+ // Yazarina One
  {name:"Yazarina One", risk:"Medium", opened:43,  resolved:40,  wip:3,  resPct:93.0,critN:2, camPsf:20.86,camMo:"₹4,43,060",  crestBill:"₹2,09,251", carpet:"26,994", propM:50.0,util:16.8,amc:21.0,agency:2.0, score:66},
- // Crest PPT Slide 18 — Yazarina Three
+ // Yazarina Three
  {name:"Yazarina Three",risk:"Medium",opened:43,  resolved:40,  wip:3,  resPct:93.0,critN:2, camPsf:17.07,camMo:"₹3,36,487",  crestBill:"₹3,11,279", carpet:"19,710", propM:49.6,util:15.6,amc:24.2,agency:2.0, score:62},
- // Crest PPT Slide 19 — Bella
+ // Bella
  {name:"Bella",    risk:"Low",  opened:247, resolved:182, wip:65, resPct:73.7,critN:3, camPsf:10.08,camMo:"₹15,50,085", crestBill:"₹17,21,483", carpet:"1,94,090",propM:32.0,util:25.9,amc:5.1, agency:32.0,score:70},
- // Crest PPT Slide 20 — La Fontaine
+ // La Fontaine
  {name:"La Fontaine", risk:"Low",  opened:9125, resolved:8851, wip:10, resPct:97.0,critN:2, camPsf:35.08,camMo:"₹15,50,085", crestBill:"₹17,21,483", carpet:"1,94,090",propM:32.0,util:25.9,amc:5.1, agency:32.0,score:76},
- // Summit — from uploaded Image 1 screenshot
+ // Summit
  {name:"Summit",    risk:"Medium", opened:779, resolved:764, wip:15, resPct:98.1,critN:2, camPsf:12.22,camMo:"₹17,60,434", crestBill:"₹17,60,434", carpet:"2,29,568",propM:56.9,util:20.4, amc:18.9,agency:0.0, score:65},
- // Seasons — from uploaded Image 2 screenshot
+ // Seasons
  {name:"Seasons",   risk:"Medium", opened:3481, resolved:3468, wip:13, resPct:99.6,critN:4, camPsf:12.92,camMo:"₹74,59,025", crestBill:"₹43,50,000", carpet:"5,77,516",propM:null,util:null,amc:null,agency:null,score:63},
- // Paramount — from uploaded Image 3 screenshot
+ // Paramount
  {name:"Paramount",  risk:"High",  opened:1777, resolved:1731, wip:169, resPct:97.5,critN:8, camPsf:22.06,camMo:"₹68,22,695", crestBill:"₹36,32,572", carpet:"3,09,277",propM:50.9,util:20.91,amc:12.47,agency:2.34,score:45},
+ // Palacimo — AOP ODS: opened 92, resolved 86, outstanding ~6
+ {name:"Palacimo",  risk:"Medium", opened:92,  resolved:86,  wip:6,  resPct:93.5,critN:3, camPsf:null, camMo:"₹1,60,000",   crestBill:"₹1,60,000",  carpet:"26,520", propM:null,util:null,amc:null,agency:null,score:58},
+ // Parishram — AOP ODS: opened 76, resolved 63, outstanding 13
+ {name:"Parishram", risk:"Medium", opened:76,  resolved:63,  wip:13, resPct:82.9,critN:1, camPsf:null, camMo:"—",          crestBill:"—",          carpet:"14,29,830",propM:null,util:null,amc:null,agency:null,score:60},
+ // Aangan — AOP ODS: totals across categories (sum of total col)
+ {name:"Aangan",   risk:"Medium", opened:296, resolved:214, wip:82, resPct:72.3,critN:0, camPsf:null, camMo:"—",          crestBill:"—",          carpet:"—",      propM:null,util:null,amc:null,agency:null,score:55},
+ // Runwal Forest — AOP ODS: opened 223, resolved 171, outstanding 19
+ {name:"Runwal Forest",risk:"Medium",opened:223, resolved:171, wip:19, resPct:76.7,critN:4, camPsf:null, camMo:"₹5,45,229",  crestBill:"₹5,45,229",  carpet:"—",      propM:null,util:null,amc:null,agency:null,score:57},
+ // Triton — AOP ODS: opened 76, resolved 63, outstanding 13
+ {name:"Triton",   risk:"Medium", opened:76,  resolved:63,  wip:13, resPct:82.9,critN:3, camPsf:null, camMo:"₹5,86,152",  crestBill:"₹5,86,152",  carpet:"1,24,146",propM:null,util:null,amc:null,agency:null,score:59},
+ // Garden 6 — AOP ODS: opened 115, resolved 103, outstanding 13
+ {name:"Garden 6",  risk:"Medium", opened:115, resolved:103, wip:13, resPct:89.6,critN:4, camPsf:null, camMo:"—",          crestBill:"—",          carpet:"—",      propM:null,util:null,amc:null,agency:null,score:62},
+ // Zinnia — AOP ODS: opened 76, resolved 63, outstanding 13
+ {name:"Zinnia",   risk:"Low",   opened:76,  resolved:63,  wip:13, resPct:82.9,critN:0, camPsf:null, camMo:"—",          crestBill:"—",          carpet:"2,049",   propM:null,util:null,amc:null,agency:null,score:70},
+ // Dosti Oak — PPTX: opened 429, resolved 149, outstanding 280
+ {name:"Dosti Oak",  risk:"High",  opened:429, resolved:149, wip:280, resPct:34.7,critN:8, camPsf:6.93, camMo:"₹28,80,349", crestBill:"₹8,09,631",  carpet:"—",      propM:39.72,util:39.03,amc:9.37,agency:8.0, score:35},
+ // Grand Pallazo — PPTX: new site, no complaint data yet
+ {name:"Grand Pallazo",risk:"Medium",opened:0,  resolved:0,  wip:0,  resPct:0,  critN:5, camPsf:11.43,camMo:"₹4,49,450",  crestBill:"₹4,49,450",  carpet:"39,316", propM:100,util:null,amc:null,agency:0.0, score:45},
+ // NEWA (Newa BKC) — PPTX: opened 349, resolved 310, outstanding 26
+ {name:"Newa BKC",  risk:"Medium", opened:349, resolved:310, wip:26, resPct:88.8,critN:1, camPsf:null, camMo:"₹11,39,417", crestBill:"₹10,92,958", carpet:"3,95,000",propM:90.0,util:95.0,amc:70.0,agency:null,score:62},
+ // Parkmist — PPTX: opened 45, resolved 32, outstanding 13
+ {name:"Parkmist",  risk:"Medium", opened:45,  resolved:32,  wip:13, resPct:71.1,critN:2, camPsf:null, camMo:"—",          crestBill:"—",          carpet:"—",      propM:null,util:null,amc:null,agency:null,score:52},
+ // Reserve — PPTX: opened 607, resolved 602, outstanding 5
+ {name:"Reserve",   risk:"Low",   opened:607, resolved:602, wip:5,  resPct:99.2,critN:4, camPsf:11.22,camMo:"₹13,35,238", crestBill:"₹12,26,265", carpet:"1,18,962",propM:100,util:null,amc:null,agency:null,score:72},
 ];
 
-// CAM benchmarking table — Slide 21
+// CAM benchmarking table
 const CAM_BENCH = [
- {n:"Central Park", psf:14,  amenities:"—"},
- {n:"Elements",   psf:21.26,amenities:"Pool·Banquet·Gym·Skylounge·Miniplex·Spa·Business Ctr·Court"},
- {n:"Yazarina One", psf:21,  amenities:"Pool·Gym·Skylounge·Kids Play·Court"},
- {n:"Yazarina Three",psf:18,  amenities:"Gym·Skylounge"},
- {n:"Bella",     psf:10.08,amenities:"Banquet·Gym·Skylounge·Senior Lounge·Kids Play"},
- {n:"La Fontaine",  psf:35,  amenities:"Pool·Gym·Skylounge·Kids Play"},
- {n:"Parishram",   psf:19,  amenities:"Pool·Gym"},
- {n:"Garden 6",   psf:20,  amenities:"Pool·Gym·Skylounge"},
+ {n:"Central Park", psf:14,    amenities:"—"},
+ {n:"Elements",   psf:21.26,  amenities:"Pool·Banquet·Gym·Skylounge·Miniplex·Spa·Business Ctr·Court"},
+ {n:"Yazarina One", psf:21,    amenities:"Pool·Gym·Skylounge·Kids Play·Court"},
+ {n:"Yazarina Three",psf:18,    amenities:"Gym·Skylounge"},
+ {n:"Bella",     psf:10.08,  amenities:"Banquet·Gym·Skylounge·Senior Lounge·Kids Play"},
+ {n:"La Fontaine",  psf:35,    amenities:"Pool·Gym·Skylounge·Kids Play"},
+ {n:"Parishram",   psf:19,    amenities:"Pool·Gym"},
+ {n:"Garden 6",   psf:20,    amenities:"Pool·Gym·Skylounge"},
+ {n:"Dosti Oak",   psf:6.93,   amenities:"Podium·Lifts"},
+ {n:"Grand Pallazo", psf:11.43,  amenities:"Under DLP — amenities WIP"},
+ {n:"Reserve",    psf:11.22,  amenities:"Pool·Gym·Clubhouse"},
+ {n:"Summit",    psf:12.22,  amenities:"Gym·Clubhouse"},
+ {n:"Seasons",    psf:12.92,  amenities:"Gym·Parking"},
+ {n:"Paramount",   psf:22.06,  amenities:"Mini Theatre·Gym·Court"},
 ];
 
 // Critical issues — per site
@@ -630,6 +622,54 @@ const CRIT = [
  {name:"Paramount",risk:"high",critN:8,repN:6,
   crit:["Fire Chute and Fire Shafts — key break glass not provided in case of emergency","Sound Issue for the Flat above Mini Theatre","Terrace Noise issue from C, D and E terrace to below flats","Plumbing Riser maintenance access issue","C.D & E.F FFS remote panel installed at F wing ramp — unmanned, should be in BMS room","AB terrace OHT access not proper","Utilities on terraces cannot be accessed due to ACP and cement sheet covering","PA system not installed on Terrace"],
   rep:["Rodent & Cockroaches Issues","Manpower Shortage for Valets HK Security Services Technician affecting site operations","BMC Domestic water smell/contamination issue","Metal Door Bend & Alignment Issues at stilt level & Rain water leakages in common area and flat basement 1 & 2 and in tower","Inside flats U trap not provided on waste line resulting in sewage back smell","Noise issues from surrounding areas"]},
+ // Palacimo — AOP ODS
+ {name:"Palacimo",risk:"medium",critN:3,repN:2,
+  crit:["Fire fighting system not available at AMC","FAS panel not operational","Site First Aid box not available"],
+  rep:["Domestic pump VFD tripping issue","Drilling and hammering by workers in restricted time bounds"]},
+ // Parishram — AOP ODS
+ {name:"Parishram",risk:"medium",critN:1,repN:1,
+  crit:["Water body pump leakage — unresolved"],
+  rep:["Loud noise disturbing the residents"]},
+ // Aangan — AOP ODS
+ {name:"Aangan",risk:"medium",critN:0,repN:1,
+  crit:[],
+  rep:["Locks — repeated issue across site"]},
+ // Runwal Forest — AOP ODS
+ {name:"Runwal Forest",risk:"medium",critN:4,repN:5,
+  crit:["Alarm speakers on some floors are not functioning","Fire hydrant system operating in manual mode — not auto","Safety grill not available in remote location area","No assembly point signages on site — safety risk"],
+  rep:["Internal flat leakage — repeated, still not resolved","Plumbing fitting issues","Leakage in basement area","Common area flushing line damaged due to high water pressure","Common area tube lights and spot lights blinking issue"]},
+ // Triton — AOP ODS
+ {name:"Triton",risk:"medium",critN:3,repN:2,
+  crit:["Fire fighting system not available at AMC","FAS panel not operational","Site First Aid box not available"],
+  rep:["Domestic pump VFD tripping issue","Drilling and hammering by workers in restricted time bounds"]},
+ // Garden 6 — AOP ODS
+ {name:"Garden 6",risk:"medium",critN:4,repN:4,
+  crit:["Alarm speakers on some floors are not functioning","Both lifts have only one working fan each — should have three, safety risk","MST required on site for electrician and plumber","No assembly point signages on site — safety risk"],
+  rep:["Terrace to lobby leakage — repeated, still not resolved","Surrounding area drainage blocked again after clearing","Leakage in basement area","Lizard-related pest issue on site"]},
+ // Zinnia — AOP ODS
+ {name:"Zinnia",risk:"low",critN:0,repN:1,
+  crit:[],
+  rep:["Domestic pump VFD Ft-1 issue — recurring"]},
+ // Dosti Oak — PPTX
+ {name:"Dosti Oak",risk:"high",critN:8,repN:0,
+  crit:["No fire marshal appointed from society","Puzzle Parking challenges","No cameras in common area lift lobby at floors","No proper handover by project team in technical aspects","Plumbing Riser maintenance access issue","No drain point to all tanks","Terrace aviation light — no access","Multiple leakages at parking, basement, common area and in electrical room"],
+  rep:[]},
+ // Grand Pallazo — PPTX (new site, handover stage)
+ {name:"Grand Pallazo",risk:"medium",critN:5,repN:0,
+  crit:["Fire system not handed over and Form B pending","MEP asset handover pending","STP not commissioned","OWC commissioning pending","Lift handover pending"],
+  rep:[]},
+ // Newa BKC — PPTX
+ {name:"Newa BKC",risk:"medium",critN:1,repN:2,
+  crit:["2nd floor Kalp restaurant using AHU room as staff changing room — sprinkler points covered with ducts, no internal fire alarm system"],
+  rep:["Lifts stuck issue","Plumbing leakage issue"]},
+ // Parkmist — PPTX
+ {name:"Parkmist",risk:"medium",critN:2,repN:0,
+  crit:["DG fire Form B not received","DG registration from PWD pending"],
+  rep:[]},
+ // Reserve — PPTX
+ {name:"Reserve",risk:"low",critN:4,repN:3,
+  crit:["Inside flats bathroom & kitchen multi-trap foul smell issue","GLD erroneous activation causing resident complaints","TKE Elevator vibrations and frequent breakdown issues","Pool site furniture deteriorated — outdoor furniture replacement needed"],
+  rep:["GLD erroneous activation — repeated","TKE Elevator vibrations — repeated","Inside flat foul smell — repeated"]},
 ];
 // ── NOTABLE HITS ──
 const HITS = [
@@ -693,6 +733,25 @@ const HITS = [
   "Ground floor lobby Marble polishing work done",
   "Terrace Pantry and washroom door replaced"
  ]},
+ {name:"Runwal Forest", hits:[
+  "Speed breakers and signages installed at key areas",
+  "Emergency equipment (stretchers and wheelchairs) available on site",
+  "Bharat engineering pump vendor pump service work done",
+  "Gate entry/exit signages in place"
+ ]},
+ {name:"Dosti Oak", hits:[
+  "Speed breakers and signages installed at podium",
+  "B and C wing all lift marble replaced",
+  "Fire extinguisher deployed at 22nd floor C wing",
+  "Mock drill carried out",
+  "Lift thorough health checkup and resolution done"
+ ]},
+ {name:"Reserve", hits:[
+  "Site HOTO activities coordinated with Society",
+  "FAS errors resolution work coordinated for closure",
+  "Ventilation panel testing & demonstration carried out",
+  "Pool equipment vibrations resolved — relocated & sound insulation carried out"
+ ]},
 ];
 
 // ── SITE CHALLENGES ──
@@ -728,6 +787,96 @@ const CHALLENGES = [
   "No proper ventilation system in BMS / server room",
   "Smell near the PMS office",
   "No proper office space for PMS team"
+  ]},
+ {name:"Palacimo",
+  projectIssues:[],
+  siteChallenges:[
+  "Housekeeping shortages",
+  "Swimming pool not maintained — operator and material approval pending",
+  "Domestic and flushing system not available at AMC",
+  "Boundary wall outside camera not installed"
+  ]},
+ {name:"Parishram",
+  projectIssues:[],
+  siteChallenges:[
+  "Housekeeping shortages",
+  "Booster network in lift needs to be installed",
+  "Automation gate required",
+  "Lift synchronisation to be done",
+  "Fire mock drill to be conducted",
+  "Residents' guests need entry registration at reception"
+  ]},
+ {name:"Aangan",
+  projectIssues:[],
+  siteChallenges:[
+  "Housekeeping shortages"
+  ]},
+ {name:"Runwal Forest",
+  projectIssues:[],
+  siteChallenges:[
+  "Housekeeping shortages",
+  "MEP shortages",
+  "No AMC vendor assigned for motors in the water tank",
+  "Absence of signages for electric room, fire room, shafts and emergency exits",
+  "Rubber mat missing in electrical room",
+  "Lobby main entrance tiles broken"
+  ]},
+ {name:"Triton",
+  projectIssues:[],
+  siteChallenges:[
+  "Housekeeping shortages",
+  "Domestic and flushing system not available at AMC",
+  "Boundary wall outside camera not installed"
+  ]},
+ {name:"Garden 6",
+  projectIssues:[],
+  siteChallenges:[
+  "Housekeeping shortages",
+  "Water tank cleaning pending",
+  "No AMC vendor for motors in water tank",
+  "No vendor assigned for heat pump maintenance",
+  "Absence of signages for electric room, fire room and emergency exits"
+  ]},
+ {name:"Dosti Oak",
+  projectIssues:[
+  "No proper handover by project team in all technical aspects",
+  "No drain point to all tanks",
+  "STP under capacity",
+  "No cameras in common area lift lobbies at floors"
+  ],
+  siteChallenges:[
+  "Fire marshal required at site",
+  "Manpower shortage — site at remote location",
+  "Water shortage from TMC — demand higher than supply"
+  ]},
+ {name:"Grand Pallazo",
+  projectIssues:[
+  "System handover pending",
+  "Amenities work in progress",
+  "Terrace garden work in progress"
+  ],
+  siteChallenges:[
+  "No complaint management data — site newly constructed",
+  "No residents moved in yet — recently one owner moved in"
+  ]},
+ {name:"Newa BKC",
+  projectIssues:[],
+  siteChallenges:[
+  "No facility office at site"
+  ]},
+ {name:"Parkmist",
+  projectIssues:[
+  "HOTO pending",
+  "Main gate paint required",
+  "Floor levelling in front of gate required"
+  ],
+  siteChallenges:[]},
+ {name:"Reserve",
+  projectIssues:[],
+  siteChallenges:[
+  "Site being handed over — all HOTO activities coordinated with Society",
+  "FAS errors resolution work being coordinated for closure",
+  "Pool site furniture deteriorated — outdoor furniture replacement needed"
   ]},
 ];
 
@@ -774,55 +923,62 @@ const OPS_SUMMARY = {
 };
 
 
-// Repeated heatmap
+// Repeated heatmap — columns: Plumbing, Electrical, Civil, Fire Safety, Project, Resident
 const REP_HM = [
- {n:"Azziano",    v:["ri-rep","ri-no", "ri-yes","ri-yes","ri-yes","ri-yes"]},
- {n:"Crown",     v:["ri-no", "ri-rep", "ri-no", "ri-no", "ri-yes","ri-yes"]},
- {n:"Erika",     v:["ri-no", "ri-rep", "ri-no", "ri-yes","ri-no", "ri-yes"]},
- {n:"Central Park",  v:["ri-rep","ri-yes", "ri-no", "ri-yes","ri-yes","ri-no"]},
- {n:"Elements",    v:["ri-yes","ri-rep", "ri-no", "ri-yes","ri-no", "ri-yes"]},
- {n:"Yazarina One",  v:["ri-no", "ri-no", "ri-no", "ri-no", "ri-no", "ri-no"]},
- {n:"Yazarina Three", v:["ri-no", "ri-no", "ri-no", "ri-no", "ri-no", "ri-no"]},
- {n:"Bella",     v:["ri-rep","ri-rep", "ri-rep","ri-rep","ri-rep","ri-no"]},
- {n:"La Fontaine",  v:["ri-no", "ri-no", "ri-no", "ri-rep","ri-no", "ri-rep"]},
- // Audit-only sites — no PPT repeated issue data
- {n:"Garden 6",    v:["ri-na", "ri-na", "ri-na", "ri-na", "ri-na", "ri-na"]},
- {n:"Parishram",   v:["ri-na", "ri-na", "ri-na", "ri-na", "ri-na", "ri-na"]},
- {n:"Palacimo",    v:["ri-na", "ri-na", "ri-na", "ri-na", "ri-na", "ri-na"]},
- {n:"Triton",     v:["ri-na", "ri-na", "ri-na", "ri-na", "ri-na", "ri-na"]},
- {n:"Aangan",     v:["ri-na", "ri-na", "ri-na", "ri-na", "ri-na", "ri-na"]},
- {n:"Zinnia",     v:["ri-na", "ri-na", "ri-na", "ri-na", "ri-na", "ri-na"]},
- // Summit — parking system failure, smell issues
- {n:"Summit",     v:["ri-no", "ri-no", "ri-no", "ri-no", "ri-no", "ri-yes"]},
- // Seasons — rodent issues, gym AC, manpower
- {n:"Seasons",    v:["ri-rep","ri-no", "ri-no", "ri-rep","ri-no", "ri-yes"]},
- // Paramount — rodent, plumbing, water contamination
- {n:"Paramount",   v:["ri-no", "ri-rep", "ri-yes","ri-yes", "ri-no", "ri-yes"]},
+ {n:"Azziano",      v:["ri-rep","ri-no", "ri-yes","ri-yes","ri-yes","ri-yes"]},
+ {n:"Crown",       v:["ri-no", "ri-rep", "ri-no", "ri-no", "ri-yes","ri-yes"]},
+ {n:"Erika",       v:["ri-no", "ri-rep", "ri-no", "ri-yes","ri-no", "ri-yes"]},
+ {n:"Central Park",   v:["ri-rep","ri-yes", "ri-no", "ri-yes","ri-yes","ri-no"]},
+ {n:"Elements",     v:["ri-yes","ri-rep", "ri-no", "ri-yes","ri-no", "ri-yes"]},
+ {n:"Yazarina One",   v:["ri-no", "ri-no", "ri-no", "ri-no", "ri-no", "ri-no"]},
+ {n:"Yazarina Three",  v:["ri-no", "ri-no", "ri-no", "ri-no", "ri-no", "ri-no"]},
+ {n:"Bella",       v:["ri-rep","ri-rep", "ri-rep","ri-rep","ri-rep","ri-no"]},
+ {n:"La Fontaine",   v:["ri-no", "ri-no", "ri-no", "ri-rep","ri-no", "ri-rep"]},
+ {n:"Summit",      v:["ri-no", "ri-no", "ri-no", "ri-no", "ri-no", "ri-yes"]},
+ {n:"Seasons",     v:["ri-rep","ri-no", "ri-no", "ri-rep","ri-no", "ri-yes"]},
+ {n:"Paramount",    v:["ri-no", "ri-rep", "ri-yes","ri-yes", "ri-no", "ri-yes"]},
+ // New sites from AOP data
+ {n:"Palacimo",     v:["ri-rep","ri-no", "ri-no", "ri-yes","ri-no", "ri-no"]},
+ {n:"Parishram",    v:["ri-no", "ri-no", "ri-no", "ri-no", "ri-no", "ri-yes"]},
+ {n:"Aangan",      v:["ri-no", "ri-no", "ri-no", "ri-no", "ri-no", "ri-rep"]},
+ {n:"Runwal Forest",  v:["ri-yes","ri-rep", "ri-yes","ri-yes","ri-no", "ri-no"]},
+ {n:"Triton",      v:["ri-rep","ri-no", "ri-no", "ri-yes","ri-no", "ri-no"]},
+ {n:"Garden 6",     v:["ri-no", "ri-no", "ri-yes","ri-yes","ri-no", "ri-rep"]},
+ {n:"Zinnia",      v:["ri-rep","ri-no", "ri-no", "ri-no", "ri-no", "ri-no"]},
+ {n:"Dosti Oak",    v:["ri-yes","ri-no", "ri-yes","ri-no", "ri-yes","ri-no"]},
+ {n:"Grand Pallazo",  v:["ri-na", "ri-na", "ri-na", "ri-yes","ri-yes","ri-na"]},
+ {n:"Newa BKC",     v:["ri-rep","ri-no", "ri-no", "ri-rep","ri-no", "ri-no"]},
+ {n:"Parkmist",     v:["ri-no", "ri-no", "ri-no", "ri-yes","ri-yes","ri-no"]},
+ {n:"Reserve",     v:["ri-no", "ri-no", "ri-no", "ri-rep","ri-no", "ri-rep"]},
 ];
 
-// Risk heatmap
+// Risk heatmap — columns: Fire, Civil, Plumbing, Electrical, Project, Residents
 const RISK_HM = [
- {n:"Azziano",    v:["h-cr","h-hi","h-hi","h-md","h-cr","h-hi"]},
- {n:"Crown",     v:["h-md","h-hi","h-md","h-md","h-cr","h-hi"]},
- {n:"Erika",     v:["h-cr","h-hi","h-hi","h-hi","h-hi","h-hi"]},
- {n:"Central Park",  v:["h-hi","h-md","h-md","h-lo","h-md","h-md"]},
- {n:"Elements",    v:["h-hi","h-md","h-hi","h-md","h-md","h-md"]},
- {n:"Yazarina One",  v:["h-md","h-lo","h-lo","h-lo","h-ok","h-lo"]},
- {n:"Yazarina Three", v:["h-lo","h-md","h-lo","h-lo","h-ok","h-lo"]},
- {n:"Bella",     v:["h-md","h-md","h-md","h-lo","h-md","h-lo"]},
- {n:"La Fontaine",  v:["h-md","h-lo","h-lo","h-ok","h-ok","h-lo"]},
- {n:"Garden 6",    v:["h-ok","h-na","h-na","h-ok","h-na","h-na"]},
- {n:"Parishram",   v:["h-na","h-na","h-na","h-na","h-na","h-na"]},
- {n:"Palacimo",    v:["h-na","h-na","h-na","h-na","h-na","h-na"]},
- {n:"Triton",     v:["h-na","h-na","h-na","h-na","h-na","h-na"]},
- {n:"Aangan",     v:["h-na","h-na","h-na","h-na","h-na","h-na"]},
- {n:"Zinnia",     v:["h-na","h-na","h-na","h-na","h-na","h-na"]},
- // Summit — fire alarm WIP, parking issues
- {n:"Summit",     v:["h-md","h-lo","h-lo","h-lo","h-md","h-md"]},
- // Seasons — waterproofing failure, fire panel issue
- {n:"Seasons",    v:["h-md","h-md","h-md","h-lo","h-md","h-md"]},
- // Paramount — fire chute, PA system, plumbing riser
- {n:"Paramount",   v:["h-hi","h-md","h-md","h-md","h-md","h-hi"]},
+ {n:"Azziano",      v:["h-cr","h-hi","h-hi","h-md","h-cr","h-hi"]},
+ {n:"Crown",       v:["h-md","h-hi","h-md","h-md","h-cr","h-hi"]},
+ {n:"Erika",       v:["h-cr","h-hi","h-hi","h-hi","h-hi","h-hi"]},
+ {n:"Central Park",   v:["h-hi","h-md","h-md","h-lo","h-md","h-md"]},
+ {n:"Elements",     v:["h-hi","h-md","h-hi","h-md","h-md","h-md"]},
+ {n:"Yazarina One",   v:["h-md","h-lo","h-lo","h-lo","h-ok","h-lo"]},
+ {n:"Yazarina Three",  v:["h-lo","h-md","h-lo","h-lo","h-ok","h-lo"]},
+ {n:"Bella",       v:["h-md","h-md","h-md","h-lo","h-md","h-lo"]},
+ {n:"La Fontaine",   v:["h-md","h-lo","h-lo","h-ok","h-ok","h-lo"]},
+ {n:"Summit",      v:["h-md","h-lo","h-lo","h-lo","h-md","h-md"]},
+ {n:"Seasons",     v:["h-md","h-md","h-md","h-lo","h-md","h-md"]},
+ {n:"Paramount",    v:["h-hi","h-md","h-md","h-md","h-md","h-hi"]},
+ // New sites from AOP data
+ {n:"Palacimo",     v:["h-hi","h-lo","h-md","h-md","h-na","h-lo"]},
+ {n:"Parishram",    v:["h-md","h-lo","h-md","h-md","h-na","h-md"]},
+ {n:"Aangan",      v:["h-md","h-md","h-md","h-md","h-na","h-lo"]},
+ {n:"Runwal Forest",  v:["h-hi","h-md","h-md","h-md","h-na","h-md"]},
+ {n:"Triton",      v:["h-hi","h-lo","h-md","h-md","h-na","h-lo"]},
+ {n:"Garden 6",     v:["h-hi","h-md","h-md","h-md","h-na","h-md"]},
+ {n:"Zinnia",      v:["h-lo","h-lo","h-md","h-lo","h-na","h-lo"]},
+ {n:"Dosti Oak",    v:["h-md","h-hi","h-hi","h-md","h-hi","h-hi"]},
+ {n:"Grand Pallazo",  v:["h-hi","h-na","h-na","h-na","h-cr","h-na"]},
+ {n:"Newa BKC",     v:["h-hi","h-lo","h-md","h-lo","h-na","h-md"]},
+ {n:"Parkmist",     v:["h-md","h-lo","h-lo","h-lo","h-md","h-lo"]},
+ {n:"Reserve",     v:["h-md","h-lo","h-lo","h-md","h-lo","h-md"]},
 ];
 
 // Action plan
@@ -859,6 +1015,31 @@ const ACTIONS = [
  {s:"Paramount",  i:"C.D & E.F FFS remote panel at F wing ramp — unmanned",    c:"Fire Safety",   p:"hi",o:"Fire Safety Team",   t:"7 Days",   st:"sto"},
  {s:"Paramount",  i:"Plumbing Riser maintenance access issue",           c:"Plumbing",    p:"hi",o:"Plumbing Team",    t:"21 Days",  st:"sto"},
  {s:"Paramount",  i:"Terrace Noise from C, D, E terrace to below flats",      c:"Resident Experience",p:"md",o:"Facility Manager", t:"30 Days",  st:"str2"},
+ // New sites
+ {s:"Palacimo",   i:"Fire fighting system not available at AMC — urgent enrolment", c:"Fire Safety",   p:"ur",o:"AMC / PMS Team",   t:"Immediate", st:"sto"},
+ {s:"Palacimo",   i:"FAS panel not operational — needs urgent attention",      c:"Fire Safety",   p:"ur",o:"Fire Vendor",     t:"Immediate", st:"sto"},
+ {s:"Parishram",  i:"Water body pump leakage — unresolved",             c:"Plumbing",    p:"hi",o:"Plumbing Team",    t:"14 Days",  st:"sto"},
+ {s:"Runwal Forest",i:"Fire hydrant system operating in manual mode — switch to auto", c:"Fire Safety",   p:"hi",o:"Fire Safety Team",  t:"7 Days",   st:"sto"},
+ {s:"Runwal Forest",i:"Alarm speakers non-functional on multiple floors",       c:"Fire Safety",   p:"hi",o:"Fire Vendor",     t:"14 Days",  st:"sto"},
+ {s:"Runwal Forest",i:"No assembly point signages on site",              c:"Fire Safety",   p:"md",o:"Facility Manager", t:"7 Days",   st:"sto"},
+ {s:"Garden 6",   i:"Lift fans — only 1 working per lift, should have 3 each",   c:"Electrical",   p:"hi",o:"Lift Vendor",     t:"14 Days",  st:"sto"},
+ {s:"Garden 6",   i:"Alarm speakers non-functional on multiple floors",       c:"Fire Safety",   p:"hi",o:"Fire Vendor",     t:"14 Days",  st:"sto"},
+ {s:"Garden 6",   i:"No assembly point signages on site",              c:"Fire Safety",   p:"md",o:"Facility Manager", t:"7 Days",   st:"sto"},
+ {s:"Triton",    i:"Fire fighting system not available at AMC",          c:"Fire Safety",   p:"ur",o:"AMC / PMS Team",   t:"Immediate", st:"sto"},
+ {s:"Triton",    i:"FAS panel not operational",                  c:"Fire Safety",   p:"ur",o:"Fire Vendor",     t:"Immediate", st:"sto"},
+ {s:"Dosti Oak",  i:"No fire marshal appointed — urgent appointment from society",  c:"Fire Safety",   p:"ur",o:"Society / PMS Team", t:"Immediate", st:"sto"},
+ {s:"Dosti Oak",  i:"No drain point to all tanks — civil design issue",       c:"Civil",      p:"hi",o:"Civil / Project Team", t:"30 Days",  st:"sto"},
+ {s:"Dosti Oak",  i:"Multiple leakages at parking, basement, common area",     c:"Civil",      p:"hi",o:"Civil Team",     t:"21 Days",  st:"sto"},
+ {s:"Dosti Oak",  i:"Plumbing Riser maintenance access issue",           c:"Plumbing",    p:"hi",o:"Plumbing Team",    t:"21 Days",  st:"sto"},
+ {s:"Grand Pallazo",i:"Fire system not handed over — Form B pending",          c:"Fire Safety",   p:"ur",o:"Project Team",    t:"Immediate", st:"sto"},
+ {s:"Grand Pallazo",i:"MEP asset handover pending",                  c:"Project Handover",p:"ur",o:"Project Team",    t:"Immediate", st:"sto"},
+ {s:"Grand Pallazo",i:"STP not commissioned — OWC pending",              c:"Project Handover",p:"hi",o:"Project Team",    t:"30 Days",  st:"sto"},
+ {s:"Newa BKC",   i:"Kalp restaurant AHU room misuse — sprinklers covered, no fire alarm",c:"Fire Safety",p:"ur",o:"Fire Vendor / Management",t:"Immediate",st:"sto"},
+ {s:"Parkmist",   i:"DG fire Form B not received — regulatory compliance",     c:"Fire Safety",   p:"hi",o:"Project / PMS Team", t:"14 Days",  st:"sto"},
+ {s:"Parkmist",   i:"DG registration from PWD pending",               c:"Project Handover",p:"hi",o:"Project Team",    t:"21 Days",  st:"sto"},
+ {s:"Reserve",    i:"GLD erroneous activation — RCA and permanent fix needed",   c:"Fire Safety",   p:"hi",o:"Fire Alarm Agency",  t:"14 Days",  st:"stw"},
+ {s:"Reserve",    i:"TKE Elevator vibrations and frequent breakdown",         c:"Electrical",   p:"hi",o:"Lift Vendor (TKE)",  t:"14 Days",  st:"stw"},
+ {s:"Reserve",    i:"Multi-trap foul smell in flats — plumbing resolution needed", c:"Plumbing",    p:"md",o:"Plumbing Team",    t:"21 Days",  st:"str2"},
 ];
 
 // Safety data — Slide 27 only (these 5 sites only)
@@ -939,9 +1120,6 @@ const OFF_SITES = [
 // All unique site names for filter + pills
 const ALL_SITES = [
  ...PMS.map(s=>({name:s.name,type:'pms',risk:s.risk})),
- {name:"Garden 6",type:"audit",risk:"N/A"},{name:"Palacimo",type:"audit",risk:"N/A"},
- {name:"Triton",type:"audit",risk:"N/A"},{name:"Zinnia",type:"audit",risk:"N/A"},
- {name:"Parishram",type:"cam",risk:"N/A"},{name:"Aangan",type:"deploy",risk:"N/A"},
 ];
 
 function renderPills(){
@@ -989,7 +1167,7 @@ function renderHealth(){
    <td><div class="sbar"><div class="str"><div class="sfill" style="width:${rp}%;background:${rp_c}"></div></div><span class="snum" style="color:${rp_c}">${rp}%</span></div></td>
    <td><span style="font-weight:700;color:${s.wip>200?'var(--red)':s.wip>30?'var(--amber)':'var(--green)'}">${s.wip.toLocaleString('en-IN')}</span></td>
    <td><span style="font-weight:700;color:${s.critN>=8?'var(--red)':s.critN>=4?'var(--amber)':'var(--green)'}">${s.critN}</span></td>
-   <td>₹${s.camPsf}</td>
+   <td>${s.camPsf?'₹'+s.camPsf:'—'}</td>
    <td><span class="bdg ${rc}">${ri} ${s.risk}</span></td>
    <td><div class="sbar"><div class="str"><div class="sfill" style="width:${sc}%;background:${sc_c}"></div></div><span class="snum" style="color:${sc_c}">${sc}</span></div></td>
   </tr>`;
@@ -999,11 +1177,11 @@ function renderHealth(){
 function renderFin(){
  document.getElementById('fTb').innerHTML=PMS.map(s=>
   `<tr data-site="${s.name}">
-   <td class="fw">${s.name}</td><td>${s.carpet}</td>
+   <td class="fw">${s.name}</td><td>${s.carpet||'—'}</td>
    <td style="font-size:12px">${s.camMo}</td>
-   <td style="font-weight:700">₹${s.camPsf}</td>
+   <td style="font-weight:700">${s.camPsf?'₹'+s.camPsf:'—'}</td>
    <td style="font-size:12px">${s.crestBill}</td>
-   <td>${s.propM}%</td><td>${s.util}%</td><td>${s.amc}%</td><td>${s.agency}%</td>
+   <td>${s.propM!=null?s.propM+'%':'—'}</td><td>${s.util!=null?s.util+'%':'—'}</td><td>${s.amc!=null?s.amc+'%':'—'}</td><td>${s.agency!=null?s.agency+'%':'—'}</td>
   </tr>`
  ).join('');
 }
@@ -1268,7 +1446,7 @@ function gt(id,el){
  el.classList.add('on');
 }
 window.addEventListener('scroll',()=>{
- const ids=['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11','s12','s13','s14','s15','s16','s17'];
+ const ids=['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11','s12','s13','s14','s15','s17'];
  let cur=ids[0];
  ids.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=90)cur=id;});
  document.querySelectorAll('.na').forEach((n,i)=>n.classList.toggle('on',i===ids.indexOf(cur)));
@@ -1352,10 +1530,11 @@ document.addEventListener('DOMContentLoaded',()=>{
  renderPills();renderKPIs();renderHealth();renderFin();renderCamBench();
  renderCrit();renderHMs();renderAction();renderSafety();
  renderAudit();renderDeploy();renderOffice();renderInsights();
- renderHits();renderChallenges();renderOC();renderOpsKPIs();
+ renderHits();renderChallenges();renderOpsKPIs();
  initCharts();
 });
 </script>
 </body>
 </html>
+
 
