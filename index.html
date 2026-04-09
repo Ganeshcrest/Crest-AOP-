@@ -266,7 +266,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);d
  <div class="na" onclick="gt('s13',this)"><span class="ic">◉</span>Leadership Insights</div>
  <div class="na" onclick="gt('s14',this)"><span class="ic">✦</span>Site Highlights</div>
  <div class="na" onclick="gt('s15',this)"><span class="ic">⚡</span>Site Challenges</div>
- <div class="na" onclick="gt('s17',this)"><span class="ic">👥</span>Operations</div>
+
  <div class="sb-leg">
   <p>Risk Key</p>
   <div class="lr"><div class="ld" style="background:var(--red)"></div><span>High Risk</span></div>
@@ -490,12 +490,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);d
 
   <div class="rule"></div>
 
-  <!-- S17: OPERATIONS SUMMARY -->
-  <section id="s17">
-   <div class="sh"><span class="sn">17</span><div><div class="st">Operations Summary</div><div class="ss">748 total resources across Property Management, Office Management and Support functions</div></div></div>
-   <div class="kgrid mb16" id="opsKpiGrid"></div>
-  </section>
-
   <!-- S13: INSIGHTS -->
   <section id="s13">
    <div class="sh"><span class="sn">13</span><div><div class="st">Leadership Insights</div><div class="ss">Key strategic observations and priority actions for senior leadership</div></div></div>
@@ -539,18 +533,18 @@ const PMS = [
  {name:"Paramount",  risk:"High",  opened:1777, resolved:1731, wip:169, resPct:97.5,critN:8, camPsf:22.06,camMo:"₹68,22,695", crestBill:"₹36,32,572", carpet:"3,09,277",propM:50.9,util:20.91,amc:12.47,agency:2.34,score:45},
  // Palacimo — AOP ODS: opened 92, resolved 86, outstanding ~6
  {name:"Palacimo",  risk:"Medium", opened:92,  resolved:86,  wip:6,  resPct:93.5,critN:3, camPsf:null, camMo:"₹1,60,000",   crestBill:"₹1,60,000",  carpet:"26,520", propM:null,util:null,amc:null,agency:null,score:58},
- // Parishram — AOP ODS: opened 76, resolved 63, outstanding 13
- {name:"Parishram", risk:"Medium", opened:76,  resolved:63,  wip:13, resPct:82.9,critN:1, camPsf:null, camMo:"—",          crestBill:"—",          carpet:"14,29,830",propM:null,util:null,amc:null,agency:null,score:60},
- // Aangan — AOP ODS: totals across categories (sum of total col)
- {name:"Aangan",   risk:"Medium", opened:296, resolved:214, wip:82, resPct:72.3,critN:0, camPsf:null, camMo:"—",          crestBill:"—",          carpet:"—",      propM:null,util:null,amc:null,agency:null,score:55},
+ // Parishram — AOP ODS updated: carpet 80,236, CAM PSF ₹19, Crest bill ₹11,14,439
+ {name:"Parishram", risk:"Medium", opened:76,  resolved:63,  wip:13, resPct:82.9,critN:1, camPsf:19.0, camMo:"₹11,14,439", crestBill:"₹11,14,439", carpet:"80,236",  propM:null,util:null,amc:null,agency:null,score:60},
+ // Aangan — AOP ODS updated: carpet 18,000, CAM PSF ₹44, Crest bill ₹8,44,534; opened=296 resolved=213 wip=82
+ {name:"Aangan",   risk:"Medium", opened:296, resolved:213, wip:82, resPct:72.0,critN:0, camPsf:44.0, camMo:"₹8,44,534",  crestBill:"₹8,44,534",  carpet:"18,000",  propM:null,util:null,amc:null,agency:null,score:55},
  // Runwal Forest — AOP ODS: opened 223, resolved 171, outstanding 19
  {name:"Runwal Forest",risk:"Medium",opened:223, resolved:171, wip:19, resPct:76.7,critN:4, camPsf:null, camMo:"₹5,45,229",  crestBill:"₹5,45,229",  carpet:"—",      propM:null,util:null,amc:null,agency:null,score:57},
- // Triton — AOP ODS: opened 76, resolved 63, outstanding 13
- {name:"Triton",   risk:"Medium", opened:76,  resolved:63,  wip:13, resPct:82.9,critN:3, camPsf:null, camMo:"₹5,86,152",  crestBill:"₹5,86,152",  carpet:"1,24,146",propM:null,util:null,amc:null,agency:null,score:59},
+ // Ganga Jamuna — NEW site from AOP ODS: opened 76, resolved 63, wip 13; carpet 1,24,146, Crest ₹4,54,639
+ {name:"Ganga Jamuna",risk:"Medium",opened:76, resolved:63,  wip:13, resPct:82.9,critN:3, camPsf:null, camMo:"₹4,54,639",  crestBill:"₹4,54,639",  carpet:"1,24,146",propM:null,util:null,amc:null,agency:null,score:59},
  // Garden 6 — AOP ODS: opened 115, resolved 103, outstanding 13
  {name:"Garden 6",  risk:"Medium", opened:115, resolved:103, wip:13, resPct:89.6,critN:4, camPsf:null, camMo:"—",          crestBill:"—",          carpet:"—",      propM:null,util:null,amc:null,agency:null,score:62},
- // Zinnia — AOP ODS: opened 76, resolved 63, outstanding 13
- {name:"Zinnia",   risk:"Low",   opened:76,  resolved:63,  wip:13, resPct:82.9,critN:0, camPsf:null, camMo:"—",          crestBill:"—",          carpet:"2,049",   propM:null,util:null,amc:null,agency:null,score:70},
+ // Zinnia — AOP ODS updated: carpet 1,00,484, CAM PSF ₹2.91, Crest ₹1,24,845
+ {name:"Zinnia",   risk:"Low",   opened:76,  resolved:63,  wip:13, resPct:82.9,critN:0, camPsf:2.91, camMo:"₹1,24,845",  crestBill:"₹1,24,845",  carpet:"1,00,484", propM:null,util:null,amc:null,agency:null,score:70},
  // Dosti Oak — PPTX: opened 429, resolved 149, outstanding 280
  {name:"Dosti Oak",  risk:"High",  opened:429, resolved:149, wip:280, resPct:34.7,critN:8, camPsf:6.93, camMo:"₹28,80,349", crestBill:"₹8,09,631",  carpet:"—",      propM:39.72,util:39.03,amc:9.37,agency:8.0, score:35},
  // Grand Pallazo — PPTX: new site, no complaint data yet
@@ -573,12 +567,15 @@ const CAM_BENCH = [
  {n:"La Fontaine",  psf:35,    amenities:"Pool·Gym·Skylounge·Kids Play"},
  {n:"Parishram",   psf:19,    amenities:"Pool·Gym"},
  {n:"Garden 6",   psf:20,    amenities:"Pool·Gym·Skylounge"},
+ {n:"Aangan",    psf:44,    amenities:"—"},
+ {n:"Zinnia",    psf:2.91,   amenities:"—"},
  {n:"Dosti Oak",   psf:6.93,   amenities:"Podium·Lifts"},
  {n:"Grand Pallazo", psf:11.43,  amenities:"Under DLP — amenities WIP"},
  {n:"Reserve",    psf:11.22,  amenities:"Pool·Gym·Clubhouse"},
  {n:"Summit",    psf:12.22,  amenities:"Gym·Clubhouse"},
  {n:"Seasons",    psf:12.92,  amenities:"Gym·Parking"},
  {n:"Paramount",   psf:22.06,  amenities:"Mini Theatre·Gym·Court"},
+ {n:"Ganga Jamuna", psf:null,   amenities:"—"},
 ];
 
 // Critical issues — per site
@@ -638,9 +635,9 @@ const CRIT = [
  {name:"Runwal Forest",risk:"medium",critN:4,repN:5,
   crit:["Alarm speakers on some floors are not functioning","Fire hydrant system operating in manual mode — not auto","Safety grill not available in remote location area","No assembly point signages on site — safety risk"],
   rep:["Internal flat leakage — repeated, still not resolved","Plumbing fitting issues","Leakage in basement area","Common area flushing line damaged due to high water pressure","Common area tube lights and spot lights blinking issue"]},
- // Triton — AOP ODS
- {name:"Triton",risk:"medium",critN:3,repN:2,
-  crit:["Fire fighting system not available at AMC","FAS panel not operational","Site First Aid box not available"],
+ // Ganga Jamuna — AOP ODS
+ {name:"Ganga Jamuna",risk:"medium",critN:3,repN:2,
+  crit:["Fire fighting system not available at AMC","Site First Aid box not available","FAS panel not operational"],
   rep:["Domestic pump VFD tripping issue","Drilling and hammering by workers in restricted time bounds"]},
  // Garden 6 — AOP ODS
  {name:"Garden 6",risk:"medium",critN:4,repN:4,
@@ -752,6 +749,11 @@ const HITS = [
   "Ventilation panel testing & demonstration carried out",
   "Pool equipment vibrations resolved — relocated & sound insulation carried out"
  ]},
+ {name:"Ganga Jamuna", hits:[
+  "Security daily briefing conducted",
+  "Fire mock drill carried out",
+  "Equipment handover coordinated with project team"
+ ]},
 ];
 
 // ── SITE CHALLENGES ──
@@ -791,10 +793,12 @@ const CHALLENGES = [
  {name:"Palacimo",
   projectIssues:[],
   siteChallenges:[
-  "Housekeeping shortages",
-  "Swimming pool not maintained — operator and material approval pending",
-  "Domestic and flushing system not available at AMC",
-  "Boundary wall outside camera not installed"
+  "Housekeeping absenteeism",
+  "Fire fighting system not available at AMC",
+  "FAS panel not operational",
+  "Boundary wall outside camera not installed",
+  "Staff daily briefing not conducted regularly",
+  "Fire mock drill pending"
   ]},
  {name:"Parishram",
   projectIssues:[],
@@ -821,11 +825,13 @@ const CHALLENGES = [
   "Rubber mat missing in electrical room",
   "Lobby main entrance tiles broken"
   ]},
- {name:"Triton",
+
+ {name:"Ganga Jamuna",
   projectIssues:[],
   siteChallenges:[
   "Housekeeping shortages",
   "Domestic and flushing system not available at AMC",
+  "Swimming pool maintenance — operator and material approval pending",
   "Boundary wall outside camera not installed"
   ]},
  {name:"Garden 6",
@@ -836,6 +842,12 @@ const CHALLENGES = [
   "No AMC vendor for motors in water tank",
   "No vendor assigned for heat pump maintenance",
   "Absence of signages for electric room, fire room and emergency exits"
+  ]},
+ {name:"Zinnia",
+  projectIssues:[],
+  siteChallenges:[
+  "MST not deployed at site",
+  "Domestic pump VFD Ft-1 issue recurring"
   ]},
  {name:"Dosti Oak",
   projectIssues:[
@@ -942,7 +954,7 @@ const REP_HM = [
  {n:"Parishram",    v:["ri-no", "ri-no", "ri-no", "ri-no", "ri-no", "ri-yes"]},
  {n:"Aangan",      v:["ri-no", "ri-no", "ri-no", "ri-no", "ri-no", "ri-rep"]},
  {n:"Runwal Forest",  v:["ri-yes","ri-rep", "ri-yes","ri-yes","ri-no", "ri-no"]},
- {n:"Triton",      v:["ri-rep","ri-no", "ri-no", "ri-yes","ri-no", "ri-no"]},
+ {n:"Ganga Jamuna",  v:["ri-rep","ri-no", "ri-no", "ri-yes","ri-no", "ri-no"]},
  {n:"Garden 6",     v:["ri-no", "ri-no", "ri-yes","ri-yes","ri-no", "ri-rep"]},
  {n:"Zinnia",      v:["ri-rep","ri-no", "ri-no", "ri-no", "ri-no", "ri-no"]},
  {n:"Dosti Oak",    v:["ri-yes","ri-no", "ri-yes","ri-no", "ri-yes","ri-no"]},
@@ -971,7 +983,7 @@ const RISK_HM = [
  {n:"Parishram",    v:["h-md","h-lo","h-md","h-md","h-na","h-md"]},
  {n:"Aangan",      v:["h-md","h-md","h-md","h-md","h-na","h-lo"]},
  {n:"Runwal Forest",  v:["h-hi","h-md","h-md","h-md","h-na","h-md"]},
- {n:"Triton",      v:["h-hi","h-lo","h-md","h-md","h-na","h-lo"]},
+ {n:"Ganga Jamuna",  v:["h-hi","h-lo","h-md","h-md","h-na","h-lo"]},
  {n:"Garden 6",     v:["h-hi","h-md","h-md","h-md","h-na","h-md"]},
  {n:"Zinnia",      v:["h-lo","h-lo","h-md","h-lo","h-na","h-lo"]},
  {n:"Dosti Oak",    v:["h-md","h-hi","h-hi","h-md","h-hi","h-hi"]},
@@ -1025,8 +1037,9 @@ const ACTIONS = [
  {s:"Garden 6",   i:"Lift fans — only 1 working per lift, should have 3 each",   c:"Electrical",   p:"hi",o:"Lift Vendor",     t:"14 Days",  st:"sto"},
  {s:"Garden 6",   i:"Alarm speakers non-functional on multiple floors",       c:"Fire Safety",   p:"hi",o:"Fire Vendor",     t:"14 Days",  st:"sto"},
  {s:"Garden 6",   i:"No assembly point signages on site",              c:"Fire Safety",   p:"md",o:"Facility Manager", t:"7 Days",   st:"sto"},
- {s:"Triton",    i:"Fire fighting system not available at AMC",          c:"Fire Safety",   p:"ur",o:"AMC / PMS Team",   t:"Immediate", st:"sto"},
- {s:"Triton",    i:"FAS panel not operational",                  c:"Fire Safety",   p:"ur",o:"Fire Vendor",     t:"Immediate", st:"sto"},
+ {s:"Ganga Jamuna",i:"Fire fighting system not available at AMC — urgent enrolment",c:"Fire Safety",p:"ur",o:"AMC / PMS Team",t:"Immediate",st:"sto"},
+ {s:"Ganga Jamuna",i:"FAS panel not operational — needs urgent attention",     c:"Fire Safety",   p:"ur",o:"Fire Vendor",     t:"Immediate", st:"sto"},
+ {s:"Ganga Jamuna",i:"Site First Aid box not available",              c:"Fire Safety",   p:"hi",o:"Facility Manager", t:"7 Days",   st:"sto"},
  {s:"Dosti Oak",  i:"No fire marshal appointed — urgent appointment from society",  c:"Fire Safety",   p:"ur",o:"Society / PMS Team", t:"Immediate", st:"sto"},
  {s:"Dosti Oak",  i:"No drain point to all tanks — civil design issue",       c:"Civil",      p:"hi",o:"Civil / Project Team", t:"30 Days",  st:"sto"},
  {s:"Dosti Oak",  i:"Multiple leakages at parking, basement, common area",     c:"Civil",      p:"hi",o:"Civil Team",     t:"21 Days",  st:"sto"},
@@ -1060,16 +1073,16 @@ const AUDIT = [
  {n:"Garden 6",    q2:89.00,q1:84.11,q0:84.87, ss:98,fi:100,se:94,sf:100,co:83,hk:74,te:58,cl:85,hd:null,ft:100,pr:98,mg:86},
  {n:"La Fontaine",  q2:86.33,q1:80.11,q0:89.67, ss:86.33,fi:85,se:96,sf:78,co:86.67,hk:88,te:66,cl:87,hd:83,ft:100,pr:96,mg:86},
  {n:"Palacimo",    q2:59.67,q1:72.00,q0:52.78, ss:74,fi:89,se:77,sf:56,co:50,hk:64,te:40,cl:null,hd:null,ft:null,pr:46,mg:55},
- {n:"Triton",     q2:67.63,q1:null, q0:null,  ss:72.5,fi:97,se:null,sf:48,co:79.4,hk:72,te:54,cl:null,hd:89,ft:82,pr:100,mg:51},
+ {n:"Ganga Jamuna", q2:67.63,q1:null, q0:null,  ss:72.5,fi:97,se:null,sf:48,co:79.4,hk:72,te:54,cl:null,hd:89,ft:82,pr:100,mg:51},
  {n:"Yazarina One",  q2:76.11,q1:73.00,q0:82.44, ss:89.33,fi:90,se:78,sf:100,co:67,hk:85,te:54,cl:63,hd:18,ft:100,pr:82,mg:72},
  {n:"Yazarina Three", q2:61.91,q1:47.67,q0:63.80, ss:72.33,fi:65,se:52,sf:100,co:42.4,hk:62,te:22,cl:60,hd:null,ft:0,pr:68,mg:71},
  {n:"Zinnia",     q2:96.00,q1:90.00,q0:92.00, ss:null,fi:null,se:null,sf:null,co:96,hk:96,te:null,cl:null,hd:null,ft:null,pr:null,mg:null},
 ];
 
 // Deployment — Slide 24 (PMS sites)
-// Columns: Elements, Central Park, Garden 6, Yazarina 1, Yazarina 3, Erika, Bella, La Fontaine, Parishram, Aangan, Zinnia, Palacimo, Triton
+// Columns: Elements, Central Park, Garden 6, Yazarina 1, Yazarina 3, Erika, Bella, La Fontaine, Parishram, Aangan, Zinnia, Palacimo, Ganga Jamuna
 const DEPLOY = {
- cols:["Elements","Central Park","Garden 6","Yazarina 1","Yazarina 3","Erika","Bella","La Fontaine","Parishram","Aangan","Zinnia","Palacimo","Triton","Total"],
+ cols:["Elements","Central Park","Garden 6","Yazarina 1","Yazarina 3","Erika","Bella","La Fontaine","Parishram","Aangan","Zinnia","Palacimo","Ganga Jamuna","Total"],
  rows:[
   {cat:"Management", vals:[14,2,1,0.5,0.5,2,3,1,3,1,1,1,3,33]},
   {cat:"Security",  vals:[49,11,4,2,4,11,18,5,5,3,0,0,0,112]},
@@ -1190,7 +1203,7 @@ function renderCamBench(){
  document.getElementById('camBench').innerHTML=CAM_BENCH.map(c=>
   `<div class="cb">
    <div class="cb-nm">${c.n}</div>
-   <div class="cb-psf" style="color:${c.psf>25?'var(--red)':c.psf>18?'var(--amber)':'var(--green)'}">₹${c.psf}</div>
+   <div class="cb-psf" style="color:${!c.psf?'var(--silver)':c.psf>25?'var(--red)':c.psf>18?'var(--amber)':'var(--green)'}">${c.psf?'₹'+c.psf:'—'}</div>
    <div class="cb-amen">${c.amenities}</div>
   </div>`
  ).join('');
@@ -1446,7 +1459,7 @@ function gt(id,el){
  el.classList.add('on');
 }
 window.addEventListener('scroll',()=>{
- const ids=['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11','s12','s13','s14','s15','s17'];
+ const ids=['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11','s12','s13','s14','s15'];
  let cur=ids[0];
  ids.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=90)cur=id;});
  document.querySelectorAll('.na').forEach((n,i)=>n.classList.toggle('on',i===ids.indexOf(cur)));
@@ -1491,46 +1504,12 @@ function renderChallenges(){
   </div>`).join('');
 }
 
-// ── RENDER OC CHECKLIST ──
-function renderOC(){
- const tb=document.getElementById('ocTbody');
- if(!tb) return;
- tb.innerHTML=OC_CHECKLIST.map((item,i)=>{
-  const isOK=item.status.includes('Ready')||item.status.includes('Yes')||item.status.includes('Available')||item.status.includes('Installed')||item.status.includes('Provided')||item.status.includes('Working')||item.status.includes('Handed');
-  const isPartial=item.status.includes('pending')||item.status.includes('not working')||item.status.includes('not available')||item.status.includes('NA');
-  const color=item.status==='—'?'var(--silver)':isOK?'var(--green)':isPartial?'var(--amber)':'var(--silver)';
-  const icon=item.status==='—'?'—':isOK?'✓':isPartial?'⚠':'—';
-  return `<tr style="border-bottom:1px solid var(--fog)">
-   <td style="padding:10px 13px;color:var(--silver);font-weight:600">${i+1}</td>
-   <td style="padding:10px 13px;font-size:12.5px">${item.item}</td>
-   <td style="padding:10px 13px;font-size:12px;font-weight:600;color:${color}">${icon} ${item.status}</td>
-  </tr>`;
- }).join('');
-}
-
-// ── RENDER OPS KPIS ──
-function renderOpsKPIs(){
- const g=document.getElementById('opsKpiGrid');
- if(!g) return;
- const cards=[
-  {k:'ki', ico:'👥', v:'748', l:'Total Direct & Indirect Resources'},
-  {k:'kb', ico:'→', v:'231', l:'Direct Resources (31%)'},
-  {k:'kt', ico:'↗', v:'517', l:'Indirect Resources (69%)'},
-  {k:'kg', ico:'🏢', v:'574', l:'Property Management Resources'},
-  {k:'kgo',ico:'🖥', v:'142', l:'Office Management Resources'},
-  {k:'ka', ico:'⚙', v:'13', l:'Central Core Team'},
-  {k:'kp', ico:'🔧', v:'8',  l:'Sites Under PMS Management'},
-  {k:'k-silver', ico:'📋', v:'16', l:'Office Management Sites'},
- ];
- g.innerHTML=cards.map(c=>`<div class="kpi ${c.k}"><div class="kico">${c.ico}</div><div class="kv">${c.v}</div><div class="kl">${c.l}</div></div>`).join('');
-}
-
 // ── INIT ──
 document.addEventListener('DOMContentLoaded',()=>{
  renderPills();renderKPIs();renderHealth();renderFin();renderCamBench();
  renderCrit();renderHMs();renderAction();renderSafety();
  renderAudit();renderDeploy();renderOffice();renderInsights();
- renderHits();renderChallenges();renderOpsKPIs();
+ renderHits();renderChallenges();
  initCharts();
 });
 </script>
