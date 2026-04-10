@@ -1770,6 +1770,17 @@ document.addEventListener('DOMContentLoaded',()=>{
  initCharts();
 });
 </script>
+ <script>
+(function() {
+  var correctPassword = "CrestAOP@2026";
+  var enteredPassword = prompt("Enter Password to Access Crest AOP Dashboard:");
+
+  if (enteredPassword !== correctPassword) {
+    alert("Access Denied!");
+    document.documentElement.innerHTML = "";
+  }
+})();
+</script>
 </body>
 </html>
 
