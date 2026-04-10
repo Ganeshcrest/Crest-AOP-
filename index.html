@@ -285,7 +285,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);d
  <div id="tb">
   <div>
    <div class="tb-h">Rustomjee — Complete AOP Performance Dashboard FY 2026</div>
-   <div class="tb-s">All sites from all uploaded PPTs · PMS + Office Management · Senior Leadership Review · March 2026</div>
+   <div class="tb-s">All sites from all uploaded PPTs · PMS + Office Management · Senior Leadership Review · FY 2026</div>
   </div>
   <div class="tb-r">
    <span class="tb-d">March 2026</span>
@@ -555,6 +555,27 @@ const PMS = [
  {name:"Parkmist",  risk:"Medium", opened:45,  resolved:32,  wip:13, resPct:71.1,critN:2, camPsf:null, camMo:"—",          crestBill:"—",          carpet:"—",      propM:null,util:null,amc:null,agency:null,score:52},
  // Reserve — PPTX: opened 607, resolved 602, outstanding 5
  {name:"Reserve",   risk:"Low",   opened:607, resolved:602, wip:5,  resPct:99.2,critN:4, camPsf:11.22,camMo:"₹13,35,238", crestBill:"₹12,26,265", carpet:"1,18,962",propM:100,util:null,amc:null,agency:null,score:72},
+ // ── NEW SITES FY2026 — Recently opened (1–3 months) ──
+ // Akashdeep Bunglow — Security/facility scope only, no complaints system
+ {name:"Akashdeep",   risk:"Low",   opened:0,  resolved:0,  wip:0,  resPct:0,  critN:0, camPsf:null, camMo:"₹3,55,931",  crestBill:"₹3,55,931",  carpet:"—",      propM:null,util:null,amc:null,agency:null,score:65},
+ // Gurukrupa Alaknanda — opened:86, resolved:72, wip:14, carpet:1,06,632, CAM PSF ₹8.90, Crest ₹9,55,534
+ {name:"Alaknanda",   risk:"Medium", opened:86,  resolved:72,  wip:14, resPct:83.7,critN:9, camPsf:8.90, camMo:"₹13,26,736", crestBill:"₹9,55,534",  carpet:"1,06,632",propM:null,util:null,amc:null,agency:null,score:60},
+ // Applaud 38 — opened:79, resolved:72, wip:7, carpet:1,44,400, CAM PSF ₹12.33, Crest ₹17,81,526
+ {name:"Applaud 38",  risk:"Medium", opened:79,  resolved:72,  wip:7,  resPct:91.1,critN:7, camPsf:12.33,camMo:"₹17,81,526", crestBill:"₹17,81,526", carpet:"1,44,400",propM:null,util:null,amc:null,agency:null,score:58},
+ // Corporate Avenue — opened:125, resolved:115, wip:10, carpet:28,500, CAM PSF ₹39.36, Crest ₹11,21,876
+ {name:"Corporate Avenue",risk:"Medium",opened:125, resolved:115, wip:10, resPct:92.0,critN:7, camPsf:39.36,camMo:"₹11,21,876", crestBill:"₹11,21,876", carpet:"28,500", propM:null,util:null,amc:null,agency:null,score:60},
+ // Horizon — opened:72, resolved:63, wip:9, carpet:89,350, CAM PSF ₹7.65, Crest ₹6,83,887
+ {name:"Horizon",    risk:"Medium", opened:72,  resolved:63,  wip:9,  resPct:87.5,critN:9, camPsf:7.65, camMo:"₹6,83,887",  crestBill:"₹6,83,887",  carpet:"89,350", propM:null,util:null,amc:null,agency:null,score:57},
+ // Promesa Midtown — opened:113, resolved:108, wip:5, carpet:66,240, CAM PSF ₹9.61, Crest ₹6,36,925
+ {name:"Promesa Midtown",risk:"Low",  opened:113, resolved:108, wip:5,  resPct:95.6,critN:6, camPsf:9.61, camMo:"₹6,36,925",  crestBill:"₹6,36,925",  carpet:"66,240", propM:null,util:null,amc:null,agency:null,score:68},
+ // Runwal 5th Avenue — opened:39, resolved:35, wip:4, carpet:NA, Crest ₹1,91,931
+ {name:"Runwal 5th Ave", risk:"Medium", opened:39,  resolved:35,  wip:4,  resPct:89.7,critN:6, camPsf:null, camMo:"₹1,91,931",  crestBill:"₹1,91,931",  carpet:"—",      propM:null,util:null,amc:null,agency:null,score:58},
+ // Runwal Bliss Club — opened:68, resolved:61, wip:7, carpet:35,232, CAM PSF ₹17.59, Crest ₹6,19,833
+ {name:"Runwal Bliss Club",risk:"Medium",opened:68, resolved:61,  wip:7,  resPct:89.7,critN:5, camPsf:17.59,camMo:"₹6,19,833",  crestBill:"₹6,19,833",  carpet:"35,232", propM:null,util:null,amc:null,agency:null,score:60},
+ // Runwal Garden Heights — opened:174, resolved:156, wip:32, carpet:56,320, CAM PSF ₹5.53, Crest ₹3,11,485
+ {name:"Runwal Garden Hts",risk:"Medium",opened:174, resolved:156, wip:32, resPct:89.7,critN:7, camPsf:5.53, camMo:"₹3,11,485",  crestBill:"₹3,11,485",  carpet:"56,320", propM:null,util:null,amc:null,agency:null,score:57},
+ // Waterfront Tower — opened:176, resolved:147, wip:29, carpet:63,000, CAM PSF ₹7.57, Crest ₹4,77,005
+ {name:"Waterfront Tower",risk:"Medium",opened:176, resolved:147, wip:29, resPct:83.5,critN:2, camPsf:7.57, camMo:"₹4,77,005",  crestBill:"₹4,77,005",  carpet:"63,000", propM:null,util:null,amc:null,agency:null,score:63},
 ];
 
 // CAM benchmarking table
@@ -576,6 +597,15 @@ const CAM_BENCH = [
  {n:"Seasons",    psf:12.92,  amenities:"Gym·Parking"},
  {n:"Paramount",   psf:22.06,  amenities:"Mini Theatre·Gym·Court"},
  {n:"Ganga Jamuna", psf:null,   amenities:"—"},
+ // New sites FY2026
+ {n:"Alaknanda",    psf:8.90,   amenities:"—"},
+ {n:"Applaud 38",   psf:12.33,  amenities:"—"},
+ {n:"Corporate Avenue",psf:39.36, amenities:"Office Complex"},
+ {n:"Horizon",     psf:7.65,   amenities:"—"},
+ {n:"Promesa Midtown", psf:9.61,  amenities:"Gym·Kids Play"},
+ {n:"Runwal Bliss Club",psf:17.59, amenities:"Pool·Banquet·Steam Room"},
+ {n:"Runwal Garden Hts",psf:5.53,  amenities:"—"},
+ {n:"Waterfront Tower", psf:7.57,  amenities:"—"},
 ];
 
 // Critical issues — per site
@@ -667,6 +697,37 @@ const CRIT = [
  {name:"Reserve",risk:"low",critN:4,repN:3,
   crit:["Inside flats bathroom & kitchen multi-trap foul smell issue","GLD erroneous activation causing resident complaints","TKE Elevator vibrations and frequent breakdown issues","Pool site furniture deteriorated — outdoor furniture replacement needed"],
   rep:["GLD erroneous activation — repeated","TKE Elevator vibrations — repeated","Inside flat foul smell — repeated"]},
+ // ── NEW SITES FY2026 ──
+ {name:"Akashdeep",risk:"low",critN:0,repN:4,
+  crit:[],
+  rep:["Main gate outside vehicle parking issues","Local boy groups seating outside compound — noise","Reliever guard arrangement on every absence — safety concern","Main gate manual operation — relievers not trained"]},
+ {name:"Alaknanda",risk:"medium",critN:9,repN:3,
+  crit:["Lifts key not provided by Kone vendor","Lift License not provided by Kone vendor","Refuge area occupied with project materials","FAPA systems faults due to broken MCP glass","Common area deep cleaning not up to mark due to labour movement","Fire extinguishers need to be refilled","Wipro Pit parking system not fully functional","No common washroom provided for PMS team","Main gate automation not fully operational"],
+  rep:["Geyser placement is wrong","SLD not provided to residents","Washroom sensor issue in Jaguar WC"]},
+ {name:"Applaud 38",risk:"medium",critN:7,repN:4,
+  crit:["Delay in response on residents issues by project team","Parking allotment numbering pending","Podium & basement stack parking not operational","Fire fighting system not in auto mode","Water transfer system in manual mode","Terrace amenities handover pending","01 lift not operational and 01 lift in manual mode"],
+  rep:["Lift breakdown issue","Mosquito issues","Labour movement issue","Contractor debris in common areas & floor lobby"]},
+ {name:"Corporate Avenue",risk:"medium",critN:7,repN:3,
+  crit:["E Wing fire alarm panel faulty — PCB needs replacement","All three wings leakage in fire hydrant line duct area","Phase 2 driveway ramp hydrant line leakage","Main gate security cabin near hydrant leakage","125KVA DG set battery issue — needs replacement","DG set battery charger faulty — needs replacement","Basement 2 stack parking issue due to sprinkler line height obstacle"],
+  rep:["Lift breakdown","Cleaning related complaints","Electrical lights fused"]},
+ {name:"Horizon",risk:"medium",critN:9,repN:3,
+  crit:["01 & 03 series flats master toilet & common toilet door direction changed","UG tanks pump automation pending","03 flats AC outdoor unit location changed as per plan","Invisible grill installed without approval","All signages pending from project","B wing all refuge area locked","Project materials not removed from common area","Fire extinguishers need to refill","FAPA temporary panel installed"],
+  rep:["Flushing water issues","Leakage in domestic valves","Security related concerns"]},
+ {name:"Promesa Midtown",risk:"low",critN:6,repN:4,
+  crit:["Lift camera not working","Society office not handed over to PMS team","Terrace areas handover pending","Gym not handed over to PMS team","Kidplay area assets installation pending","Security cabin not provided at main gate"],
+  rep:["Rodent issues","Bike parking allotment issues","Domestic & Flushing complaints","Security related concerns"]},
+ {name:"Runwal 5th Ave",risk:"medium",critN:6,repN:2,
+  crit:["Fitout violation process needs to be implemented","02 Car lift not operational","02 Passenger lift not operational","FAPA troubles need rectification from vendor","Sprinkler jockey pump leakage — mechanical seal not properly fitted","Car parking allotment pending"],
+  rep:["Gents washroom cleaning issue","Electrical light tripping issue"]},
+ {name:"Runwal Bliss Club",risk:"medium",critN:5,repN:5,
+  crit:["Swimming pool cleaning issue due to pump failure","Swimming locker keys missing — only 02 available","3 out of 7 access door systems working","AC ventilation issue in banquet area","Ladies steam room not working due to power supply issue"],
+  rep:["Swimming pool quality issue","Access door issue","Pigeon dropping issues at swimming pool area","Wall ceiling light issue","Terrace green mat complaint"]},
+ {name:"Runwal Garden Hts",risk:"medium",critN:7,repN:2,
+  crit:["Ceiling leakage in kitchen area A1008 from above flat A1108","A1601 wall cracks rectification work pending","OWC not working — handover pending from project","STP not working — handover pending from project","Fire DG pump not working due to external battery issue","Tower parking slot allotment pending","Parking no.041 slope issue"],
+  rep:["Plumbing complaint — syphon washer issue","Security alertness issues"]},
+ {name:"Waterfront Tower",risk:"medium",critN:2,repN:3,
+  crit:["MGL commissioning work pending — existing vendor not responding","Leakage in service duct areas"],
+  rep:["Rodent & Cockroaches issues","Faulty fire alarm activated","Tower parking sensor error"]},
 ];
 // ── NOTABLE HITS ──
 const HITS = [
@@ -753,6 +814,36 @@ const HITS = [
   "Security daily briefing conducted",
   "Fire mock drill carried out",
   "Equipment handover coordinated with project team"
+ ]},
+ {name:"Alaknanda", hits:[
+  "86 complaints managed with 83.7% resolution rate in early months",
+  "All Carpentry, Common Areas, Communication, Housekeeping, Lifts, Parking & Security complaints resolved",
+  "Site handed over and operational"
+ ]},
+ {name:"Applaud 38", hits:[
+  "All Common Areas, Electrical, Housekeeping, Lifts, Pest Control, Plumbing & Security complaints resolved",
+  "91.1% resolution rate maintained in initial months"
+ ]},
+ {name:"Corporate Avenue", hits:[
+  "92% resolution rate in first months of operations",
+  "All Common Areas, Housekeeping, Lifts, Fire systems, Carpentry & Communication resolved"
+ ]},
+ {name:"Promesa Midtown", hits:[
+  "95.6% resolution rate — among best in new sites portfolio",
+  "All HK, Fire, Parking, Pest Control, Plumbing & Lift complaints fully resolved"
+ ]},
+ {name:"Waterfront Tower", hits:[
+  "All Fire Alarm, Common Areas, Housekeeping, Lifts, Parking & Leakage resolved",
+  "Tower operations stabilised within first months"
+ ]},
+ {name:"Runwal Bliss Club", hits:[
+  "Club facility operations established",
+  "All Housekeeping, Common Area, Plumbing & Security complaints resolved"
+ ]},
+ {name:"Runwal Garden Hts", hits:[
+  "43 Common Area complaints — all fully resolved",
+  "All Housekeeping, Lifts, Parking & Pest Control resolved",
+  "89.7% resolution rate maintained"
  ]},
 ];
 
@@ -890,6 +981,126 @@ const CHALLENGES = [
   "FAS errors resolution work being coordinated for closure",
   "Pool site furniture deteriorated — outdoor furniture replacement needed"
   ]},
+ {name:"Akashdeep",
+  projectIssues:[],
+  siteChallenges:[
+  "Main gate outside vehicle parking — no designated area",
+  "Local groups seating outside compound creating noise disturbance",
+  "Reliever guard deployment on every absence — safety risk",
+  "Main gate manual operation — relievers not trained"
+  ]},
+ {name:"Alaknanda",
+  projectIssues:[
+  "Lift key and license not provided by Kone vendor",
+  "Refuge area occupied with project materials",
+  "FAPA systems faults due to broken MCP glass",
+  "Wipro Pit parking system not fully functional",
+  "Main gate automation not fully operational"
+  ],
+  siteChallenges:[
+  "No common washroom provided for PMS team",
+  "Common area deep cleaning impacted due to labour movement",
+  "Fire extinguishers need to be refilled"
+  ]},
+ {name:"Applaud 38",
+  projectIssues:[
+  "Parking allotment numbering pending from project",
+  "Podium & basement stack parking not operational",
+  "Terrace amenities handover pending",
+  "01 lift not operational, 01 lift in manual mode"
+  ],
+  siteChallenges:[
+  "Fire fighting system not in auto mode",
+  "Water transfer system in manual mode",
+  "Lift breakdown recurring",
+  "Contractor debris in common areas & floor lobby"
+  ]},
+ {name:"Corporate Avenue",
+  projectIssues:[
+  "E Wing fire alarm panel PCB faulty — replacement needed",
+  "Hydrant line leakage in all three wings",
+  "Phase 2 driveway ramp hydrant line leakage",
+  "DG set battery and charger faulty — replacement needed"
+  ],
+  siteChallenges:[
+  "Basement 2 stack parking blocked by sprinkler line",
+  "Lift breakdown recurring",
+  "Electrical lights fusing repeatedly"
+  ]},
+ {name:"Horizon",
+  projectIssues:[
+  "UG tanks pump automation pending",
+  "All signages pending from project",
+  "B wing all refuge areas locked",
+  "Project materials in common areas not removed",
+  "FAPA temporary panel installed — permanent pending"
+  ],
+  siteChallenges:[
+  "Flushing water issues recurring",
+  "Leakage in domestic valves",
+  "Security concerns ongoing",
+  "Fire extinguishers need to be refilled"
+  ]},
+ {name:"Promesa Midtown",
+  projectIssues:[
+  "Society office not handed over to PMS",
+  "Terrace areas handover pending",
+  "Gym not handed over to PMS",
+  "Kidplay area assets installation pending",
+  "Security cabin not provided at main gate"
+  ],
+  siteChallenges:[
+  "Rodent issues",
+  "Bike parking allotment not done",
+  "Domestic & flushing complaints recurring"
+  ]},
+ {name:"Runwal 5th Ave",
+  projectIssues:[
+  "02 Car lift not operational",
+  "02 Passenger lift not operational",
+  "Car parking allotment pending",
+  "FAPA troubles pending rectification"
+  ],
+  siteChallenges:[
+  "Fitout violation process needs implementation",
+  "Sprinkler jockey pump leakage — mechanical seal issue",
+  "Gents washroom cleaning issue recurring",
+  "Electrical light tripping recurring"
+  ]},
+ {name:"Runwal Bliss Club",
+  projectIssues:[
+  "3 out of 7 access door systems not working",
+  "Ladies steam room not working — power supply issue"
+  ],
+  siteChallenges:[
+  "Swimming pool pump issue affecting cleaning",
+  "Swimming locker keys missing",
+  "AC ventilation issue in banquet area",
+  "Pigeon dropping at swimming pool area recurring"
+  ]},
+ {name:"Runwal Garden Hts",
+  projectIssues:[
+  "OWC not working — handover pending from project",
+  "STP not working — handover pending from project",
+  "Fire DG pump not working — external battery issue",
+  "Tower parking slot allotment pending",
+  "A1601 wall cracks rectification pending"
+  ],
+  siteChallenges:[
+  "Ceiling leakage from upper flat in A1008",
+  "Plumbing syphon washer issue recurring",
+  "Security alertness gaps"
+  ]},
+ {name:"Waterfront Tower",
+  projectIssues:[
+  "MGL commissioning pending — existing vendor not responding",
+  "Leakage in service duct areas"
+  ],
+  siteChallenges:[
+  "Rodent & cockroaches issues recurring",
+  "Faulty fire alarm activations recurring",
+  "Tower parking sensor errors recurring"
+  ]},
 ];
 
 // ── REPEATED ISSUES — Central Park ──
@@ -962,6 +1173,17 @@ const REP_HM = [
  {n:"Newa BKC",     v:["ri-rep","ri-no", "ri-no", "ri-rep","ri-no", "ri-no"]},
  {n:"Parkmist",     v:["ri-no", "ri-no", "ri-no", "ri-yes","ri-yes","ri-no"]},
  {n:"Reserve",     v:["ri-no", "ri-no", "ri-no", "ri-rep","ri-no", "ri-rep"]},
+ // New sites FY2026
+ {n:"Akashdeep",    v:["ri-na", "ri-na", "ri-na", "ri-na", "ri-na", "ri-yes"]},
+ {n:"Alaknanda",    v:["ri-no", "ri-no", "ri-no", "ri-yes","ri-yes","ri-rep"]},
+ {n:"Applaud 38",   v:["ri-no", "ri-rep", "ri-no", "ri-yes","ri-yes","ri-rep"]},
+ {n:"Corporate Avenue",v:["ri-no", "ri-rep","ri-no", "ri-rep","ri-no", "ri-rep"]},
+ {n:"Horizon",     v:["ri-rep","ri-no", "ri-no", "ri-yes","ri-yes","ri-rep"]},
+ {n:"Promesa Midtown",v:["ri-rep","ri-no", "ri-no", "ri-no", "ri-yes","ri-rep"]},
+ {n:"Runwal 5th Ave", v:["ri-no", "ri-rep","ri-no", "ri-yes","ri-yes","ri-no"]},
+ {n:"Runwal Bliss Club",v:["ri-no","ri-rep","ri-no", "ri-rep","ri-no", "ri-rep"]},
+ {n:"Runwal Garden Hts",v:["ri-rep","ri-no","ri-yes","ri-no", "ri-yes","ri-rep"]},
+ {n:"Waterfront Tower",v:["ri-rep","ri-no","ri-no", "ri-rep","ri-no", "ri-yes"]},
 ];
 
 // Risk heatmap — columns: Fire, Civil, Plumbing, Electrical, Project, Residents
@@ -991,6 +1213,17 @@ const RISK_HM = [
  {n:"Newa BKC",     v:["h-hi","h-lo","h-md","h-lo","h-na","h-md"]},
  {n:"Parkmist",     v:["h-md","h-lo","h-lo","h-lo","h-md","h-lo"]},
  {n:"Reserve",     v:["h-md","h-lo","h-lo","h-md","h-lo","h-md"]},
+ // New sites FY2026 — recently opened
+ {n:"Akashdeep",    v:["h-na","h-na","h-na","h-na","h-na","h-md"]},
+ {n:"Alaknanda",    v:["h-hi","h-md","h-md","h-md","h-hi","h-md"]},
+ {n:"Applaud 38",   v:["h-hi","h-md","h-md","h-md","h-hi","h-md"]},
+ {n:"Corporate Avenue",v:["h-hi","h-md","h-md","h-md","h-md","h-md"]},
+ {n:"Horizon",     v:["h-hi","h-md","h-md","h-md","h-hi","h-md"]},
+ {n:"Promesa Midtown",v:["h-md","h-lo","h-lo","h-lo","h-hi","h-md"]},
+ {n:"Runwal 5th Ave", v:["h-md","h-lo","h-lo","h-md","h-hi","h-lo"]},
+ {n:"Runwal Bliss Club",v:["h-md","h-lo","h-lo","h-md","h-md","h-md"]},
+ {n:"Runwal Garden Hts",v:["h-hi","h-md","h-md","h-lo","h-hi","h-md"]},
+ {n:"Waterfront Tower",v:["h-md","h-md","h-md","h-md","h-lo","h-md"]},
 ];
 
 // Action plan
@@ -1053,6 +1286,30 @@ const ACTIONS = [
  {s:"Reserve",    i:"GLD erroneous activation — RCA and permanent fix needed",   c:"Fire Safety",   p:"hi",o:"Fire Alarm Agency",  t:"14 Days",  st:"stw"},
  {s:"Reserve",    i:"TKE Elevator vibrations and frequent breakdown",         c:"Electrical",   p:"hi",o:"Lift Vendor (TKE)",  t:"14 Days",  st:"stw"},
  {s:"Reserve",    i:"Multi-trap foul smell in flats — plumbing resolution needed", c:"Plumbing",    p:"md",o:"Plumbing Team",    t:"21 Days",  st:"str2"},
+ // New sites FY2026
+ {s:"Alaknanda",  i:"Lift key & license not provided by Kone — residents at risk",  c:"Project Handover",p:"ur",o:"Kone Vendor / Project",t:"Immediate",st:"sto"},
+ {s:"Alaknanda",  i:"FAPA faults due to broken MCP glass — fire safety risk",      c:"Fire Safety",   p:"ur",o:"Fire Vendor",     t:"Immediate", st:"sto"},
+ {s:"Alaknanda",  i:"Refuge area occupied with project materials",           c:"Project Handover",p:"hi",o:"Project Team",    t:"7 Days",   st:"sto"},
+ {s:"Applaud 38", i:"Fire fighting system not in auto mode",               c:"Fire Safety",   p:"ur",o:"Fire Safety Team",  t:"Immediate", st:"sto"},
+ {s:"Applaud 38", i:"01 lift not operational — 01 in manual mode",            c:"Electrical",   p:"hi",o:"Lift Vendor",     t:"7 Days",   st:"sto"},
+ {s:"Applaud 38", i:"Stack parking not operational — podium & basement",        c:"Project Handover",p:"hi",o:"Project Team",    t:"14 Days",  st:"sto"},
+ {s:"Corporate Avenue",i:"E Wing fire alarm panel PCB faulty — needs replacement",   c:"Fire Safety",   p:"ur",o:"Fire Vendor",     t:"Immediate", st:"sto"},
+ {s:"Corporate Avenue",i:"Hydrant line leakage in all three wings",            c:"Fire Safety",   p:"ur",o:"Plumbing / Project", t:"Immediate", st:"sto"},
+ {s:"Corporate Avenue",i:"DG set battery & charger faulty — needs replacement",      c:"Electrical",   p:"hi",o:"DG Vendor",      t:"7 Days",   st:"sto"},
+ {s:"Horizon",   i:"FAPA temporary panel installed — permanent system pending",   c:"Fire Safety",   p:"hi",o:"Fire Vendor",     t:"14 Days",  st:"sto"},
+ {s:"Horizon",   i:"B wing refuge areas locked — fire escape blocked",         c:"Fire Safety",   p:"ur",o:"Project Team",    t:"Immediate", st:"sto"},
+ {s:"Horizon",   i:"UG tanks pump automation pending",                  c:"Plumbing",    p:"hi",o:"Plumbing Team",    t:"14 Days",  st:"sto"},
+ {s:"Promesa Midtown",i:"Lift camera not working — security gap",             c:"Electrical",   p:"hi",o:"Lift Vendor",     t:"7 Days",   st:"sto"},
+ {s:"Promesa Midtown",i:"Society office, Terrace, Gym handover pending from project", c:"Project Handover",p:"hi",o:"Project Team",    t:"14 Days",  st:"sto"},
+ {s:"Runwal 5th Ave",i:"02 Car lift & 02 Passenger lifts not operational",       c:"Electrical",   p:"ur",o:"Lift Vendor",     t:"Immediate", st:"sto"},
+ {s:"Runwal 5th Ave",i:"FAPA troubles pending rectification",               c:"Fire Safety",   p:"hi",o:"Fire Vendor",     t:"7 Days",   st:"stw"},
+ {s:"Runwal 5th Ave",i:"Sprinkler jockey pump leakage — mechanical seal issue",     c:"Plumbing",    p:"hi",o:"Plumbing Team",    t:"7 Days",   st:"sto"},
+ {s:"Runwal Bliss Club",i:"Access door system — only 3 of 7 working",           c:"Electrical",   p:"hi",o:"Access Vendor",    t:"7 Days",   st:"sto"},
+ {s:"Runwal Bliss Club",i:"Ladies steam room not working — power supply issue",      c:"Electrical",   p:"hi",o:"MEP Team",      t:"7 Days",   st:"sto"},
+ {s:"Runwal Garden Hts",i:"OWC & STP not working — handover pending from project",   c:"Project Handover",p:"ur",o:"Project Team",    t:"Immediate", st:"sto"},
+ {s:"Runwal Garden Hts",i:"Fire DG pump not working — external battery issue",      c:"Fire Safety",   p:"ur",o:"DG Vendor",      t:"Immediate", st:"sto"},
+ {s:"Waterfront Tower",i:"MGL commissioning pending — vendor not responding",       c:"Project Handover",p:"hi",o:"Project / MGL Vendor",t:"14 Days",  st:"sto"},
+ {s:"Waterfront Tower",i:"Leakage in service duct areas",                  c:"Civil",      p:"hi",o:"Civil Team",     t:"14 Days",  st:"sto"},
 ];
 
 // Safety data — Slide 27 only (these 5 sites only)
@@ -1515,3 +1772,4 @@ document.addEventListener('DOMContentLoaded',()=>{
 </script>
 </body>
 </html>
+
