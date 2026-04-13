@@ -427,9 +427,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);d
 
   <!-- S9: SAFETY -->
   <section id="s9">
-   <div class="sh"><span class="sn">09</span><div><div class="st">Safety Dashboard</div><div class="ss">Fire system status as of March 2025. Note: Azziano, Crown, Erika, Summit, Seasons and Paramount are not included in this safety report.</div></div></div>
+   <div class="sh"><span class="sn">09</span><div><div class="st">Safety Dashboard</div><div class="ss">Fire system status — Updated from Safety Consolidated Report FY2026. Covers all major PMS sites.</div></div></div>
    <div class="tc"><table>
-    <thead><tr><th>Site</th><th>Fire Hydrant</th><th>Sprinkler</th><th>Drencher</th><th>Pump Panel</th><th>Alarm Panel</th><th>PA System</th><th>ERT Briefing</th><th>Last Mock Drill</th><th>Remarks</th></tr></thead>
+    <thead><tr><th>Site</th><th>Fire Hydrant</th><th>Sprinkler</th><th>Drencher</th><th>Pump Panel</th><th>Alarm Panel</th><th>PA System</th><th>ERT Briefing</th><th>Last Mock Drill</th><th>CCTV Cameras</th><th>CCTV Status</th><th>Access Control</th><th>Daily Briefing</th><th>Surprise Rounds (C/V)</th><th>Incidents</th><th>Remarks</th></tr></thead>
     <tbody id="safTb"></tbody>
    </table></div>
   </section>
@@ -438,12 +438,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);d
 
   <!-- S10: AUDIT -->
   <section id="s10">
-   <div class="sh"><span class="sn">10</span><div><div class="st">Internal Audit Scores — Q2 FY2025</div><div class="ss">Q2 FY2025 internal audit across 10 Rustomjee PMS sites — Safety, Compliance, Housekeeping, Technical and Process</div></div></div>
+   <div class="sh"><span class="sn">10</span><div><div class="st">Internal Audit Scores — Q3 FY2026 (Dec 2025) vs Q2 (Aug 2025)</div><div class="ss">Q3 FY2026 (Dec 2025) — 20 sites audited. Showing latest quarter with Q2 (Aug 2025) & Q1 (Apr 2025) comparison.</div></div></div>
    <div class="aug" id="auG"></div>
-   <div class="cc"><h4>Audit Score Comparison — Q2 vs Q1 vs Q0 FY2025</h4><p>Q2 FY2025 scores across 10 Rustomjee sites</p><div style="height:250px"><canvas id="cAu"></canvas></div></div>
+   <div class="cc"><h4>Audit Score Comparison — Q3 (Dec 2025) vs Q2 (Aug 2025) vs Q1 (Apr 2025)</h4><p>Q3 FY2026 scores across 20 Rustomjee sites</p><div style="height:250px"><canvas id="cAu"></canvas></div></div>
    <div style="margin-top:16px">
     <div class="tc"><table>
-     <thead><tr><th>Site</th><th>Safety & Security</th><th>Fire</th><th>Security</th><th>Safety</th><th>Compliance</th><th>Housekeeping</th><th>Technical</th><th>Club House</th><th>Help Desk</th><th>Process</th><th>Management</th><th>Overall Q2</th></tr></thead>
+     <thead><tr><th>Site</th><th>Safety & Security</th><th>Fire</th><th>Security</th><th>Safety</th><th>Compliance</th><th>Housekeeping</th><th>Technical</th><th>Club House</th><th>Help Desk</th><th>Process</th><th>Management</th><th>Overall Q3</th></tr></thead>
      <tbody id="auDTb"></tbody>
     </table></div>
    </div>
@@ -453,7 +453,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);d
 
   <!-- S11: MANPOWER -->
   <section id="s11">
-   <div class="sh"><span class="sn">11</span><div><div class="st">Manpower Deployment — PMS Sites</div><div class="ss">748 total direct & indirect resources — 293 deployed across 13 Property Management sites</div></div></div>
+   <div class="sh"><span class="sn">11</span><div><div class="st">Manpower Deployment — PMS Sites</div><div class="ss">Updated from Deployment Summary FY2026 — PMS Crest & Vendor Staff combined across all sites (868 total deployed)</div></div></div>
    <div class="dep-wrap">
     <div class="tc">
      <table class="dep-tbl" id="depTbl"></table>
@@ -1312,46 +1312,91 @@ const ACTIONS = [
  {s:"Waterfront Tower",i:"Leakage in service duct areas",                  c:"Civil",      p:"hi",o:"Civil Team",     t:"14 Days",  st:"sto"},
 ];
 
-// Safety data — Slide 27 only (these 5 sites only)
+// Safety data — Merged: Safety Consolidated Report + Security Report FY2026
 const SAFETY = [
- {s:"Elements",   h:"Ops/Auto",sp:"Ops/Auto",dr:"Ops/Auto",pu:"N/A",  al:"Healthy",pa:"Ops",  ert:"Yes",drill:"11 & 23 Mar 2025",rem:"Fire Alarm sounder disabled at BMS. Repeater panels not looped."},
- {s:"Central Park", h:"Ops/Auto",sp:"Ops/Auto",dr:"Ops/Auto",pu:"Ops/Auto",al:"Healthy",pa:"Ops",  ert:"Yes",drill:"29-Mar-2025",  rem:"B-form received only till Jun 2024"},
- {s:"La Fontaine",  h:"Ops/Auto",sp:"Ops/Auto",dr:"N/A",   pu:"Ops/Auto",al:"Healthy",pa:"Faulty",ert:"N/A",drill:"Sep 2023",    rem:"PA system faulty, AMC pending. B-form not handed over."},
- {s:"Yazarina One", h:"Ops/Auto",sp:"Ops/Auto",dr:"N/A",   pu:"Ops/Auto",al:"Healthy",pa:"Faulty",ert:"N/A",drill:"—",        rem:"PA system faulty"},
- {s:"Yazarina Three",h:"Ops/Ops", sp:"Ops/Ops", dr:"N/A",   pu:"Ops/Auto",al:"Healthy",pa:"Ops",  ert:"N/A",drill:"—",        rem:"Hydrant & sprinkler in Ops mode (not Auto)"},
- {s:"Garden 6",   h:"Ops/Ops", sp:"Ops/Ops", dr:"N/A",   pu:"Ops/Auto",al:"Healthy",pa:"Ops",  ert:"N/A",drill:"—",        rem:"In safety report. Hydrant & sprinkler in Ops mode (not Auto)"},
+ // Fire data from Safety_Consolidated_report.xlsx + Security from Security_Report.xlsx
+ {s:"Elements",       h:"Ops/Manual", sp:"Ops/Off",    dr:"Ops/Off",   pu:"N/A",        al:"Ops",          pa:"Ops",     ert:"Yes",   drill:"14-Mar-2026",  cctv:"213",  cctv_st:"Okay",              acc:"06+05 doors",  brief:"Yes",    surp:"0/0",  inc:4,  rem:"FA sounder disabled at BMS. Repeater panels not looped. Banquet, Business Centre, Spa repeater not in main BMS. G gate boom barrier not working."},
+ {s:"Paramount AB",    h:"Working/Auto",sp:"Working/Auto",dr:"Working/Auto",pu:"Working/Auto",al:"Operational", pa:"Working", ert:"Daily", drill:"18-Mar-2026",  cctv:"376",  cctv_st:"Working",           acc:"36+2 doors",   brief:"Yes",    surp:"0/2",  inc:1,  rem:"Car sticker given to 210 residents."},
+ {s:"Paramount CDEF",   h:"Working/Auto",sp:"Working/Auto",dr:"Working/Auto",pu:"Working/Auto",al:"Operational", pa:"Working", ert:"Daily", drill:"18-Mar-2026",  cctv:"—",    cctv_st:"—",                acc:"—",            brief:"Yes",    surp:"—",    inc:0,  rem:"—"},
+ {s:"Seasons",        h:"Ops/Auto",   sp:"Ops/Auto",   dr:"Non-Ops",   pu:"Ops/Manual", al:"Ops",          pa:"Non-Ops", ert:"Yes",   drill:"09-Mar-2026",  cctv:"250",  cctv_st:"249 working, 1 down",acc:"20 doors+2 BB",brief:"Yes",    surp:"1/1",  inc:1,  rem:"Drencher non-op. PA & FAS quotation pending. Gate 2 boom barrier non-op. Access doors not working ABEF wings. 64 troubles ABCEF wing, 21 D wing."},
+ {s:"Azziano",        h:"Ops/Auto",   sp:"Ops/Auto",   dr:"N/A",       pu:"N/A",        al:"Healthy/Pending",pa:"Display Issue",ert:"Yes",drill:"12-Oct-2025",cctv:"300",  cctv_st:"Working",           acc:"48 doors+11 BB",brief:"Yes",   surp:"1/2",  inc:0,  rem:"FAPA E & K not handed over from project. Boom barriers in off condition. B-form: 30-Jun-2025."},
+ {s:"Central Park",    h:"Ops/Auto",   sp:"Ops/Auto",   dr:"Ops/Auto",  pu:"Ops/Auto",   al:"Ops",          pa:"Ops",     ert:"Yes",   drill:"09-Feb-2026",  cctv:"63",   cctv_st:"All working",       acc:"Nil",          brief:"Yes",    surp:"1/1",  inc:0,  rem:"B-form till 31-Dec-2025. ERT Red Code training done. RT sets required."},
+ {s:"La Fontaine",     h:"Ops/Auto",   sp:"Ops/Auto",   dr:"N/A",       pu:"Ops/Auto",   al:"Working",      pa:"Working", ert:"Yes",   drill:"25-May-2025",  cctv:"69",   cctv_st:"2 not working",     acc:"Working",      brief:"Yes",    surp:"2/1",  inc:0,  rem:"B-form: 27-Nov-2025."},
+ {s:"Summit",         h:"Working/Auto",sp:"Working/Auto",dr:"N/A",      pu:"Working/Auto",al:"Operational", pa:"Non-Ops", ert:"Weekly",drill:"Not Done",      cctv:"61",   cctv_st:"02 not working",    acc:"3 doors",      brief:"Yes",    surp:"0/4",  inc:0,  rem:"PA non-operational — false ceiling work by projects. B-form initiated, awaiting copy."},
+ {s:"Newa BKC",       h:"Working/Auto",sp:"Working/Auto",dr:"N/A",      pu:"Working/Auto",al:"Working",     pa:"N/A",     ert:"14-Oct-2025",drill:"10-Sep-2025",cctv:"92", cctv_st:"Working",           acc:"8 doors",      brief:"Yes",    surp:"0/0",  inc:0,  rem:"B-form: 30-Jun-2025. High absenteeism (Day 13.33%, Night 16.66%)."},
+ {s:"Reserve",        h:"Working/Auto",sp:"Working/Auto",dr:"N/A",      pu:"Working/Manual",al:"Working",   pa:"Working", ert:"Weekly",drill:"Not Done",      cctv:"128",  cctv_st:"All working",       acc:"11/2 — non-op",brief:"Weekly", surp:"0/1",  inc:0,  rem:"Panel showing few troubles. Access control non-operational. Access cards configuring in process."},
+ {s:"Crown",          h:"OK/Auto",    sp:"OK/Auto",    dr:"OK/N/A",    pu:"OK/Auto",    al:"Activated",    pa:"Activated",ert:"Done",  drill:"15-Feb-2026",  cctv:"239",  cctv_st:"1 non-operational", acc:"—",            brief:"Done",   surp:"1/1",  inc:5,  rem:"TA & NTA FAPA system not handed over."},
+ {s:"Bella",          h:"ON/Auto",    sp:"ON/Auto",    dr:"N/A",       pu:"N/A",        al:"Operational",  pa:"Operational",ert:"Yes", drill:"16-Nov-2025",  cctv:"50",   cctv_st:"All working",       acc:"2 doors",      brief:"Yes",    surp:"0/1",  inc:0,  rem:"B-form application submitted by agency."},
+ {s:"Erika",          h:"OK/Auto",    sp:"OK/Auto",    dr:"OK/Auto",   pu:"OK/Auto",    al:"Vendor WIP",   pa:"Vendor WIP",ert:"Yes", drill:"Not conducted",cctv:"32",   cctv_st:"All working",       acc:"2 — working",  brief:"Yes",    surp:"0/0",  inc:0,  rem:"Vendor snagging in progress. B-form not handed over."},
+ {s:"Corporate Avenue", h:"OK/Auto",   sp:"OK/Auto",    dr:"OK/Auto",   pu:"OK/Auto",    al:"OK",           pa:"N/A",     ert:"Yes",   drill:"Not conducted",cctv:"72",   cctv_st:"Access with client",acc:"—",            brief:"Yes",    surp:"0/1",  inc:0,  rem:"B-form: 01-Apr-2026."},
+ {s:"Yazarina One",    h:"Ops/Auto",   sp:"Working/Auto",dr:"N/A",     pu:"Working/Auto",al:"N/A",         pa:"N/A",     ert:"Alt. Day",drill:"Not Done",    cctv:"17",   cctv_st:"—",                 acc:"Automation gate",brief:"Alt. Day",surp:"YES/YES",inc:0,rem:"FAPA not working on some floors. B-form: 28-Jul-2026."},
+ {s:"Yazarina Three",   h:"Manual",    sp:"OFF/Auto",   dr:"Working/Auto",pu:"Working/Auto",al:"Healthy",  pa:"Yes",     ert:"Weekly",drill:"Not Done",      cctv:"18",   cctv_st:"Working",           acc:"Automation gate",brief:"Yes",   surp:"YES/YES",inc:0,rem:"Hydrant in manual mode. NRV & Gasket change needed. B-form not done."},
+ {s:"Garden 6",       h:"Ops/Auto",   sp:"Ops/Auto",   dr:"N/A",       pu:"Ops/Auto",   al:"Operational",  pa:"Operational",ert:"1 ERT",drill:"Not done",  cctv:"41",   cctv_st:"Operational",       acc:"2 doors",      brief:"Alt. Day",surp:"0/0", inc:0,  rem:"B-form: 01-Jan-2026. Last evacuation: 17-Dec-2025."},
+ {s:"Parishram",      h:"Ops/Manual", sp:"Ops/Auto",   dr:"Ops/Auto",  pu:"N/A",        al:"Ops",          pa:"Ops",     ert:"Yes",   drill:"Not conducted",cctv:"46",   cctv_st:"4 not working",     acc:"Nil",          brief:"Yes",    surp:"0/0",  inc:0,  rem:"B-form: Yes. Absenteeism high (Day 13.33%, Night 28.33%). Security changed from MSS to G4S — uniform not received."},
+ {s:"Dosti Oak",      h:"OK/Auto",    sp:"OK/Auto",    dr:"N/A",       pu:"OK/Auto",    al:"OK",           pa:"OK",      ert:"OK",    drill:"27-Jan-2025",  cctv:"60",   cctv_st:"OK",                acc:"NO",           brief:"OK",     surp:"NO/0", inc:0,  rem:"B-form: Yes. No evacuation drill done."},
+ {s:"Alaknanda",      h:"OK/Pending", sp:"OK/Pending", dr:"NA/Pending",pu:"NA/Pending", al:"Testing",      pa:"NA/Pending",ert:"Yes (sec)",drill:"Not conducted",cctv:"62",cctv_st:"Access with client",acc:"—",           brief:"Yes",    surp:"1/1",  inc:0,  rem:"Majority of systems still with developer. Handover pending. Absenteeism high (Day 13.33%, Night 33.33%)."},
 ];
 
-// Audit — Slide 22 all 10 sites
+// Audit — Updated from Audit_Rating.xlsx
+// q2 = Q3 Dec 2025 (latest), q1 = Q2 Aug 2025, q0 = Q1 Apr 2025
+// Per-category: ss=Safety&Security, fi=Fire, se=Security, sf=Safety,
+// co=Compliance, hk=Housekeeping, te=Technical, cl=ClubHouse,
+// hd=HelpDesk, ft=Fitout, pr=Process, mg=Management
 const AUDIT = [
- {n:"Bella",     q2:84.09,q1:73.22,q0:null,  ss:88.67,fi:73,se:93,sf:100,co:90.6,hk:78,te:75,cl:null,hd:100,ft:100,pr:100,mg:73},
- {n:"Central Park",  q2:97.47,q1:97.56,q0:98.53, ss:97.93,fi:93.8,se:100,sf:100,co:94.48,hk:96.4,te:76.9,cl:null,hd:99.1,ft:100,pr:100,mg:100},
- {n:"Elements",    q2:90.67,q1:85.89,q0:96.80, ss:98.67,fi:98,se:98,sf:100,co:91.33,hk:80,te:74,cl:96,hd:99,ft:100,pr:99,mg:82},
- {n:"Garden 6",    q2:89.00,q1:84.11,q0:84.87, ss:98,fi:100,se:94,sf:100,co:83,hk:74,te:58,cl:85,hd:null,ft:100,pr:98,mg:86},
- {n:"La Fontaine",  q2:86.33,q1:80.11,q0:89.67, ss:86.33,fi:85,se:96,sf:78,co:86.67,hk:88,te:66,cl:87,hd:83,ft:100,pr:96,mg:86},
- {n:"Palacimo",    q2:59.67,q1:72.00,q0:52.78, ss:74,fi:89,se:77,sf:56,co:50,hk:64,te:40,cl:null,hd:null,ft:null,pr:46,mg:55},
- {n:"Ganga Jamuna", q2:67.63,q1:null, q0:null,  ss:72.5,fi:97,se:null,sf:48,co:79.4,hk:72,te:54,cl:null,hd:89,ft:82,pr:100,mg:51},
- {n:"Yazarina One",  q2:76.11,q1:73.00,q0:82.44, ss:89.33,fi:90,se:78,sf:100,co:67,hk:85,te:54,cl:63,hd:18,ft:100,pr:82,mg:72},
- {n:"Yazarina Three", q2:61.91,q1:47.67,q0:63.80, ss:72.33,fi:65,se:52,sf:100,co:42.4,hk:62,te:22,cl:60,hd:null,ft:0,pr:68,mg:71},
- {n:"Zinnia",     q2:96.00,q1:90.00,q0:92.00, ss:null,fi:null,se:null,sf:null,co:96,hk:96,te:null,cl:null,hd:null,ft:null,pr:null,mg:null},
+ {n:"Azziano",      q2:null,  q1:95.61, q0:93.89, ss:null,  fi:null, se:null, sf:null, co:null,  hk:null, te:null, cl:null, hd:null, ft:null, pr:null, mg:null},
+ {n:"Bella",        q2:87.72, q1:84.09, q0:73.22, ss:83.3,  fi:100,  se:100,  sf:50,   co:84.8,  hk:77,   te:68,   cl:83,   hd:93,   ft:100,  pr:88,   mg:95},
+ {n:"Central Park",  q2:96.44, q1:97.47, q0:97.56, ss:100,   fi:100,  se:100,  sf:100,  co:91.1,  hk:93.8, te:76.9, cl:null, hd:90.9, ft:94,   pr:100,  mg:98.2},
+ {n:"Crown",        q2:89.89, q1:74.94, q0:73.33, ss:92.7,  fi:82,   se:96,   sf:100,  co:86,    hk:88,   te:82,   cl:70,   hd:86,   ft:100,  pr:90,   mg:91},
+ {n:"Dosti Oak",     q2:89,    q1:88.11, q0:92.44, ss:94,    fi:94,   se:95,   sf:93,   co:88,    hk:null, te:82,   cl:null, hd:98,   ft:null, pr:84,   mg:85},
+ {n:"Elements",     q2:86.11, q1:90.67, q0:85.89, ss:99.3,  fi:98,   se:100,  sf:100,  co:82,    hk:84,   te:52,   cl:81,   hd:95,   ft:100,  pr:80,   mg:77},
+ {n:"Erika",        q2:64.11, q1:61.39, q0:54.33, ss:72.3,  fi:89,   se:84,   sf:44,   co:72,    hk:74,   te:46,   cl:65,   hd:82,   ft:90,   pr:75,   mg:48},
+ {n:"Garden 6",     q2:70.36, q1:89,    q0:84.11, ss:75.7,  fi:94,   se:87,   sf:46,   co:71.4,  hk:96,   te:52,   cl:55,   hd:null, ft:66,   pr:88,   mg:64},
+ {n:"La Fontaine",   q2:89.89, q1:86.33, q0:80.11, ss:84.7,  fi:98,   se:100,  sf:56,   co:86,    hk:95,   te:77,   cl:84,   hd:93,   ft:96,   pr:71,   mg:99},
+ {n:"Newa BKC",     q2:81,    q1:84,    q0:86.89, ss:77,    fi:89,   se:90,   sf:52,   co:88,    hk:88,   te:84,   cl:null, hd:null, ft:90,   pr:90,   mg:78},
+ {n:"Palacimo",     q2:71.78, q1:59.67, q0:72,    ss:78,    fi:91,   se:56,   sf:87,   co:71.3,  hk:81,   te:47,   cl:null, hd:null, ft:null, pr:86,   mg:66},
+ {n:"Paramount",    q2:93,    q1:96.39, q0:98.11, ss:88.7,  fi:100,  se:96,   sf:70,   co:94.3,  hk:85,   te:91,   cl:90,   hd:100,  ft:100,  pr:100,  mg:96},
+ {n:"Parishram",    q2:67.28, q1:null,  q0:null,  ss:59,    fi:50,   se:75,   sf:52,   co:78.8,  hk:75,   te:70,   cl:78,   hd:98,   ft:52,   pr:100,  mg:64},
+ {n:"Reserve",      q2:69,    q1:63.06, q0:58.94, ss:77.3,  fi:84,   se:82,   sf:66,   co:73.7,  hk:90,   te:48,   cl:83,   hd:65,   ft:94,   pr:62,   mg:56},
+ {n:"Seasons",      q2:82.11, q1:97.39, q0:91.44, ss:88.3,  fi:82,   se:86,   sf:97,   co:86,    hk:86,   te:69,   cl:90,   hd:71,   ft:100,  pr:100,  mg:72},
+ {n:"Summit",       q2:91.11, q1:93.17, q0:91.44, ss:92.3,  fi:100,  se:100,  sf:77,   co:90,    hk:89,   te:83,   cl:73,   hd:99,   ft:99,   pr:97,   mg:91},
+ {n:"Ganga Jamuna",  q2:70,    q1:67.63, q0:null,  ss:58,    fi:88,   se:null, sf:28,   co:78,    hk:88,   te:75,   cl:null, hd:null, ft:54,   pr:95,   mg:74},
+ {n:"Yazarina One",  q2:77.11, q1:76.11, q0:73,    ss:94.3,  fi:91,   se:92,   sf:100,  co:56,    hk:75,   te:60,   cl:62,   hd:20,   ft:null, pr:63,   mg:81},
+ {n:"Yazarina Three", q2:64.93, q1:61.91, q0:47.67, ss:56,    fi:53,   se:62,   sf:53,   co:52.8,  hk:83,   te:38,   cl:90,   hd:3,    ft:null, pr:53,   mg:86},
+ {n:"Zinnia",       q2:89,    q1:96,    q0:90,    ss:null,  fi:null, se:null, sf:null, co:89,    hk:89,   te:null, cl:null, hd:null, ft:null, pr:null, mg:null},
 ];
 
-// Deployment — Slide 24 (PMS sites)
-// Columns: Elements, Central Park, Garden 6, Yazarina 1, Yazarina 3, Erika, Bella, La Fontaine, Parishram, Aangan, Zinnia, Palacimo, Ganga Jamuna
+// Deployment — Updated from Deployment_Summary.xlsx — All 4 sheets
+// PMS Crest Total: 635 | PMS Vendor Total: 753
+// FMS Crest Total: 428 | FMS Vendor Total: 39
+// Grand Total: 635 + 753 + 428 + 39 = 1,855
 const DEPLOY = {
- cols:["Elements","Central Park","Garden 6","Yazarina 1","Yazarina 3","Erika","Bella","La Fontaine","Parishram","Aangan","Zinnia","Palacimo","Ganga Jamuna","Total"],
+ // PMS sites deployment (Crest + Vendor combined for display)
+ cols:["Aangan","Applaud 38","Bella","Central Park","Crown","Corp. Ave","Dosti Oak","Elements","Erika","Azziano","Garden 6","La Fontaine","Newa BKC","Paramount","Parishram","Reserve","Seasons","Summit","Palacimo","Ganga Jamuna","Runwal Forest","Runwal Gdn Hts","Waterfront","Yazarina 1","Yazarina 3","Zinnia","TOTAL"],
  rows:[
-  {cat:"Management", vals:[14,2,1,0.5,0.5,2,3,1,3,1,1,1,3,33]},
-  {cat:"Security",  vals:[49,11,4,2,4,11,18,5,5,3,0,0,0,112]},
-  {cat:"Technical",  vals:[8,4,0,0,0,1,4,1,1,0,0,0,4,23]},
-  {cat:"Housekeeping",vals:[35,11,2,2,2,9,11,3,4,3,4,2,8,96]},
-  {cat:"Landscape",  vals:[5,1,0,0.5,0.5,0,0,1,0,0,0,0,1,9]},
-  {cat:"Club Team",  vals:[4,0,0,0,0,1,0,1,0,0,0,0,0,6]},
-  {cat:"Lift Mgmt",  vals:[6,0,0,0,0,0,0,1,0,0,0,0,0,7]},
-  {cat:"Valet",    vals:[1,2,0,0,0,0,2,0,0,0,0,0,0,5]},
-  {cat:"STP",     vals:[2,0,0,0,0,0,0,0,0,0,0,0,0,2]},
-  {cat:"TOTAL",    vals:[124,31,7,5,7,24,38,13,13,7,5,3,16,293]},
- ]
+  {cat:"PMS – Crest", vals:[10,27,20,6,113,15,11,57,6,31,3,6,16,50,9,19,45,23,3,13,21,9,15,2,2,5,635]},
+  {cat:"PMS – Vendor", vals:[10,21,22,26,127,16,16,65,25,128,4,7,24,72,12,18,80,28,0,0,0,0,1,3,4,0,753]},
+ ],
+ // Category breakdown — PMS Crest Staff
+ pms_crest_cats:{
+  cols:["Aangan","Applaud 38","Bella","Central Park","Crown","Corp. Ave","Dosti Oak","Elements","Erika","Azziano","Garden 6","La Fontaine","Newa BKC","Paramount","Parishram","Reserve","Seasons","Summit","Palacimo","Ganga Jamuna","Others","TOTAL"],
+  rows:[
+   {cat:"Management",  vals:[3,7,6,3,19,1,5,8,3,4,1,2,2,6,4,6,6,6,1,4,22,129]},
+   {cat:"Security",    vals:[0,0,0,0,10,0,2,1,0,1,0,0,0,1,0,0,1,0,0,0,2,17]},
+   {cat:"Technical",   vals:[0,4,1,3,16,0,4,9,0,4,0,0,0,10,0,0,11,1,0,0,11,74]},
+   {cat:"Housekeeping", vals:[4,16,13,0,65,14,0,37,3,16,2,3,14,28,4,12,24,16,2,9,9,387]},
+   {cat:"Club Team",   vals:[0,0,0,0,2,0,0,2,0,6,0,0,0,2,1,1,3,0,0,0,3,18]},
+   {cat:"Lift Mgmt",   vals:[3,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,3,7]},
+   {cat:"Valet",       vals:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2]},
+   {cat:"Landscape",   vals:[0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]},
+   {cat:"TOTAL",       vals:[10,27,20,6,113,15,11,57,6,31,3,6,16,47,9,19,45,23,3,13,52,635]},
+  ]
+ },
+ // FMS summary (office management sites)
+ fms:{
+  crest:{management:124, technical:2, housekeeping:291, clubTeam:5, liftMgmt:5, valet:1, total:428},
+  vendor:{management:2, security:13, valet:24, total:39},
+  grandTotal:467
+ }
 };
 
 // Office Management — Slide 25
@@ -1518,30 +1563,43 @@ function renderAction(){
 }
 
 function renderSafety(){
- const ok='<span class="sf-ok">✓ Ops</span>';
- const fa='<span class="sf-fa">✗ Faulty</span>';
- const na='<span class="sf-na">N/A</span>';
+ function sc(v){
+  if(!v||v==='N/A'||v==='NA') return '<span class="sf-na">—</span>';
+  const lv=String(v).toLowerCase();
+  if(lv.includes('non')||lv.includes('faulty')||lv.includes('not work')||lv.includes('manual')||lv.includes('off')||lv.includes('pending')||lv.includes('testing'))
+   return `<span class="sf-pe">⚠ ${v}</span>`;
+  if(lv.includes('ok')||lv.includes('ops')||lv.includes('work')||lv.includes('auto')||lv.includes('oper')||lv.includes('on ')||lv==='on'||lv.includes('yes')||lv.includes('health')||lv.includes('done'))
+   return `<span class="sf-ok">✓ ${v}</span>`;
+  return `<span style="font-size:11px">${v}</span>`;
+ }
  document.getElementById('safTb').innerHTML=SAFETY.map(r=>`
   <tr>
-   <td class="fw">${r.s}</td>
-   <td>${ok}</td><td>${ok}</td>
-   <td>${r.dr==='N/A'?na:ok}</td>
-   <td>${r.pu==='N/A'?na:ok}</td>
-   <td>${ok}</td>
-   <td>${r.pa==='Faulty'?fa:ok}</td>
-   <td>${r.ert==='Yes'?ok:na}</td>
-   <td style="font-size:11.5px;font-weight:600">${r.drill}</td>
-   <td style="font-size:11px;color:var(--silver);max-width:180px;line-height:1.3">${r.rem}</td>
+   <td class="fw" style="white-space:nowrap">${r.s}</td>
+   <td>${sc(r.h)}</td>
+   <td>${sc(r.sp)}</td>
+   <td>${sc(r.dr)}</td>
+   <td>${sc(r.pu)}</td>
+   <td>${sc(r.al)}</td>
+   <td>${sc(r.pa)}</td>
+   <td>${sc(r.ert)}</td>
+   <td style="font-size:11px;font-weight:600;white-space:nowrap">${r.drill||'—'}</td>
+   <td style="font-size:11px">${r.cctv||'—'}</td>
+   <td style="font-size:11px">${sc(r.cctv_st)}</td>
+   <td style="font-size:11px">${r.acc||'—'}</td>
+   <td>${sc(r.brief)}</td>
+   <td style="font-size:11px;text-align:center">${r.surp||'—'}</td>
+   <td style="font-size:11px;text-align:center;font-weight:700;color:${(r.inc||0)>0?'var(--red)':'var(--green)'}">${r.inc!==undefined?r.inc:'—'}</td>
+   <td style="font-size:10.5px;color:var(--silver);max-width:200px;line-height:1.3">${r.rem||'—'}</td>
   </tr>`).join('');
 }
 
 function renderAudit(){
  document.getElementById('auG').innerHTML=AUDIT.map(a=>{
-  const c=a.q2>90?'var(--green)':a.q2>80?'var(--amber)':a.q2>65?'var(--gold)':'var(--red)';
-  const tr=a.q1?a.q2>a.q1?'↑ Improving':'↓ Declined':'— First entry';
-  const tc=a.q1?(a.q2>a.q1?'var(--green)':'var(--red)'):'var(--silver)';
+  const qv=a.q2!=null?a.q2:(a.q1||0); const c=qv>90?'var(--green)':qv>80?'var(--amber)':qv>65?'var(--gold)':'var(--red)';
+  const tr=a.q2!=null&&a.q1?a.q2>a.q1?'↑ Improving':'↓ Declined':a.q2==null?'↓ Not audited Q3':'— First entry';
+  const tc=a.q2!=null&&a.q1?(a.q2>a.q1?'var(--green)':'var(--red)'):'var(--silver)';
   return `<div class="au"><div class="au-n">${a.n}</div>
-   <div class="au-v" style="color:${c}">${a.q2}%</div>
+   <div class="au-v" style="color:${c}">${a.q2!=null?a.q2+'%':'—'}</div>
    <div class="au-bar"><div class="au-f" style="width:${a.q2}%;background:${c}"></div></div>
    <div class="au-t" style="color:${tc}">${tr}</div></div>`;
  }).join('');
@@ -1558,19 +1616,72 @@ function renderAudit(){
 
 function renderDeploy(){
  const cols=DEPLOY.cols;
- let html=`<thead><tr><th>Role</th>${cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>`;
+ // Main PMS summary table (Crest + Vendor rows)
+ let html=`<thead><tr><th>Staff Type</th>${cols.map(c=>`<th style="font-size:9px">${c}</th>`).join('')}</tr></thead><tbody>`;
  DEPLOY.rows.forEach(r=>{
-  const isTot=r.cat==='TOTAL';
-  html+=`<tr>${isTot?`<td class="cat dep-total">${r.cat}</td>`:
-   `<td class="cat">${r.cat}</td>`}
+  const isCrest=r.cat.includes('Crest');
+  const isVendor=r.cat.includes('Vendor');
+  html+=`<tr>
+   <td class="cat" style="white-space:nowrap;background:${isCrest?'var(--blue-lt)':isVendor?'var(--teal-lt)':'var(--gold-lt)'}">${r.cat}</td>
    ${r.vals.map((v,i)=>{
     const isLast=i===r.vals.length-1;
-    if(v===0)return`<td class="dep-zero${isTot?' dep-total':''}">—</td>`;
-    return`<td class="dep-num${isTot?' dep-total':''}" style="${isLast?'font-weight:700':''}">${v}</td>`;
+    if(!v||v===0)return`<td class="dep-zero">—</td>`;
+    return`<td class="dep-num" style="${isLast?'font-weight:800;color:var(--ink2)':''}">${v}</td>`;
    }).join('')}</tr>`;
  });
  html+='</tbody>';
  document.getElementById('depTbl').innerHTML=html;
+
+ // Category breakdown for PMS Crest below main table
+ const cc=DEPLOY.pms_crest_cats;
+ let html2=`<div style="margin-top:18px"><div style="font-size:12.5px;font-weight:700;color:var(--ink2);margin-bottom:10px">PMS — Crest Staff Category Breakdown</div>`;
+ html2+=`<div class="dep-wrap"><div class="tc"><table class="dep-tbl"><thead><tr><th>Category</th>${cc.cols.map(c=>`<th style="font-size:8.5px">${c}</th>`).join('')}</tr></thead><tbody>`;
+ cc.rows.forEach(r=>{
+  const isTot=r.cat==='TOTAL';
+  html2+=`<tr><td class="cat${isTot?' dep-total':''}" style="white-space:nowrap">${r.cat}</td>
+   ${r.vals.map(v=>{
+    if(!v||v===0)return`<td class="dep-zero${isTot?' dep-total':''}">—</td>`;
+    return`<td class="dep-num${isTot?' dep-total':''}">${v}</td>`;
+   }).join('')}</tr>`;
+ });
+ html2+=`</tbody></table></div></div></div>`;
+
+ // FMS Summary
+ const fms=DEPLOY.fms;
+ html2+=`<div style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px">
+  <div class="cc"><h4>FMS — Crest Staff (${fms.crest.total} total)</h4>
+   <table style="width:100%;font-size:12px">
+    <tr style="border-bottom:1px solid var(--fog)"><td style="padding:6px 8px;font-weight:600">Management</td><td style="padding:6px 8px;font-weight:700;color:var(--blue)">${fms.crest.management}</td></tr>
+    <tr style="border-bottom:1px solid var(--fog)"><td style="padding:6px 8px;font-weight:600">Technical</td><td style="padding:6px 8px;font-weight:700;color:var(--blue)">${fms.crest.technical}</td></tr>
+    <tr style="border-bottom:1px solid var(--fog)"><td style="padding:6px 8px;font-weight:600">Housekeeping</td><td style="padding:6px 8px;font-weight:700;color:var(--blue)">${fms.crest.housekeeping}</td></tr>
+    <tr style="border-bottom:1px solid var(--fog)"><td style="padding:6px 8px;font-weight:600">Club Team</td><td style="padding:6px 8px;font-weight:700;color:var(--blue)">${fms.crest.clubTeam}</td></tr>
+    <tr style="border-bottom:1px solid var(--fog)"><td style="padding:6px 8px;font-weight:600">Lift Mgmt</td><td style="padding:6px 8px;font-weight:700;color:var(--blue)">${fms.crest.liftMgmt}</td></tr>
+    <tr style="border-bottom:1px solid var(--fog)"><td style="padding:6px 8px;font-weight:600">Valet</td><td style="padding:6px 8px;font-weight:700;color:var(--blue)">${fms.crest.valet}</td></tr>
+    <tr style="background:var(--gold-lt)"><td style="padding:6px 8px;font-weight:800;color:var(--gold-dk)">TOTAL</td><td style="padding:6px 8px;font-weight:800;font-size:15px;color:var(--gold-dk)">${fms.crest.total}</td></tr>
+   </table>
+  </div>
+  <div class="cc"><h4>FMS — Vendor Staff (${fms.vendor.total} total)</h4>
+   <table style="width:100%;font-size:12px">
+    <tr style="border-bottom:1px solid var(--fog)"><td style="padding:6px 8px;font-weight:600">Management</td><td style="padding:6px 8px;font-weight:700;color:var(--teal)">${fms.vendor.management}</td></tr>
+    <tr style="border-bottom:1px solid var(--fog)"><td style="padding:6px 8px;font-weight:600">Security</td><td style="padding:6px 8px;font-weight:700;color:var(--teal)">${fms.vendor.security}</td></tr>
+    <tr style="border-bottom:1px solid var(--fog)"><td style="padding:6px 8px;font-weight:600">Valet</td><td style="padding:6px 8px;font-weight:700;color:var(--teal)">${fms.vendor.valet}</td></tr>
+    <tr style="background:var(--gold-lt)"><td style="padding:6px 8px;font-weight:800;color:var(--gold-dk)">TOTAL</td><td style="padding:6px 8px;font-weight:800;font-size:15px;color:var(--gold-dk)">${fms.vendor.total}</td></tr>
+   </table>
+  </div>
+ </div>`;
+
+ // Grand total banner
+ const pmsTotal=DEPLOY.rows[0].vals[DEPLOY.rows[0].vals.length-1]+DEPLOY.rows[1].vals[DEPLOY.rows[1].vals.length-1];
+ const grand=pmsTotal+fms.grandTotal;
+ html2+=`<div style="margin-top:14px;background:var(--ink2);border-radius:8px;padding:14px 20px;display:flex;justify-content:space-around;align-items:center">
+  <div style="text-align:center;color:#fff"><div style="font-family:'DM Serif Display',serif;font-size:26px">${DEPLOY.rows[0].vals[DEPLOY.rows[0].vals.length-1]}</div><div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:3px">PMS Crest Staff</div></div>
+  <div style="text-align:center;color:#fff"><div style="font-family:'DM Serif Display',serif;font-size:26px">${DEPLOY.rows[1].vals[DEPLOY.rows[1].vals.length-1]}</div><div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:3px">PMS Vendor Staff</div></div>
+  <div style="text-align:center;color:#fff"><div style="font-family:'DM Serif Display',serif;font-size:26px">${fms.crest.total}</div><div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:3px">FMS Crest Staff</div></div>
+  <div style="text-align:center;color:#fff"><div style="font-family:'DM Serif Display',serif;font-size:26px">${fms.vendor.total}</div><div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:3px">FMS Vendor Staff</div></div>
+  <div style="text-align:center"><div style="font-family:'DM Serif Display',serif;font-size:32px;color:var(--gold)">${grand}</div><div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:3px">Grand Total</div></div>
+ </div>`;
+
+ document.getElementById('depTbl').insertAdjacentHTML('afterend',html2);
 }
 
 function renderOffice(){
@@ -1675,9 +1786,9 @@ function initCharts(){
  new Chart(document.getElementById('cAu'),{type:'bar',data:{
   labels:AUDIT.map(a=>a.n),
   datasets:[
-   {label:'Q2 FY2025 (Jul–Aug)', data:AUDIT.map(a=>a.q2), backgroundColor:AUDIT.map(a=>a.q2>90?'rgba(15,122,90,.8)':a.q2>80?'rgba(196,122,10,.8)':a.q2>65?'rgba(196,154,46,.8)':'rgba(200,49,43,.8)'),borderRadius:4},
-   {label:'Q1 FY2025 (Apr)',   data:AUDIT.map(a=>a.q1||0), backgroundColor:'rgba(184,196,212,.7)',borderRadius:4},
-   {label:'Q0 FY2025 (Jan)',   data:AUDIT.map(a=>a.q0||0), backgroundColor:'rgba(210,215,225,.7)',borderRadius:4},
+   {label:'Q3 FY2026 (Dec 2025)', data:AUDIT.map(a=>a.q2!=null?a.q2:0), backgroundColor:AUDIT.map(a=>a.q2>90?'rgba(15,122,90,.8)':a.q2>80?'rgba(196,122,10,.8)':a.q2>65?'rgba(196,154,46,.8)':'rgba(200,49,43,.8)'),borderRadius:4},
+   {label:'Q2 FY2026 (Aug 2025)', data:AUDIT.map(a=>a.q1||0), backgroundColor:'rgba(184,196,212,.7)',borderRadius:4},
+   {label:'Q1 FY2026 (Apr 2025)', data:AUDIT.map(a=>a.q0||0), backgroundColor:'rgba(210,215,225,.7)',borderRadius:4},
   ]
  },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{boxWidth:9,padding:12}}},
   scales:{y:{min:0,max:100,grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:v=>v+'%'}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
