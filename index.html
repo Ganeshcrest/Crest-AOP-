@@ -524,7 +524,7 @@ const PMS = [
  // Bella
  {name:"Bella",    risk:"Low",  opened:247, resolved:182, wip:65, resPct:73.7,critN:3, camPsf:10.08,camMo:"₹15,50,085", crestBill:"₹17,21,483", carpet:"1,94,090",propM:32.0,util:25.9,amc:5.1, agency:32.0,score:70},
  // La Fontaine
- {name:"La Fontaine", risk:"Low",  opened:9125, resolved:8851, wip:10, resPct:97.0,critN:2, camPsf:35.08,camMo:"₹15,50,085", crestBill:"₹17,21,483", carpet:"1,94,090",propM:32.0,util:25.9,amc:5.1, agency:32.0,score:76},
+ {name:"La Fontaine", risk:"Low",  opened:269,  resolved:259,  wip:10, resPct:96.3,critN:2, camPsf:35.08,camMo:"₹15,50,085", crestBill:"₹17,21,483", carpet:"1,94,090",propM:32.0,util:25.9,amc:5.1, agency:32.0,score:76},
  // Summit
  {name:"Summit",    risk:"Medium", opened:779, resolved:764, wip:15, resPct:98.1,critN:2, camPsf:12.22,camMo:"₹17,60,434", crestBill:"₹17,60,434", carpet:"2,29,568",propM:56.9,util:20.4, amc:18.9,agency:0.0, score:65},
  // Seasons
@@ -534,9 +534,9 @@ const PMS = [
  // Palacimo — AOP ODS: opened 92, resolved 86, outstanding ~6
  {name:"Palacimo",  risk:"Medium", opened:92,  resolved:86,  wip:6,  resPct:93.5,critN:3, camPsf:null, camMo:"₹1,60,000",   crestBill:"₹1,60,000",  carpet:"26,520", propM:null,util:null,amc:null,agency:null,score:58},
  // Parishram — AOP ODS updated: carpet 80,236, CAM PSF ₹19, Crest bill ₹11,14,439
- {name:"Parishram", risk:"Medium", opened:76,  resolved:63,  wip:13, resPct:82.9,critN:1, camPsf:19.0, camMo:"₹11,14,439", crestBill:"₹11,14,439", carpet:"80,236",  propM:null,util:null,amc:null,agency:null,score:60},
+ {name:"Parishram", risk:"High",   opened:92,  resolved:24,  wip:67, resPct:26.1,critN:1, camPsf:19.0, camMo:"₹11,14,439", crestBill:"₹11,14,439", carpet:"80,236",  propM:null,util:null,amc:null,agency:null,score:38},
  // Aangan — AOP ODS updated: carpet 18,000, CAM PSF ₹44, Crest bill ₹8,44,534; opened=296 resolved=213 wip=82
- {name:"Aangan",   risk:"Medium", opened:296, resolved:213, wip:82, resPct:72.0,critN:0, camPsf:44.0, camMo:"₹8,44,534",  crestBill:"₹8,44,534",  carpet:"18,000",  propM:null,util:null,amc:null,agency:null,score:55},
+ {name:"Aangan",   risk:"Medium", opened:296, resolved:213, wip:81, resPct:71.9,critN:0, camPsf:44.0, camMo:"₹8,44,534",  crestBill:"₹8,44,534",  carpet:"18,000",  propM:null,util:null,amc:null,agency:null,score:55},
  // Runwal Forest — AOP ODS: opened 223, resolved 171, outstanding 19
  {name:"Runwal Forest",risk:"Medium",opened:223, resolved:171, wip:19, resPct:76.7,critN:4, camPsf:null, camMo:"₹5,45,229",  crestBill:"₹5,45,229",  carpet:"—",      propM:null,util:null,amc:null,agency:null,score:57},
  // Ganga Jamuna — NEW site from AOP ODS: opened 76, resolved 63, wip 13; carpet 1,24,146, Crest ₹4,54,639
@@ -544,7 +544,7 @@ const PMS = [
  // Garden 6 — AOP ODS: opened 115, resolved 103, outstanding 13
  {name:"Garden 6",  risk:"Medium", opened:115, resolved:103, wip:13, resPct:89.6,critN:4, camPsf:null, camMo:"—",          crestBill:"—",          carpet:"—",      propM:null,util:null,amc:null,agency:null,score:62},
  // Zinnia — AOP ODS updated: carpet 1,00,484, CAM PSF ₹2.91, Crest ₹1,24,845
- {name:"Zinnia",   risk:"Low",   opened:76,  resolved:63,  wip:13, resPct:82.9,critN:0, camPsf:2.91, camMo:"₹1,24,845",  crestBill:"₹1,24,845",  carpet:"1,00,484", propM:null,util:null,amc:null,agency:null,score:70},
+ {name:"Zinnia",   risk:"Low",   opened:79,  resolved:74,  wip:5,  resPct:93.7,critN:0, camPsf:2.91, camMo:"₹1,24,845",  crestBill:"₹1,24,845",  carpet:"1,00,484", propM:null,util:null,amc:null,agency:null,score:72},
  // Dosti Oak — PPTX: opened 429, resolved 149, outstanding 280
  {name:"Dosti Oak",  risk:"High",  opened:429, resolved:149, wip:280, resPct:34.7,critN:8, camPsf:6.93, camMo:"₹28,80,349", crestBill:"₹8,09,631",  carpet:"—",      propM:39.72,util:39.03,amc:9.37,agency:8.0, score:35},
  // Grand Pallazo — PPTX: new site, no complaint data yet
@@ -654,7 +654,7 @@ const CRIT = [
   crit:["Fire fighting system not available at AMC","FAS panel not operational","Site First Aid box not available"],
   rep:["Domestic pump VFD tripping issue","Drilling and hammering by workers in restricted time bounds"]},
  // Parishram — AOP ODS
- {name:"Parishram",risk:"medium",critN:1,repN:1,
+ {name:"Parishram",risk:"high",critN:1,repN:1,
   crit:["Water body pump leakage — unresolved"],
   rep:["Loud noise disturbing the residents"]},
  // Aangan — AOP ODS
@@ -1162,7 +1162,7 @@ const REP_HM = [
  {n:"Paramount",    v:["ri-no", "ri-rep", "ri-yes","ri-yes", "ri-no", "ri-yes"]},
  // New sites from AOP data
  {n:"Palacimo",     v:["ri-rep","ri-no", "ri-no", "ri-yes","ri-no", "ri-no"]},
- {n:"Parishram",    v:["ri-no", "ri-no", "ri-no", "ri-no", "ri-no", "ri-yes"]},
+ {n:"Parishram",    v:["ri-no", "ri-no", "ri-yes","ri-no", "ri-yes","ri-yes"]},
  {n:"Aangan",      v:["ri-no", "ri-no", "ri-no", "ri-no", "ri-no", "ri-rep"]},
  {n:"Runwal Forest",  v:["ri-yes","ri-rep", "ri-yes","ri-yes","ri-no", "ri-no"]},
  {n:"Ganga Jamuna",  v:["ri-rep","ri-no", "ri-no", "ri-yes","ri-no", "ri-no"]},
@@ -1202,7 +1202,7 @@ const RISK_HM = [
  {n:"Paramount",    v:["h-hi","h-md","h-md","h-md","h-md","h-hi"]},
  // New sites from AOP data
  {n:"Palacimo",     v:["h-hi","h-lo","h-md","h-md","h-na","h-lo"]},
- {n:"Parishram",    v:["h-md","h-lo","h-md","h-md","h-na","h-md"]},
+ {n:"Parishram",    v:["h-md","h-lo","h-md","h-md","h-hi","h-hi"]},
  {n:"Aangan",      v:["h-md","h-md","h-md","h-md","h-na","h-lo"]},
  {n:"Runwal Forest",  v:["h-hi","h-md","h-md","h-md","h-na","h-md"]},
  {n:"Ganga Jamuna",  v:["h-hi","h-lo","h-md","h-md","h-na","h-lo"]},
@@ -1264,6 +1264,7 @@ const ACTIONS = [
  {s:"Palacimo",   i:"Fire fighting system not available at AMC — urgent enrolment", c:"Fire Safety",   p:"ur",o:"AMC / PMS Team",   t:"Immediate", st:"sto"},
  {s:"Palacimo",   i:"FAS panel not operational — needs urgent attention",      c:"Fire Safety",   p:"ur",o:"Fire Vendor",     t:"Immediate", st:"sto"},
  {s:"Parishram",  i:"Water body pump leakage — unresolved",             c:"Plumbing",    p:"hi",o:"Plumbing Team",    t:"14 Days",  st:"sto"},
+ {s:"Parishram",  i:"37 Project Design Issues outstanding — 67 total WIP",      c:"Project Handover",p:"ur",o:"Project Team",    t:"Immediate", st:"sto"},
  {s:"Runwal Forest",i:"Fire hydrant system operating in manual mode — switch to auto", c:"Fire Safety",   p:"hi",o:"Fire Safety Team",  t:"7 Days",   st:"sto"},
  {s:"Runwal Forest",i:"Alarm speakers non-functional on multiple floors",       c:"Fire Safety",   p:"hi",o:"Fire Vendor",     t:"14 Days",  st:"sto"},
  {s:"Runwal Forest",i:"No assembly point signages on site",              c:"Fire Safety",   p:"md",o:"Facility Manager", t:"7 Days",   st:"sto"},
